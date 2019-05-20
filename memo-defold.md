@@ -8,7 +8,7 @@ Licence Creative Commons : Cette œuvre est mise à disposition selon les termes
 
 ## Introduction
 
-*Defold* est un outil pour créer des jeux vidéos. Il est gratuit mais non open source. La société *King* (Candy Crush) utilise ce moteur pour créer ses jeux et le fournit au public gratuitement et sans licence ni contrepartie. Les jeux créés avec *Defold* sont programmés en *Lua*, un langage de script facile à apprendre et puissant. Vous pouvez exporter vos jeux sur les plateformes Windows, Mac OS X, Linux, Android, iOS et HTML. Vous pouvez stocker vos projets sur le cloud dédié de *Defold* (ou un cloud compatible avec *Git*) et les partager avec d'autres membres de votre équipe ou, si vous préférez, sur votre propre ordinateur.
+*Defold* est un outil pour créer des jeux vidéos. Il est gratuit mais non open source. La société *King* (Candy Crush) utilise ce moteur pour créer ses jeux et le fournit au public gratuitement et sans licence ni contrepartie. Les jeux créés avec *Defold* sont programmés en *Lua*, un langage de script facile à apprendre et puissant. Vous pouvez exporter vos jeux sur les plateformes *Windows*, *Mac OS X*, *Linux*, *Android*, *iOS* et *HTML*. Vous pouvez stocker vos projets sur le cloud dédié de *Defold* (ou un cloud compatible avec *Git*) et les partager avec d'autres membres de votre équipe ou, si vous préférez, sur votre propre ordinateur.
 
 **Attention !** *Defold* nécessite de posséder un compte *Google* et vous devrez être connecté à *Internet* pour créer vos premiers projets (basés sur des modèles en ligne).
 
@@ -218,17 +218,17 @@ Lorsque vous double-cliquez sur un fichier source en langage *Lua*, l'éditeur d
 
 ![Script Editor](defold_script_editor.png)
 
-### Editeur de configuration de projet
+### Editeur de configuration du projet
 
-Lorsque vous double-cliquez sur le fichier `game.project`, *Defold* ouvre la fenêtre de configuration du jeu.
+Tous les paramètres du projet sont définis dans un fichier texte appelé `game.project`. Si vous l'ouvrez dans *Defold* par un double clic, la vue `Editor` permet de contrôler tous les paramètres dans un format plus ergonomique.
 
 ![Configuration editor](defold_configuration_file.png)
 
-Une liste de paramètres s'affiche dans l'éditeur. Les attributs sont classés par sections :
+La liste de paramètres s'affiche dans l'éditeur. Les paramètres ayant des valeurs modifiées ont un bouton en forme de flèche circulaire pour rétablir leur valeur par défaut. Ils sont classés par sections :
 
 **Attention !** Ce fichier doit rester à la racine du projet et ne doit pas être renommé.
 
-**Remarque :** Vous pouvez éditer ce fichier avec un éditeur de texte. Les attributs visibles sont ceux qui ont déjà été modifiés (qui n'ont pas leur valeur par défaut). Vous pouvez également ouvrir ce fichier dans *Defold* en tant que fichier texte par un clic droit dans la vue `Assets` puis en choisissant `Open As` > `Text`.
+**Remarque :** Vous pouvez éditer ce fichier avec un éditeur de texte. Seuls les attributs ayant déjà été modifiés (qui n'ont pas leur valeur par défaut) sont visibles. Vous pouvez également ouvrir ce fichier dans *Defold* en tant que fichier texte par un clic droit dans la vue `Assets` puis en choisissant `Open As` > `Text`.
 
 #### Project
 
@@ -543,77 +543,312 @@ Custom values can—just like any other config value—be read with `sys.get_con
 
 **Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
 
-### Paramétrer le projet
+## Préparatifs à effectuer
 
-Tous les paramètres du projet sont définis dans un fichier texte appelé game.project. Les paramètres ayant des réglages par défaut n'apparaissent pas dans le fichier lorsque vous l'ouvrez avec un éditeur de texte. Si vous l'ouvrez avec Defold, tous les paramètres peuvent être contrôlés dans l'éditeur. Les paramètres ayant des valeurs modifiées ont un bouton en forme de flèche circulaire pour rétablir leur valeur par défaut.
+*Defold* suppose que les ressources externes (images et sons) sont prêtes à être utilisées. Vous devez donc commencer par les importer dans vos projets ou à défaut, utiliser des ressources temporaires de remplacement.
 
-### Définir les dimensions logiques du jeu
+### Importer des images
 
-Ouvrez le fichier `game.project`.  Dans la section `Display`, saisissez la largeur dans le champ `Width` et la hauteur dans le champ `Height` (en pixels).
+Pour importer des images dans votre projet, faites simplement glisser depuis votre système les fichiers images (au format `.png` ou `.jpg`) dans la vue `Assets` à l'emplacement désiré. Les fichiers sont dupliqués dans le projet. Les images d'origines sont donc toujours accessibles à l'emplacement d'origine.
 
-### Définir la collection principale
+**Remarque :** N'oubliez pas que vous pouvez supprimer les images inutiles dans la vue `Assets` par un clic droit suivi de l'option `Delete`.
 
-Ouvrez le fichier `game.project`. Dans la section `Bootstrap`, affectez le fichier collection de votre choix au champ `Main Collection`.
+*Defold* propose deux façons de gérer les images selon qu'elles sont rassemblées ou non dans un même fichier.
 
-### Afficher une image
+#### Gérer des images individuelles
 
-Attachez à la collection définie comme collection principale un game object et attachez à celui-ci un component `Sprite`. Enfin, attribuez au sprite un atlas et une animation.
+Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
 
-### Quitter le jeu avec la touche Echap
+![New Atlas dialog](defold_new_atlas_dialog.png)
 
-Dans le menu `File` > `Preferences`, dans l'onglet `General`, cochez la case `Escape Quits Game`. Cette option ne fonctionne qu'en phase de test.
+- Le champ `Name` vous permet de définir le nom de l'atlas.
+- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
+- Le champ `Path` vous indique le chemin complet de l'atlas.
+
+Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
+
+![Atlas Editor view](defold_editor_atlas.png)
+
+Pour ajouter des images à l'atlas, dans la vue `Outline` faites un clic droit sur l'atlas et choisissez l'option `Add Images...` :
+
+![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
+
+La boîte de dialogue `Select Images` apparaît :
+
+![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+
+Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste de fichiers ressources images (en *italique* suivi de leur chemin complet) :
+
+![Atlas with images added](defold_atlas_with_images.png)
+
+##### Importer une série d'images en tant qu'animation
+
+Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composées d'une série d'images définissant une animation. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
+
+![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
+
+Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
+
+![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
+
+**Remarque :** Vous pouvez renommer le groupe d'animation dans la vue `Properties`.
+
+Ajoutez ensuite les images à ce groupe par un clic droit suivi de l'option `Add Images...` :
+
+![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
+
+La boîte de dialogue `Select Images` apparaît :
+
+![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+
+Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des ressources images (en *italique* suivi de leur chemin complet) sous le groupe d'animation :
+
+![Atlas Animation with Images](defold_atlas_animation_with_images.png)
+
+**Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
+
+Vous pouvez éditer les propriétés du groupe d'animation dans la vue `Properties` :
+
+![Atlas Animation properties](defold_atlas_animation_properties.png)
+
+- Le champ `Id` vous permet de définir le nom du groupe d'animation.
+- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes).
+- L'option' `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement ou non (décoché par défaut).
+- L'option' `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement ou non (décoché par défaut).
+- Le menu déroulant `Playback` vous permet de définir la façon dont est lue l'animation :
+  - L'option `None` bloque l'animation sur la première image.
+  - L'option `Once Forward` lit l'animation en avant une seule fois.
+  - L'option `One Backward` lit l'animation à l'envers une seule fois.
+  - L'option `Once Ping Pong` lit l'animation en avant puis à l'envers une seule fois.
+  - L'option `Loop Forward` (par défaut) lit l'animation en avant indéfiniment.
+  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
+  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
+
+#### Gestion des tilesheet ou spritesheet
+
+Si un fichier image contient plusieurs images (uniquement disposées dans des tuiles de tailles identiques), vous devez créer un fichier ressource `Tile Source` dans la vue `Assets` par un clic droit à l'emplacement désiré puis choisir l'option `New...` > `Tile Source`. La boîte de dialogue `New Tile Source` apparaît :
+
+![New Tile Source dialog](defold_new_tile_source_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom de la tile source.
+- Le champ `Location` et le bouton `Browse` vous permettent de définir l'emplacement de la tile source.
+- Le champ `Path` affiche le chemin complet de la tile source.
+
+Cliquez sur le bouton `OK` pour créer la tile source ou sur le bouton `Cancel` pour annuler. Une nouvelle tile source vide apparaît dans la vue `Editor` :
+
+![New Tile Source Editor view empty](defold_new_tile_source_editor.png)
+
+La vue `Editor` indique que la tile source nécessite de définir la propriété `Image` (`'Image' must be specified`). Dans la vue `Properties`, cliquez sur l'icônes `...` à droite du champ `Image` :
+
+![New Tile Source Outline and Properties view empty](defold_new_tile_source_outline_and_properties.png)
+
+Cela ouvre la boîte de dialogue `Select Resource` :
+
+![Tile Source Select Resource dialog](defold_tile_source_select_resource_dialog.png)
+
+Choisissez l'image à utiliser puis cliquez sur le bouton `OK`. La vue `Editor` affiche l'image importée (pour centrer la vue sur l'image appuyez sur la touche `F`). En haut à gauche, un texte indique le numéro de tuile de l'image survolée par la souris :
+
+![Tile Source Editor](defold_tile_source_editor.png)
+
+La vue Properties vous permet de définir les propriétés de la tile source :
+
+![Tile Source Properties](defold_tile_source_properties.png)
+
+- Le champ `Image` vous permet de définir le fichier ressource image à utiliser dans la tile source.
+- Les champs `W` et `H` de la section `Size` affichent la largeur (`W`) et la hauteur (`H`) en pixels de l'image utilisé dans la tile source.
+- Le champ `Tile Width` vous permet de définir la largeur en pixels des tuiles de la tile source.
+- Le champ `Tile Height` vous permet de définir la hauteur en pixels des tuiles de la tile source.
+- Le champ `Tile Margin` vous permet de définir la marge en pixels autour des tuiles de la tile source.
+- Le champ `Tile Spacing` vous permet de définir l'espacement en pixels existant entre les tuiles de la tile source dans le fichier d'origine.
+- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement des tuiles de la tile source.
+- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter autour des tuiles dans la tile source.
+- Le champ `Collision` vous permet de définir un fichier ressource image à utiliser en tant que collision.
+
+##### Définir des animations de tile source
+
+Une tile source permet de définir des animations composées de tuiles successives dans l'image source. Pour créer une nouvelle animation, dans la vue `Outline` faites un clic droit sur la tile source et choisissez l'option `Add` > `Animation` :
+
+![Tile Source Add Animation menu](defold_tile_source_add_animation_menu.png)
+
+Une nouvelle animation apparaît dans la vue `Outline` :
+
+![Tile Source New Animation Outline view](defold_tile_source_new_animation_outline.png)
+
+Vous pouvez alors éditer ses propriétés dans la vue `Properties` :
+
+![Tile Source New Animation Properties view](defold_tile_source_new_animation_properties.png)
+
+- Le champ `Id` vous permet de définir le nom de l'animation.
+- Le champ `Start Tile` vous permet de définir l'index de la première tuile de l'animation.
+- Le champ `End Tile` vous permet de définir l'index de la dernière tuile de l'animation.
+- Le champ `Playback` vous permet de définir la façon de lire l'animation.
+  - L'option `None` bloque la lecture de l'animation sur la première tuile.
+  - L'option `Once Forward` lit l'animation en avant une seule fois.
+  - L'option `Once Backward` lit l'animation en arrière une seule fois.
+  - L'option `Once Ping Pong` lit l'animation en avant puis en arrière une seule fois.
+  - L'option `Loop Forward` lit l'animation en avant indéfiniment.
+  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
+  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
+- Le champ `Fps` vous permet de définir la vitesse de lecture de l'animation (en images par secondes).
+- Le champ `Flip Horizontal` vous permet de retourner horizontalement l'animation (décoché par défaut).
+- Le champ `Flip Vertical` vous permet de retourner verticalement l'animation (décoché par défaut).
 
 ## Structure du jeu
 
-Dans Defold, le jeu est constitué d'une arborescence ayant comme racine un fichier collection. Celui-ci peut avoir comme enfants des instances de fichiers de type `collection` et/ou des instances de type `game object` (objet jeu).
-Les  instances game object ont à leur tour comme enfants des  instances game object et/ou des Components divers.
-Enfin, certains Components peuvent avoir comme enfants des éléments particuliers (par exemple les Component `Collision Object` ont en général un enfant de type `Shape`).
-Les collections
+Dans *Defold*, chaque écran de jeu est représenté par une `Collection`. Dans le fichier de configuration `game.project`, un fichier `.collection` doit être défini comme collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
+
+**Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de lancement dans le fichier de configuration de tout nouveau projet.
+
+Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui représentera un écran de jeu complet.
+
+Un game object est un conteneur à components. Ils ne possèdent que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
+
+Les components sont les éléments essentiels au jeu. Ce sont eux qui définissent les graphismes, les sons ou les comportements des game objects qui les contiennent.
+
+Enfin, certains components peuvent avoir comme enfants des éléments particuliers (par exemple les components `Collision Object` ont en général un élément enfant de type `Shape`).
+
+Tous les fichiers qui ne sont pas des collections sont considérés comme des ressources et peuvent être référencés dans les collections. Il apparaissent alors avec le chemin du fichier écrit en italique à côté de leur nom (`Id`) dans la vue `Outline`.
+
+## Créer une collection
+
+Dans la vue `Assets`, faites un clic droit à l'endroit où vous souhaitez créer un game object et choisissez l'option `New...` > `Collection`.
+
+La boîte de dialogue `New Collection` apparaît :
+
+![Assets New Collection menu](defold_new_collection_menu.png)
+
+- Le champ `Name` vous permet de définir le nom de la collection.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
+- Le champ `Path` indique le chemin complet de la collection.
+
+Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
+
+![New Collection Editor view](defold_new_collection_editor_view.png)
+
+La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous élément :
+
+![New Collection Outline view](defold_new_collection_outline_view.png)
+
+Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
+
+## Créer un game object
+
+Vous pouvez créer des fichiers ressources `Game Object` depuis la vue `Assets` ou créer directement un game object en place dans une collection depuis la vue `Outline`.
+
+### Créer un fichier ressource Game Object
+
+Pour  créer un fichier ressource `Game Object`, dans la vue `Assets` faites un clic droit à l'endroit où vous souhaitez créer le game object et choisissez l'option `New...` > `Game Object`.
+
+La boîte de dialogue `New Game Object` apparaît :
+
+![Assets New Game Object menu](defold_new_game_object.png)
+
+- Le champ `Name` vous permet de définir le nom du game object.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du game object dans votre projet.
+- Le champ `Path` indique le chemin complet du game object.
+
+Cliquez sur le bouton `OK` pour créer le game object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau game object.
+
+![New Game Object Editor view](defold_new_game_object_editor_view.png)
+
+La vue `Outline` montre que celui-ci ne possède pour le moment aucun component.
+
+![New Game Object Outline view](defold_new_game_object_outline_view.png)
+
+Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
+
+### Attacher un game object en place à une collection
+
+Pour attacher un game object en place à une collection, dans la vue `Outline`, faites un clic droit sur la collection et choisissez l'option `Add Game Object` (touche `A`) :
+
+![New Game Object In Place menu](defold_new_game_object_in_place.png)
+
+Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses propriétés s'affichent dans la vue `Properties` :
+
+![New Game Object In Place Outline and Properties](defold_new_game_object_in_place_outline_and_properties.png)
+
+Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
+
+## Ajout de components à un game object
+
+Dans la vue `Editor`, l'onglet actif doit être un game object ou une collection pour que la vue `Outline` en affiche la structure. Pour attacher un component à un game object, dans la vue `Outline`, faites un clic droit sur le game object, choisissez l'option `Add Component` puis choisissez un component à attacher en place (c'est-à-dire directement intégré au fichier ressource contenant le game object) au game object sélectionné.
+
+![Add Component menu](defold_add_component.png)
+
+Le component attaché en place apparaît dans la vue `Outline`.
+
+![Component in place](defold_outline_component_in_place.png)
+
+**Remarque :** Seules les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object. Les autres components doivent être attachés via l'option `Add Component File` depuis un fichier ressource :
+
+![Add Component File menu](defold_add_component_file.png)
+
+La boîte de dialogue `Select Component File` apparaît. Choisissez alors le fichier correspondant à la ressource à attacher au game object selectionné.
+
+![Select Component File dialog](defold_select_component_file_dialog.png)
+
+Contrairement à un component attaché en place, un component défini dans un fichier ressource apparaît en *italique* suivi du chemin du fichier dans la vue `Outline`.
+
+![Component File reference](defold_outline_component_reference.png)
+
+**Conseil :** Utilisez les components définis dans des fichiers ressources lorsque vous souhaitez les réutiliser dans plusieurs game objects.
+
+### Les collections
+
 Une collection est toujours un fichier. 
-Créer une collection
-Pour créer un nouveau fichier collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. Defold utilse l'extension `.collection` pour les fichiers collection.
-Attacher un game object à une collection
+
+#### Créer une collection
+
+Pour créer un nouveau fichier collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilse l'extension `.collection` pour les fichiers collection.
+
+#### Attacher un game object à une collection
+
 Si la collection n'est pas ouverte dans l'éditeur, ouvrez-la.
-Si vous voulez créer un game object unique, faites un clic droit sur la collection dans la vue `Outline` et choisissez `Add Component` > `game object`.
-Si vous voulez attacher un game object préexistant sous la forme d'un fichier dans la vue `Assets`, faites un clic droit sur la collection dans la vue `Outline` et choisissez `Add game object File` puis choisissez le game object désiré.
-Les game objects
-Créer un game object
-Vous pouvez créer un fichier game object réutilisable en faisant un clic droit dans la vue `Assets` et choisissez `New` > `game object` et donnez-lui un nom. Defold utilse l'extension `.go` pour les fichiers game object.
-Vous pouvez également créer un `game object` intégré en l'attachant à une collection ou à un autre `game object` directement dans la vue Outline.
-Attacher un Component à un game object
+Si vous voulez créer un game object en place, faites un clic droit sur la collection dans la vue `Outline` et choisissez `Add Component` > `game object`.
+Si vous voulez attacher un fichier ressource game object (préexistant sous la forme d'un fichier) dans la vue `Assets`, faites un clic droit sur la collection dans la vue `Outline` et choisissez `Add Game Object File` puis choisissez le game object désiré.
+
+### Les game objects
+
+#### Créer un game object
+
+Vous pouvez créer un fichier game object réutilisable en faisant un clic droit dans la vue `Assets` et choisissez `New` > `game object` et donnez-lui un nom. *Defold* utilse l'extension `.go` pour les fichiers game object.
+Vous pouvez également créer un `game object` intégré en l'attachant à une collection ou à un autre `game object` directement dans la vue `Outline`.
+
+#### Attacher un component à un game object
+
 Si le game object n'est pas ouvert dans l'éditeur, ouvrez-le.
 Si vous voulez créer un Component unique, faites un clic droit sur le game object dans la vue `Outline` et choisissez `Add Component` puis sélectionnez le Component de votre choix.
 Si vous voulez attacher un Component préexistant stocké sous forme de fichier (par exemple, pour le réutiliser dans plusieurs game objects) dans la vue `Assets`, faites un clic droit sur le game object ouvert dans la vue `Outline` et choisissez `Add Component File` puis choisissez le fichier Component désiré.
-Le Component Camera
-Dans Defold, une caméra est un Component qui gère la vue dans le jeu. Il n'y a pas besoin de caméra par défaut, mais si votre jeu nécessite de se déplacer dans un niveau, Defold fournit un Component de base appelé Camera. Les caméras ont une position dans l'espace. Elles peuvent être déplacées en positionnant le game object les contenants. Elle incluent un script de rendu avec les données nécessaires pour rendre la vue correctement.
-Les caméras en OpenGL sont exprimées en tant que système de coordonnées avec un observateur (ou oeil), une position, et un plan limite de vue de près et de loin. Le plan de près est le plan visible (ou l'écran).
- Camera planes 
+
+#### Le component Camera
+Dans *Defold*, une caméra est un component qui gère la vue dans le jeu. Il n'y a pas besoin de caméra par défaut, mais si votre jeu nécessite de se déplacer dans un niveau, *Defold* fournit un component de base appelé `Camera`. Les caméras ont une position dans l'espace. Elles peuvent être déplacées en positionnant le game object les contenants. Elle incluent un script de rendu avec les données nécessaires pour rendre la vue correctement.
+Les caméras en *OpenGL* sont exprimées en tant que système de coordonnées avec un observateur (ou oeil), une position, et un plan limite de vue de près et de loin. Le plan de près est le plan visible (ou l'écran).
+
+Camera planes 
 
 Une caméra 3D a généralement un volume de vue (un frustum) qui a la forme d'une pyramide coupée. Cela a pour effet que les objets les plus éloignés de la caméra apparaissent plus petits. La perspective est réaliste. Plus le champ de vision est large, plus la caméra voit de parties de la scène et plus la différence entre des objets éloignés est importante.
- Camera field of view 
+
+Camera field of view 
 
 ### Créer une caméra
+
 Pour créer une caméra, ajoutez un Component `Camera` à un `game object`.Vous pouvez créer un fichier Camera réutilisable en faisant un clic droit dans la vue `Assets` et choisissez `New -> Camera` et donnez-lui un nom. Defold utilse l'extension `.camera` pour les fichiers game object.
 
 The camera component has a set of properties that defines the camera frustum.
- Camera properties 
+
+Camera properties 
 
 The current default FOV value is misleading. It is not expressed in degrees but in radians. For a 45 degree FOV, change the value to 0.785 (𝛑 / 4).
-aspect_ratio
-The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
-fov
-The camera field of view expressed in radians.
-near_z
-The Z-value of the near clipping plane.
-far_z
-The Z-value of the far clipping plane.
-auto_aspect_ratio
-Set this to 1 to let the camera automatically set the aspect ratio based on the game’s screen settings.
-Camera focus
-To activate the camera and have it feed its view and projection matrices, you send the component an acquire_camera_focus message:
+**aspect_ratio :** The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
+**fov :** The camera field of view expressed in radians.
+**near_z :** The Z-value of the near clipping plane.
+**far_z :** The Z-value of the far clipping plane.
+**auto_aspect_ratio :** Set this to 1 to let the camera automatically set the aspect ratio based on the game’s screen settings.
+**Camera focus :** To activate the camera and have it feed its view and projection matrices, you send the component an `acquire_camera_focus` message:
+
 `msg.post("#camera", "acquire_camera_focus")`
 
-As soon as the camera component has camera focus, each frame it will send a set_view_projection message to the @render socket, i.e. to your render script:
+As soon as the camera component has camera focus, each frame it will send a `set_view_projection` message to the `@render` socket, i.e. to your render script:
 
 ```lua
 -- example.render_script
@@ -683,10 +918,12 @@ go.set_rotation(vmath.quat_rotation_z(0.314) * vmath.quat_rotation_y(0.314))
 Rotated camera 
 
 Orthographic projection
+
 For many 2D games, the business of having a camera that can move back and forth becomes a problem, especially if you have content that you would like to render pixel perfect. Instead of trying to place your camera at the perfect Z distance to get the view you want, you should instead set up a camera with orthographic projection. This means that the view of the camera is no longer dictated by a frustum, but by a much simpler box.
  Orthographic projection 
 
 Orthographic projection is unrealistic in that it does not alter the size of objects based on their distance. A person standing 10000 meters away will still render at the same size as the person standing right in front of the camera. However, this method of projecting graphics is sometimes useful and 2D games often benefit from using it. To use orthographic projection you just have to modify your render script:
+
 ```lua
 -- example.render_script
 
@@ -729,186 +966,6 @@ Vous devez attacher une Shape (forme) à l'objet. Faites un clic droit dans la v
 ### Le component Spine Model
 
 ### Le component Sprite
-
-## Créer un écran de jeu
-
-Dans *Defold*, un écran de jeu est représenté par une `Collection`. Dans le fichier de configuration `game.project`, un fichier `.collection` doit être défini comme écran de lancement du jeu (section `Bootstrap` > `Main collection`).
-
-**Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de lancement dans le fichier de configuration de tout nouveau projet.
-
-Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui représentera un écran de jeu complet.
-
-Un game object est un conteneur à components. Ils ne possèdent que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
-
-Les components sont les éléments essentiels au jeu. Ce sont eux qui définissent les graphismes, les sons ou les comportements des game objects qui les contiennent.
-
-Tous les fichiers qui ne sont pas des collections sont considérés comme des ressources et peuvent être référencés dans les collections. Il apparaissent alors avec le chemin du fichier écrit en italique à côté de leur nom (`Id`) dans la vue `Outline`.
-
-## Créer une collection
-
-
-Dans la vue `Assets`, faites un clic droit à l'endroit où vous souhaitez créer un game object et choisissez l'option `New...` > `Collection`.
-
-La boîte de dialogue `New Collection` apparaît :
-
-![Assets New Collection menu](defold_new_collection_menu.png)
-
-- Le champ `Name` vous permet de définir le nom de la collection.
-- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
-- Le champ `Path` indique le chemin complet de la collection.
-
-Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
-
-![New Collection Editor view](defold_new_collection_editor_view.png)
-
-La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous élément :
-
-![New Collection Outline view](defold_new_collection_outline_view.png)
-
-Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
-
-## Créer un game object
-
-Vous pouvez créer des fichiers ressources `Game Object` depuis la vue `Assets` ou créer directement un game object en place dans une collection depuis la vue `Outline`.
-
-### Créer un fichier ressource Game Object
-
-Pour  créer un fichier ressource `Game Object`, dans la vue `Assets` faites un clic droit à l'endroit où vous souhaitez créer le game object et choisissez l'option `New...` > `Game Object`.
-
-La boîte de dialogue `New Game Object` apparaît :
-
-![Assets New Game Object menu](defold_new_game_object.png)
-
-- Le champ `Name` vous permet de définir le nom du game object.
-- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du game object dans votre projet.
-- Le champ `Path` indique le chemin complet du game object.
-
-Cliquez sur le bouton `OK` pour créer le game object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau game object.
-
-![New Game Object Editor view](defold_new_game_object_editor_view.png)
-
-La vue `Outline` montre que celui-ci ne possède pour le moment aucun component.
-
-![New Game Object Outline view](defold_new_game_object_outline_view.png)
-
-Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
-
-### Attacher un game object en place à une collection
-
-Pour attacher un game object en place à une collection, dans la vue `Outline`, faites un clic droit sur la collection et choisissez l'option `Add Game Object` (touche `A`) :
-
-![New Game Object In Place menu](defold_new_game_object_in_place.png)
-
-Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses propriétés s'affichent dans la vue `Properties` :
-
-![New Game Object In Place Outline and Properties](defold_new_game_object_in_place_outline_and_properties.png)
-
-Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
-
-## Importer des images
-
-Pour importer des images dans votre projet, faites simplement glisser depuis votre système les fichiers images (au format `.png` ou `.jpg`) dans la vue `Assets` à l'emplacement désiré. Les fichiers sont dupliqués dans le projet. Les images d'origines sont donc toujours accessibles à l'emplacement d'origine.
-
-**Remarque :** N'oubliez pas que vous pouvez supprimer les images inutiles dans la vue `Assets` par un clic droit suivi de l'option `Delete`.
-
-Dans *Defold*, il y a deux façons de gérer les images selon que les images sont rassemblées ou non dans un même fichier.
-
-### Gérer des images individuelles
-
-Dans *Defold*, les images individuelles doivent être placées dans un fichier ressource `Atlas`. C'est une ressource qui rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
-
-![New Atlas dialog](defold_new_atlas_dialog.png)
-
-- Le champ `Name` vous permet de définir le nom de l'atlas.
-- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
-- Le champ `Path` vous indique le chemin complet de l'atlas.
-
-Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Le nouvel atlas vide apparaît dans la vue `Editor` :
-
-![Atlas Editor view](defold_editor_atlas.png)
-
-Pour ajouter des images à l'atlas, dans la vue `Outline` faites un clic droit sur l'atlas et choisissez l'option `Add Images...` :
-
-![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
-
-La boîte de dialogue `Select Images` apparaît :
-
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
-
-Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste de fichiers ressources images (en *italique* suivi de leur chemin complet) :
-
-![Atlas with images added](defold_atlas_with_images.png)
-
-#### Importer une animation
-
-Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composées d'une série d'images définissant une animation. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
-
-![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
-
-Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
-
-![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
-
-**Remarque :** Vous pouvez renommer le groupe d'animation dans la vue `Properties`.
-
-Ajoutez ensuite les images à ce groupe par un clic droit suivi de l'option `Add Images...` :
-
-![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
-
-La boîte de dialogue `Select Images` apparaît :
-
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
-
-Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des ressources images (en *italique* suivi de leur chemin complet) sous le groupe d'animation :
-
-![Atlas Animation with Images](defold_atlas_animation_with_images.png)
-
-**Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
-
-Vous pouvez éditer les propriétés du groupe d'animation dans la vue `Properties` :
-
-![Atlas Animation properties](defold_atlas_animation_properties.png)
-
-- Le champ `Id` vous permet de définir le nom du groupe d'animation.
-- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes).
-- L'option' `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement ou non (décoché par défaut).
-- L'option' `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement ou non (décoché par défaut).
-- Le menu déroulant `Playback` vous permet de définir la façon dont est lue l'animation :
-  - L'option `None` bloque l'animation sur la première image.
-  - L'option `Once Forward` lit l'animation en avant une seule fois.
-  - L'option `One Backward` lit l'animation à l'envers une seule fois.
-  - L'option `Once Ping Pong` lit l'animation en avant puis à l'envers une seule fois.
-  - L'option `Loop Forward` (par défaut) lit l'animation en avant indéfiniment.
-  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
-  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
-
-### Gestion des tilesheet ou spritesheet
-
-Si un fichier image est composé de plusieurs images (uniquement placées dans des tuiles de même taille), vous devez créer une nouvelle ressource `Tile Source` dans la vue `Assets` par un clic droit à l'emplacement désiré puis choisissez l'option `New...` > `Tile Source`. La nouvelle tile source vide apparaît dans la vue `Editor`.
-
-## Ajout de components à un game object
-
-Dans la vue `Editor`, l'onglet actif doit être un game object ou une collection pour que la vue `Outline` en affiche la structure. Pour attacher un component à un game object, dans la vue `Outline`, faites un clic droit sur le game object, choisissez l'option `Add Component` puis choisissez un component à attacher en place (c'est-à-dire directement intégré au fichier ressource contenant le game object) au game object sélectionné.
-
-![Add Component menu](defold_add_component.png)
-
-Le component attaché en place apparaît dans la vue `Outline`.
-
-![Component in place](defold_outline_component_in_place.png)
-
-**Remarque :** Seules les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object. Les autres components doivent être attachés via l'option `Add Component File` depuis un fichier ressource :
-
-![Add Component File menu](defold_add_component_file.png)
-
-La boîte de dialogue `Select Component File` apparaît. Choisissez alors le fichier correspondant à la ressource à attacher au game object selectionné.
-
-![Select Component File dialog](defold_select_component_file_dialog.png)
-
-Contrairement à un component attaché en place, un component défini dans un fichier ressource apparaît en *italique* suivi du chemin du fichier dans la vue `Outline`.
-
-![Component File reference](defold_outline_component_reference.png)
-
-**Conseil :** Utilisez les components définis dans des fichiers ressources lorsque vous souhaitez les réutiliser dans plusieurs game objects.
 
 ## Script
 
@@ -966,3 +1023,21 @@ Pour cibler un component situé dans un autre game object que le script et dans 
 Pour envoyer un message à un script d'un autre game object, utilisez la fonction `msg.post` avec l'identifiant du game object, suivi du signe `#` puis de l'identifiant du script :
 
 `msg.post(other_game_objet#other_script, "message")`
+
+## Astuces diverses
+
+### Définir la collection principale
+
+Ouvrez le fichier `game.project`. Dans la section `Bootstrap`, affectez le fichier collection de votre choix au champ `Main Collection`.
+
+### Définir les dimensions logiques du jeu
+
+Ouvrez le fichier `game.project`.  Dans la section `Display`, saisissez la largeur dans le champ `Width` et la hauteur dans le champ `Height` (en pixels).
+
+### Afficher une image
+
+Attachez à la collection définie comme collection principale un game object et attachez à celui-ci un component `Sprite`. Enfin, attribuez au sprite un atlas et une animation.
+
+### Quitter le jeu avec la touche Echap
+
+Dans le menu `File` > `Preferences`, dans l'onglet `General`, cochez la case `Escape Quits Game`. Cette option ne fonctionne qu'en phase de test.

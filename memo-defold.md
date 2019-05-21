@@ -32,9 +32,9 @@ Téléchargez la dernière version de *Defold* correspondante à votre système 
 
 ![Defold download](defold_download.png)
 
-- Sur Windows, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `Defold.exe`.
-- Sur Mac OS X, montez le fichier téléchargé et faites glisser l'application `Defold` dans le dossier `Applications` puis exécutez ce fichier.
-- Sur Linux, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `./Defold`.
+- Sur *Windows*, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `Defold.exe`.
+- Sur *Mac OS X*, montez le fichier téléchargé et faites glisser l'application `Defold` dans le dossier `Applications` puis exécutez ce fichier.
+- Sur *Linux*, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `./Defold`.
 
 ## Mettre à jour Defold
 
@@ -702,6 +702,12 @@ La vue `Properties` affiche les propriétés du groupe d'animation suivantes :
 
 ### Camera
 
+#### Créer un fichier ressource Camera
+
+Pour créer un fichier ressource Camera, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Camera`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
 Dans *Defold*, une caméra est un component qui gère la vue dans le jeu. Il n'y a pas besoin de caméra par défaut, mais si votre jeu nécessite de se déplacer dans un niveau, *Defold* fournit un component de base appelé `Camera`. Les caméras ont une position dans l'espace. Elles peuvent être déplacées en positionnant le game object les contenants. Elle incluent un script de rendu avec les données nécessaires pour rendre la vue correctement. *OpenGL* définit les caméras par un système de coordonnées composé d'un observateur (ou oeil), d'une position, et d'un plan limite de vue de près et de loin. Le plan de près est le plan visible (ou l'écran).
 
 #### Plans de caméra 
@@ -718,7 +724,11 @@ Pour créer une caméra, vous pouvez attacher en place un component `Camera` à 
 
 The camera component has a set of properties that defines the camera frustum.
 
-#### Propriétés de caméra 
+#### Propriétés de caméra
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Camera properties list](defold_camera_properties.png)
 
 The current default FOV value is misleading. It is not expressed in degrees but in radians. For a 45 degree FOV, change the value to 0.785 (𝛑 / 4).
 - **aspect_ratio :** The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
@@ -871,13 +881,49 @@ Si vous voulez attacher un fichier ressource game object (préexistant sous la f
 
 ### Collection Factory
 
+#### Créer un fichier ressource Collection Factory
+
+Pour créer un fichier ressource Collection Factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Factory`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Collection Factory
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Collection Factory properties list](defold_collection_factory_properties.png)
+
 [VIDE]
 
 ### Collection Proxy
 
+#### Créer un fichier ressource Collection Proxy
+
+Pour créer un fichier ressource Collection Proxy, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Proxy`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Collection Proxy
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Collection Proxy properties list](defold_collection_proxy_properties.png)
+
 [VIDE]
 
 ### Collision Object
+
+#### Créer un fichier ressource Collision Object
+
+Pour créer un fichier ressource Collision Object, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collision Object`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Collision Object
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Collision Object properties list](defold_collision_object_properties.png)
 
 Pour que ce component fonctionne avec le moteur physique, vous devez lui attacher une `Shape`. Faites un clic droit dans la vue `Outline` sur le collision object, choisissez `Add Shape` puis choisissez la forme `Box` (rectangle), `Capsule` ou `Sphere` (cercle).
 
@@ -890,6 +936,18 @@ Pour que ce component fonctionne avec le moteur physique, vous devez lui attache
 [VIDE]
 
 ### Factory
+
+#### Créer un fichier ressource Factory
+
+Pour créer un fichier ressource Factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Factory`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Factory
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Factory properties list](defold_factory_properties.png)
 
 [VIDE]
 
@@ -942,7 +1000,7 @@ Le component attaché en place apparaît dans la vue `Outline`.
 
 ![Component in place](defold_outline_component_in_place.png)
 
-**Remarque :** Seules les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object.
+**Remarque :** Seuls les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object.
 
 ![In Place Components list](defold_in_place_components_list.png)
 
@@ -978,6 +1036,18 @@ Contrairement à un component attaché en place, un component défini dans un fi
 
 ### Label
 
+#### Créer un fichier ressource Label
+
+Pour créer un fichier ressource Label, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Label`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Label
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Label properties list](defold_label_properties.png)
+
 [VIDE]
 
 ### Lua Module
@@ -989,6 +1059,18 @@ Contrairement à un component attaché en place, un component défini dans un fi
 [VIDE]
 
 ### Model
+
+#### Créer un fichier ressource Model
+
+Pour créer un fichier ressource Model, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Model`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Model
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Model properties list](defold_model_properties.png)
 
 [VIDE]
 
@@ -1006,13 +1088,41 @@ Contrairement à un component attaché en place, un component défini dans un fi
 
 ### Script
 
+#### Créer un fichier ressource Script
+
+Pour créer un fichier ressource Script, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Script`.
+
 [VIDE]
 
 ### Sound
 
+#### Créer un fichier ressource Sound
+
+Pour créer un fichier ressource Sound, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Sound`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Sound
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Sound properties list](defold_sound_properties.png)
+
 [VIDE]
 
 ### Spine Model
+
+#### Créer un fichier ressource Spine Model
+
+Pour créer un fichier ressource Spine Model, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Spine Model`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Spine Model
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Spine Model properties list](defold_spine_model_properties.png)
 
 [VIDE]
 
@@ -1021,6 +1131,18 @@ Contrairement à un component attaché en place, un component défini dans un fi
 [VIDE]
 
 ### Sprite
+
+#### Créer un fichier ressource Sprite
+
+Pour créer un fichier ressource Sprite, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Sprite`.
+
+**Remarque :** Ce component peut être attaché en place à un game object.
+
+#### Propriétés de Sprite
+
+Les propriétés suivantes sont accessibles dans la vue `Properties` :
+
+![Sprite properties list](defold_sprite_properties.png)
 
 [VIDE]
 
@@ -1034,7 +1156,7 @@ Contrairement à un component attaché en place, un component défini dans un fi
 
 ### Tile Source
 
-Un fichier ressource `Tile Source` contient une référence à un fichier image contenant un groupe d'images placées sur une grille homogène. Utilisez cette ressource pour définir des animations ou un jeu de tuiles à utiliser avec une ressource `Tile Map`.
+Un fichier ressource `Tile Source` contient une référence à un seul fichier image constitué d'un groupe d'images placées sur une grille homogène. Utilisez cette ressource pour définir des animations d'une sprite sheet à utiliser avec une ressource `Sprite` ou un jeu de tuiles d'une tile sheet à utiliser avec une ressource `Tile Map`.
 
 #### Créer une tile source
 
@@ -1122,10 +1244,6 @@ Editez les propriétés de l'animation dans la vue `Properties` :
 ## Programmation
 
 La programmation de la logique du jeu s'effectue dans des fichiers scripts écrits en langage *Lua* et attachés à des components dans des game objects. La communication entre différents components s'effectue par un système de messages dans *Defold*.
-
-### Créer un fichier ressource script
-
-Pour créer un script, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Script`.
 
 ### Portée des variables
 

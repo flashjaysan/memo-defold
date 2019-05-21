@@ -558,156 +558,13 @@ Pour importer des images dans votre projet, faites simplement glisser depuis vot
 
 #### Gérer des images individuelles
 
-Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation.
+Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour plus d'informations, consultez la section *Atlas* de ce document.
 
 **Remarque :** *Defold* ne permet pas d'importer un atlas préparé depuis un outils externe. Vous devez importer les images séparément puis les ajouter à un fichier ressource atlas dans *Defold*.
 
-Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
+#### Gérer des tilesheet ou spritesheet
 
-![New Atlas dialog](defold_new_atlas_dialog.png)
-
-- Le champ `Name` vous permet de définir le nom de l'atlas.
-- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
-- Le champ `Path` vous indique le chemin complet de l'atlas.
-
-Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
-
-![Atlas Editor view](defold_editor_atlas.png)
-
-Pour ajouter des images à l'atlas, dans la vue `Outline` faites un clic droit sur l'atlas et choisissez l'option `Add Images...` :
-
-![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
-
-La boîte de dialogue `Select Images` apparaît :
-
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
-
-Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste de fichiers ressources images (en *italique* suivi de leur chemin complet) :
-
-![Atlas with images added](defold_atlas_with_images.png)
-
-La vue `Properties` vous permet de définir les propriétés de l'atlas' :
-
-![Atlas Properties](defold_atlas_properties.png)
-
-- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` affichent les dimensions en pixels de l'atlas.
-- Le champ `Margin` vous permet de définir la marge en pixels à ajouter autour des images de l'atlas.
-- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre chaque image de l'atlas.
-- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour des images de l'atlas. *Defold* reproduit les pixels des images touchant les bords le nombre spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
-
-##### Importer une série d'images en tant qu'animation
-
-Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composées d'une série d'images définissant une animation. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
-
-![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
-
-Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
-
-![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
-
-**Remarque :** Vous pouvez renommer le groupe d'animation dans la vue `Properties`.
-
-Ajoutez ensuite les images à ce groupe par un clic droit suivi de l'option `Add Images...` :
-
-![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
-
-La boîte de dialogue `Select Images` apparaît :
-
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
-
-Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des ressources images (en *italique* suivi de leur chemin complet) sous le groupe d'animation :
-
-![Atlas Animation with Images](defold_atlas_animation_with_images.png)
-
-**Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
-
-Vous pouvez éditer les propriétés du groupe d'animation dans la vue `Properties` :
-
-![Atlas Animation properties](defold_atlas_animation_properties.png)
-
-- Le champ `Id` vous permet de définir le nom du groupe d'animation.
-- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes).
-- L'option' `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement ou non (décoché par défaut).
-- L'option' `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement ou non (décoché par défaut).
-- Le menu déroulant `Playback` vous permet de définir la façon dont est lue l'animation :
-  - L'option `None` bloque l'animation sur la première image.
-  - L'option `Once Forward` lit l'animation en avant une seule fois.
-  - L'option `One Backward` lit l'animation à l'envers une seule fois.
-  - L'option `Once Ping Pong` lit l'animation en avant puis à l'envers une seule fois.
-  - L'option `Loop Forward` (par défaut) lit l'animation en avant indéfiniment.
-  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
-  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
-
-#### Gestion des tilesheet ou spritesheet
-
-Si un fichier image contient plusieurs images disposés sur une grille uniforme (chaque image est placé dans une case de taille identique), créez un fichier ressource `Tile Source` dans la vue `Assets`. Faites un clic droit à l'emplacement désiré puis choisissez l'option `New...` > `Tile Source`. La boîte de dialogue `New Tile Source` apparaît :
-
-![New Tile Source dialog](defold_new_tile_source_dialog.png)
-
-- Le champ `Name` vous permet de définir le nom de la tile source.
-- Le champ `Location` et le bouton `Browse` vous permettent de définir l'emplacement de la tile source.
-- Le champ `Path` affiche le chemin complet de la tile source.
-
-Cliquez sur le bouton `OK` pour créer la tile source ou sur le bouton `Cancel` pour annuler. Une nouvelle tile source vide apparaît dans la vue `Editor` :
-
-![New Tile Source Editor view empty](defold_new_tile_source_editor.png)
-
-La vue `Editor` indique que la tile source nécessite de définir sa propriété `Image` (`'Image' must be specified`). Dans la vue `Properties`, cliquez sur l'icônes `...` à droite du champ `Image` :
-
-![New Tile Source Outline and Properties view empty](defold_new_tile_source_outline_and_properties.png)
-
-Cela ouvre la boîte de dialogue `Select Resource` :
-
-![Tile Source Select Resource dialog](defold_tile_source_select_resource_dialog.png)
-
-Choisissez le fichier ressource image à utiliser puis cliquez sur le bouton `OK`. La vue `Editor` affiche l'image importée (pour centrer la vue sur l'image appuyez sur la touche `F`). En haut à gauche, un texte indique le numéro de tuile de l'image survolée par la souris :
-
-![Tile Source Editor](defold_tile_source_editor.png)
-
-La vue `Properties` vous permet de définir les propriétés de la tile source :
-
-![Tile Source Properties](defold_tile_source_properties.png)
-
-- Le champ `Image` vous permet de définir le fichier ressource image à utiliser dans la tile source.
-- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` affichent les dimensions en pixels de l'image utilisée dans la tile source.
-- Le champ `Tile Width` vous permet de définir la largeur en pixels des cases de la tile source.
-- Le champ `Tile Height` vous permet de définir la hauteur en pixels des cases de la tile source.
-- Le champ `Tile Margin` vous permet de définir la marge en pixels à créer autour des cases de la tile source.
-- Le champ `Tile Spacing` vous permet de définir l'espacement en pixels existant entre les cases de la tile source dans le fichier d'origine.
-- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer sur les bords des images de la tile source. *Defold* reproduit les pixels des images touchant les bords des cases le nombre spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
-- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre les cases de la tile source.
-- Le champ `Collision` vous permet de définir un fichier ressource image à utiliser en tant que collision.
-
-##### Définir des animations de tile source
-
-Une tile source permet de définir des animations composées d'images successives dans l'image source. Pour créer une nouvelle animation, dans la vue `Outline` faites un clic droit sur la tile source et choisissez l'option `Add` > `Animation` :
-
-![Tile Source Add Animation menu](defold_tile_source_add_animation_menu.png)
-
-Une nouvelle animation apparaît dans la vue `Outline` :
-
-![Tile Source New Animation Outline view](defold_tile_source_new_animation_outline.png)
-
-Vous pouvez alors éditer ses propriétés dans la vue `Properties` :
-
-![Tile Source New Animation Properties view](defold_tile_source_new_animation_properties.png)
-
-- Le champ `Id` vous permet de définir le nom de l'animation.
-- Le champ `Start Tile` vous permet de définir l'index de la première tuile de l'animation.
-- Le champ `End Tile` vous permet de définir l'index de la dernière tuile de l'animation.
-- Le champ `Playback` vous permet de définir la façon de lire l'animation.
-  - L'option `None` bloque la lecture de l'animation sur la première tuile.
-  - L'option `Once Forward` lit l'animation en avant une seule fois.
-  - L'option `Once Backward` lit l'animation en arrière une seule fois.
-  - L'option `Once Ping Pong` lit l'animation en avant puis en arrière une seule fois.
-  - L'option `Loop Forward` lit l'animation en avant indéfiniment.
-  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
-  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
-- Le champ `Fps` vous permet de définir la vitesse de lecture de l'animation (en images par secondes).
-- Le champ `Flip Horizontal` vous permet de retourner horizontalement l'animation (décoché par défaut).
-- Le champ `Flip Vertical` vous permet de retourner verticalement l'animation (décoché par défaut).
-
-**Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
+Si un fichier image contient plusieurs images disposés sur une grille uniforme (chaque image est placé dans une case de taille identique), créez un fichier ressource `Tile Source` dans la vue `Assets`. Cette ressource permet de définir des tuiles et des animations dans l'image. Pour plus d'informations, consultez la section *Tile Source* de ce document.
 
 ### Importer des modèles Spine
 
@@ -749,100 +606,9 @@ Enfin, certains components peuvent avoir comme enfants des éléments particulie
 
 Tous les fichiers qui ne sont pas des collections sont considérés comme des ressources et peuvent être référencés dans les collections. Il apparaissent alors avec le chemin du fichier écrit en italique à côté de leur nom (`Id`) dans la vue `Outline`.
 
-## Créer une collection
-
-Pour créer un nouveau fichier collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilse l'extension `.collection` pour les fichiers collection. La boîte de dialogue `New Collection` apparaît :
-
-![Assets New Collection menu](defold_new_collection_menu.png)
-
-- Le champ `Name` vous permet de définir le nom de la collection.
-- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
-- Le champ `Path` indique le chemin complet de la collection.
-
-Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
-
-![New Collection Editor view](defold_new_collection_editor_view.png)
-
-La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous élément :
-
-![New Collection Outline view](defold_new_collection_outline_view.png)
-
-Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
-
-## Créer un game object
-
-Vous pouvez créer un fichier ressource game object réutilisable en faisant un clic droit dans la vue `Assets` et choisissez `New` > `game object` et donnez-lui un nom. *Defold* utilse l'extension `.go` pour les fichiers ressources game object.
-Vous pouvez également créer un `game object` intégré en l'attachant à une collection ou à un autre `game object` directement dans la vue `Outline`.
-
-### Créer un fichier ressource Game Object
-
-Pour créer un fichier ressource `Game Object`, dans la vue `Assets` faites un clic droit à l'endroit où vous souhaitez créer le game object et choisissez l'option `New...` > `Game Object`.
-
-La boîte de dialogue `New Game Object` apparaît :
-
-![Assets New Game Object menu](defold_new_game_object.png)
-
-- Le champ `Name` vous permet de définir le nom du game object.
-- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du game object dans votre projet.
-- Le champ `Path` indique le chemin complet du game object.
-
-Cliquez sur le bouton `OK` pour créer le game object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau game object.
-
-![New Game Object Editor view](defold_new_game_object_editor_view.png)
-
-La vue `Outline` montre que celui-ci ne possède pour le moment aucun component.
-
-![New Game Object Outline view](defold_new_game_object_outline_view.png)
-
-Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
-
-### Attacher un game object en place à une collection
-
-Pour attacher un game object en place à une collection, dans la vue `Outline`, faites un clic droit sur la collection et choisissez l'option `Add Game Object` (touche `A`) :
-
-![New Game Object In Place menu](defold_new_game_object_in_place.png)
-
-Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses propriétés s'affichent dans la vue `Properties` :
-
-![New Game Object In Place Outline and Properties](defold_new_game_object_in_place_outline_and_properties.png)
-
-Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
-
-### Attacher un fichier ressource game object à une collection
-
-Si vous voulez attacher un fichier ressource game object (préexistant sous la forme d'un fichier) dans la vue `Assets`, faites un clic droit sur la collection dans la vue `Outline` et choisissez l'option `Add Game Object File` puis choisissez le game object désiré.
-
-### Attacher un component à un game object
-
-Dans la vue `Editor`, l'onglet actif doit être un game object ou une collection pour que la vue `Outline` en affiche la structure. Pour attacher en place un component à un game object, dans la vue `Outline`, faites un clic droit sur le game object, choisissez l'option `Add Component` puis choisissez un component à attacher (c'est-à-dire directement intégré au fichier ressource contenant le game object) au game object sélectionné.
-
-![Add Component menu](defold_add_component.png)
-
-Le component attaché en place apparaît dans la vue `Outline`.
-
-![Component in place](defold_outline_component_in_place.png)
-
-**Remarque :** Seules les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object.
-
-![In Place Components list](defold_in_place_components_list.png)
-
-Si vous voulez attacher un fichier ressource component préexistant (par exemple, pour le réutiliser dans plusieurs game objects) dans la vue `Assets`, faites un clic droit sur le game object ouvert dans la vue `Outline` et choisissez l'option `Add Component File` :
-
-![Add Component File menu](defold_add_component_file.png)
-
-La boîte de dialogue `Select Component File` apparaît. Choisissez alors le fichier correspondant à la ressource à attacher au game object selectionné :
-
-![Select Component File dialog](defold_select_component_file_dialog.png)
-
-Contrairement à un component attaché en place, un component défini dans un fichier ressource apparaît en *italique* suivi du chemin du fichier dans la vue `Outline` :
-
-![Component File reference](defold_outline_component_reference.png)
-
-**Conseil :** Utilisez les components définis dans des fichiers ressources lorsque vous souhaitez les réutiliser dans plusieurs game objects.
-
 ## Les fichiers ressources en détail
 
-*Defold* vous permet de créer de nombreux fichiers ressources différents. Faites un clic droit dans la vue `Assets` à l'endroit souhaité, sélectionnez l'option `New...` puis choisissez la ressource désirée :
+*Defold* vous permet de créer de nombreux fichiers ressources différents. Faites un clic droit dans la vue `Assets` à l'endroit souhaité, sélectionnez l'option `New...` puis choisissez la ressource désirée dans la liste :
 
 ![Resources list](defold_resources_list.png)
 
@@ -852,7 +618,87 @@ Contrairement à un component attaché en place, un component défini dans un fi
 
 ### Atlas
 
-[VIDE]
+Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
+
+![New Atlas dialog](defold_new_atlas_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom de l'atlas.
+- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
+- Le champ `Path` vous indique le chemin complet de l'atlas.
+
+Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
+
+![Atlas Editor view](defold_editor_atlas.png)
+
+La vue `Properties` vous permet de définir les propriétés de l'atlas :
+
+![Atlas Properties](defold_atlas_properties.png)
+
+- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (non modifiable).
+- Le champ `Margin` vous permet de définir la marge en pixels à ajouter autour des images de l'atlas.
+- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre chaque image de l'atlas.
+- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour de chaque image de l'atlas. *Defold* reproduit les pixels des images touchant les bords un nombre de pixels spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
+
+#### Ajouter des images à un atlas
+
+Pour ajouter des images à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Images...` :
+
+![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
+
+La boîte de dialogue `Select Images` apparaît :
+
+![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+
+Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des fichiers ressources images (en *italique* suivi de leur chemin complet) :
+
+![Atlas with images added](defold_atlas_with_images.png)
+
+#### Créer un groupe d'animation
+
+Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composées d'une série d'images définissant une animation. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
+
+![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
+
+Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
+
+![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
+
+**Remarque :** Vous pouvez renommer le groupe d'animation dans la vue `Properties`.
+
+##### Ajouter des images à un groupe d'animation
+
+Pour ajouter des images à un groupe d'animation, faites un clic droit sur celui-ci puis sélectionnez l'option `Add Images...` :
+
+![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
+
+La boîte de dialogue `Select Images` apparaît :
+
+![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+
+Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des ressources images (en *italique* suivi de leur chemin complet) sous le groupe d'animation :
+
+![Atlas Animation with Images](defold_atlas_animation_with_images.png)
+
+**Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
+
+La vue `Properties` affiche les propriétés du groupe d'animation suivantes :
+
+![Atlas Animation properties](defold_atlas_animation_properties.png)
+
+- Le champ `Id` vous permet de définir le nom du groupe d'animation.
+- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes).
+- L'option' `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement ou non (décoché par défaut).
+- L'option' `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement ou non (décoché par défaut).
+- Le menu déroulant `Playback` vous permet de définir la façon dont est lue l'animation :
+  - L'option `None` bloque l'animation sur la première image.
+  - L'option `Once Forward` lit l'animation en avant une seule fois.
+  - L'option `One Backward` lit l'animation à l'envers une seule fois.
+  - L'option `Once Ping Pong` lit l'animation en avant puis à l'envers une seule fois.
+  - L'option `Loop Forward` (par défaut) lit l'animation en avant indéfiniment.
+  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
+  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
+
+**Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
 
 ### Camera
 
@@ -987,7 +833,41 @@ This is almost what the default render script does, with the difference that the
 
 ### Collection
 
-[VIDE]
+#### Créer une collection
+
+Pour créer un nouveau fichier collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilse l'extension `.collection` pour les fichiers collection. La boîte de dialogue `New Collection` apparaît :
+
+![Assets New Collection menu](defold_new_collection_menu.png)
+
+- Le champ `Name` vous permet de définir le nom de la collection.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
+- Le champ `Path` indique le chemin complet de la collection.
+
+Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
+
+![New Collection Editor view](defold_new_collection_editor_view.png)
+
+La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous élément :
+
+![New Collection Outline view](defold_new_collection_outline_view.png)
+
+Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
+
+#### Attacher un game object en place à une collection
+
+Pour attacher un game object en place à une collection, dans la vue `Outline`, faites un clic droit sur la collection et choisissez l'option `Add Game Object` (touche `A`) :
+
+![New Game Object In Place menu](defold_new_game_object_in_place.png)
+
+Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses propriétés s'affichent dans la vue `Properties` :
+
+![New Game Object In Place Outline and Properties](defold_new_game_object_in_place_outline_and_properties.png)
+
+Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
+
+#### Attacher un fichier ressource game object à une collection
+
+Si vous voulez attacher un fichier ressource game object (préexistant sous la forme d'un fichier) dans la vue `Assets`, faites un clic droit sur la collection dans la vue `Outline`, choisissez l'option `Add Game Object File` puis choisissez le game object désiré.
 
 ### Collection Factory
 
@@ -1023,7 +903,62 @@ Pour que ce component fonctionne avec le moteur physique, vous devez lui attache
 
 ### Game Object
 
+Vous pouvez créer un fichier ressource game object réutilisable en faisant un clic droit dans la vue `Assets` et choisissez `New` > `game object` et donnez-lui un nom. *Defold* utilse l'extension `.go` pour les fichiers ressources game object.
+Vous pouvez également créer un `game object` intégré en l'attachant à une collection ou à un autre `game object` directement dans la vue `Outline`.
+
+#### Créer un game object en place
+
 [VIDE]
+
+#### Créer un fichier ressource Game Object
+
+Pour créer un fichier ressource `Game Object`, dans la vue `Assets` faites un clic droit à l'endroit où vous souhaitez créer le game object et choisissez l'option `New...` > `Game Object`.
+
+La boîte de dialogue `New Game Object` apparaît :
+
+![Assets New Game Object menu](defold_new_game_object.png)
+
+- Le champ `Name` vous permet de définir le nom du game object.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du game object dans votre projet.
+- Le champ `Path` indique le chemin complet du game object.
+
+Cliquez sur le bouton `OK` pour créer le game object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau game object.
+
+![New Game Object Editor view](defold_new_game_object_editor_view.png)
+
+La vue `Outline` montre que celui-ci ne possède pour le moment aucun component.
+
+![New Game Object Outline view](defold_new_game_object_outline_view.png)
+
+Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
+
+#### Attacher un component à un game object
+
+Dans la vue `Editor`, l'onglet actif doit être un game object ou une collection pour que la vue `Outline` en affiche la structure. Pour attacher en place un component à un game object, dans la vue `Outline`, faites un clic droit sur le game object, choisissez l'option `Add Component` puis choisissez un component à attacher (c'est-à-dire directement intégré au fichier ressource contenant le game object) au game object sélectionné.
+
+![Add Component menu](defold_add_component.png)
+
+Le component attaché en place apparaît dans la vue `Outline`.
+
+![Component in place](defold_outline_component_in_place.png)
+
+**Remarque :** Seules les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object.
+
+![In Place Components list](defold_in_place_components_list.png)
+
+Si vous voulez attacher un fichier ressource component préexistant (par exemple, pour le réutiliser dans plusieurs game objects) dans la vue `Assets`, faites un clic droit sur le game object ouvert dans la vue `Outline` et choisissez l'option `Add Component File` :
+
+![Add Component File menu](defold_add_component_file.png)
+
+La boîte de dialogue `Select Component File` apparaît. Choisissez alors le fichier correspondant à la ressource à attacher au game object selectionné :
+
+![Select Component File dialog](defold_select_component_file_dialog.png)
+
+Contrairement à un component attaché en place, un component défini dans un fichier ressource apparaît en *italique* suivi du chemin du fichier dans la vue `Outline` :
+
+![Component File reference](defold_outline_component_reference.png)
+
+**Conseil :** Utilisez les components définis dans des fichiers ressources lorsque vous souhaitez les réutiliser dans plusieurs game objects.
 
 ### Gamepads
 
@@ -1099,7 +1034,86 @@ Pour que ce component fonctionne avec le moteur physique, vous devez lui attache
 
 ### Tile Source
 
-[VIDE]
+Un fichier ressource `Tile Source` contient une référence à un fichier image contenant un groupe d'images placées sur une grille homogène. Utilisez cette ressource pour définir des animations ou un jeu de tuiles à utiliser avec une ressource `Tile Map`.
+
+#### Créer une tile source
+
+Pour créer un fichier ressource tile source, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Tile Source`. La boîte de dialogue `New Tile Source` apparaît :
+
+![New Tile Source dialog](defold_new_tile_source_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom de la tile source.
+- Le champ `Location` et le bouton `Browse` vous permettent de définir l'emplacement de la tile source.
+- Le champ `Path` affiche le chemin complet de la tile source.
+
+Cliquez sur le bouton `OK` pour créer la tile source ou sur le bouton `Cancel` pour annuler. Une nouvelle tile source vide apparaît dans la vue `Editor` :
+
+![New Tile Source Editor view empty](defold_new_tile_source_editor.png)
+
+La vue `Editor` indique que la tile source nécessite de définir sa propriété `Image` (`'Image' must be specified`).
+
+#### Attacher un fichier ressource image à une tile source 
+
+Dans la vue `Properties`, cliquez sur l'icônes `...` à droite du champ `Image` :
+
+![New Tile Source Outline and Properties view empty](defold_new_tile_source_outline_and_properties.png)
+
+La boîte de dialogue `Select Resource` apparaît :
+
+![Tile Source Select Resource dialog](defold_tile_source_select_resource_dialog.png)
+
+Choisissez le fichier ressource image à utiliser puis cliquez sur le bouton `OK`. La vue `Editor` affiche l'image importée (pour centrer la vue sur l'image appuyez sur la touche `F`). En haut à gauche, un texte indique le numéro de tuile de l'image survolée par la souris :
+
+![Tile Source Editor](defold_tile_source_editor.png)
+
+#### Propriétés d'une tile source
+
+La vue `Properties` vous permet de définir les propriétés de la tile source :
+
+![Tile Source Properties](defold_tile_source_properties.png)
+
+- Le champ `Image` vous permet de définir le fichier ressource image à utiliser dans la tile source.
+- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` affichent les dimensions en pixels de l'image utilisée dans la tile source.
+- Le champ `Tile Width` vous permet de définir la largeur en pixels des cases de la tile source.
+- Le champ `Tile Height` vous permet de définir la hauteur en pixels des cases de la tile source.
+- Le champ `Tile Margin` vous permet de définir la marge en pixels à créer autour des cases de la tile source.
+- Le champ `Tile Spacing` vous permet de définir l'espacement en pixels existant entre les cases de la tile source dans le fichier d'origine.
+- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer sur les bords des images de la tile source. *Defold* reproduit les pixels des images touchant les bords des cases le nombre spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
+- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre les cases de la tile source.
+- Le champ `Collision` vous permet de définir un fichier ressource image à utiliser en tant que collision.
+
+#### Définir des animations de tile source
+
+Une tile source permet de définir des animations composées d'images successives dans l'image source. Pour créer une nouvelle animation, dans la vue `Outline` faites un clic droit sur la tile source et choisissez l'option `Add` > `Animation` :
+
+![Tile Source Add Animation menu](defold_tile_source_add_animation_menu.png)
+
+Une nouvelle animation apparaît dans la vue `Outline` :
+
+![Tile Source New Animation Outline view](defold_tile_source_new_animation_outline.png)
+
+##### Propriétés d'animations de tile source
+
+Editez les propriétés de l'animation dans la vue `Properties` :
+
+![Tile Source New Animation Properties view](defold_tile_source_new_animation_properties.png)
+
+- Le champ `Id` vous permet de définir le nom de l'animation.
+- Le champ `Start Tile` vous permet de définir l'index de la première tuile de l'animation.
+- Le champ `End Tile` vous permet de définir l'index de la dernière tuile de l'animation.
+- Le menu déroulant `Playback` vous permet de définir la façon de lire l'animation :
+  - L'option `None` bloque la lecture de l'animation sur la première tuile.
+  - L'option `Once Forward` lit l'animation en avant une seule fois.
+  - L'option `Once Backward` lit l'animation en arrière une seule fois.
+  - L'option `Once Ping Pong` lit l'animation en avant puis en arrière une seule fois.
+  - L'option `Loop Forward` lit l'animation en avant indéfiniment.
+  - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
+  - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
+- Le champ `Fps` vous permet de définir la vitesse de lecture de l'animation (en images par secondes).
+- Le champ `Flip Horizontal` vous permet de retourner horizontalement l'animation (décoché par défaut).
+- Le champ `Flip Vertical` vous permet de retourner verticalement l'animation (décoché par défaut).
+
+**Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
 
 ### Vertex Program
 

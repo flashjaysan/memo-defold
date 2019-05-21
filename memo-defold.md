@@ -154,7 +154,7 @@ Cliquez sur la flèche à gauche d'un nom de dossier pour le déplier ou le repl
 Faites glisser des fichiers externes dans cette vue pour les importer (ils sont copiés) dans votre projet.
 Déplacez des fichiers dans la liste à un autre emplacement pour réorganiser votre projet.
 
-- **Vue Changed Files : ** Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
+- **Vue Changed Files :** Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
 
 ![Changed Files panel](defold_changed_files_panel.png)
 
@@ -168,7 +168,7 @@ Cliquez sur le bouton `Revert` pour rétablir l'état initial.
 
 **Remarque :** Cette vue ne fonctionne que si vous avez déjà synchronisé au moins une fois votre projet en ligne.
 
-- **Vue Outline : ** Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
+- **Vue Outline :** Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
 
 ![Outline panel](defold_outline_panel.png)
 
@@ -201,7 +201,7 @@ L'option `Join tab panes` rassemble les deux panneaux en un seul.
 
 ### Editeur de scène
 
-Double cliquez sur un fichier `.collection` ou `.go`(*game object*) dans la vue `Assets` pour ouvrir l'éditeur de scène.
+Double cliquez sur un fichier `.collection` ou `.go` (*game object*) dans la vue `Assets` pour ouvrir l'éditeur de scène.
 
 ![Collection Editor](defold_collection_editor.png)
 
@@ -214,7 +214,7 @@ Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche 
 
 ### Editeur de code
 
-Lorsque vous double-cliquez sur un fichier source en langage *Lua*, l'éditeur de code intégré à *Defold* ouvre le fichier.
+Lorsque vous double-cliquez sur un fichier source en langage *Lua*, l'éditeur de code intégré à *Defold* ouvre le script.
 
 ![Script Editor](defold_script_editor.png)
 
@@ -1227,6 +1227,10 @@ Ouvrez le fichier `game.project`. Dans la section `Display`, saisissez la largeu
 ### Afficher une image
 
 Attachez à la collection définie comme collection principale un game object et attachez à celui-ci un component `Sprite`. Enfin, attribuez au sprite un atlas contenant des images ou une animation et choisissez une animation.
+
+### Afficher des images en pixel art
+
+N'oubliez pas de configurer le paramètre `Default Texture Mag Filter` de la section `graphics` à la valeur `nearest` dans le fichier de configuration `game.project` pour afficher vos images sans filtre de lissage.
 
 ### Quitter le jeu avec la touche Echap
 

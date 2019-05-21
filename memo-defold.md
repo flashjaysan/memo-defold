@@ -539,6 +539,21 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
 
+## Etapes dans la création d'un projet
+
+Voici un découpage grossier des étapes de création d'un jeu :
+
+- Importation des ressources externes nécessaires au projet (images, sons, modèles, etc...).
+- Création des fichiers ressources dans *Defold* (atlas, tile sources, etc...).
+- Création de la structure de la collection principale (sous-collections, game objects, components, etc...).
+- Répétition jusqu'à obtention d'un résultat satisfaisant des étapes suivantes :
+  - Ajout de fonctionnalités et programmation de la logique du jeu.
+  - Test et débogage.
+- Export du jeu sur les plateformes cibles.
+- Publication du jeu.
+
+**Remarque :** Il va sans dire que dans un projet commercial, d'autres étapes (comme le marketing du jeu) sont essentielles.
+
 ## Importer les ressources externes
 
 *Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, Modèles 2D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
@@ -603,9 +618,9 @@ Enfin, certains components peuvent avoir comme enfants des éléments particulie
 
 Tous les fichiers qui ne sont pas des collections sont considérés comme des ressources et peuvent être référencés dans les collections. Il apparaissent alors avec le chemin du fichier écrit en italique à côté de leur nom (`Id`) dans la vue `Outline`.
 
-## Les fichiers ressources en détail
+## Fichiers ressources
 
-*Defold* vous permet de créer de nombreux fichiers ressources différents. Faites un clic droit dans la vue `Assets` à l'endroit souhaité, sélectionnez l'option `New...` puis choisissez la ressource désirée dans la liste :
+En plus des fichiers externes importés, *Defold* vous permet de créer de nombreux fichiers ressources différents. Faites un clic droit dans la vue `Assets` à l'endroit souhaité, sélectionnez l'option `New...` puis choisissez la ressource désirée dans la liste :
 
 ![Resources list](defold_resources_list.png)
 

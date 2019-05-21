@@ -14,63 +14,61 @@ Licence Creative Commons : Cette œuvre est mise à disposition selon les termes
 
 ## Télécharger et installer Defold
 
-Visitez le site de *Defold* :
-[https://www.defold.com/](https://www.defold.com/)
-Et cliquez sur la section `Get Defold`.
+Visitez le site de [Defold](https://www.defold.com/) et cliquez sur la section `Get Defold` :
 
 ![Get Defold link](defold_get.png)
 
-**Attention !** Pour télécharger *Defold*, vous devez vous identifier avec un compte *Google*.
+Pour télécharger *Defold*, vous devez vous identifier avec un compte *Google* :
 
 ![Google login](defold_google.png)
 
-Une fois connecté, cliquez sur la section `Dashboard`.
+Une fois connecté, cliquez sur la section `Dashboard` :
 
 ![Defold dashboard](defold_dashboard.png)
 
-Téléchargez la dernière version de *Defold* correspondante à votre système en cliquant sur le bouton `Download editor`. 
+Téléchargez la dernière version de *Defold* correspondante à votre système en cliquant sur le bouton `Download editor` :
 
 ![Defold download](defold_download.png)
 
 - Sur *Windows*, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `Defold.exe`.
-- Sur *Mac OS X*, montez le fichier téléchargé et faites glisser l'application `Defold` dans le dossier `Applications` puis exécutez ce fichier.
+- Sur *Mac OS X*, montez le fichier téléchargé et faites glisser l'application `Defold` dans le dossier `Applications` puis lancez-la.
 - Sur *Linux*, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `./Defold`.
 
 ## Mettre à jour Defold
 
-Au démarrage de *Defold*, le texte `Update Available` apparaît si une nouvelle version est disponible.
+Au démarrage de *Defold*, si une nouvelle version est disponible, le texte `Update Available` apparaît :
 
 ![Update Available](defold_update.png)
 
-Cliquez dessus pour afficher la boîte de dialogue `Update Available`.
+Cliquez dessus pour afficher la boîte de dialogue `Update Available` :
 
 ![Update Available dialog](defold_update_dialog.png)
 
-Cliquez alors sur le bouton `Download` pour télécharger et mettre à jour automatiquement *Defold* ou sur le bouton `Not Now` pour annuler la procédure.
+Cliquez alors sur le bouton `Download` pour télécharger et mettre à jour *Defold* ou sur le bouton `Not Now` pour annuler la procédure.
 
-Si vous effectuez une mise à jour de *Defold*, une barre de chargement apparaît pour indiquer l'état d'avancement du téléchargement.
+Si vous effectuez une mise à jour de *Defold*, une barre de chargement apparaît pour indiquer l'état d'avancement du téléchargement :
 
 ![update progress bar](defold_update_progress.png)
 
 **Attention !** Le téléchargement d'une mise à jour est assez long.
 
-**Remarque :** Vous pouvez continuer à utiliser *Defold* pendant le téléchargement de la mise à jour. Une barre de progression apparaît en bas de l'éditeur.
+**Remarque :** Vous pouvez continuer à utiliser *Defold* pendant le téléchargement de la mise à jour. Une barre de progression apparaît en bas de l'éditeur :
  
 ![update progress bar in editor](defold_update_progress2.png)
 
-Lorsque le téléchargement est terminé, le texte `Restart to Update` s'affiche.
+Lorsque le téléchargement est terminé, le texte `Restart to Update` s'affiche :
 
 ![Restart to Update](defold_update_restart.png)
 
-Cliquez dessus pour afficher la boîte de dialogue `Please Confirm`.
+Cliquez dessus pour afficher la boîte de dialogue `Please Confirm` :
 
 ![Restart to Update dialog](defold_update_restart_dialog.png)
 
-Cliquez alors sur le bouton `OK` pour redémarrer *Defold* et installer la mise à jour ou sur le bouton `Cancel` pour annuler la procédure.
+Cliquez alors sur le bouton `OK` pour redémarrer *Defold* et installer la mise à jour automatiquement ou sur le bouton `Cancel` pour annuler la procédure.
 
 ## Création et ouverture de projets
 
-Lorsque vous démarrez *Defold*, l'écran de création et de sélection de projet s'affiche.
+Lorsque vous démarrez *Defold*, l'écran de création et de sélection de projet s'affiche :
 
 ![Defold startup](defold_start.png)
 
@@ -81,7 +79,7 @@ Sur la gauche, il y a trois options :
 
 ### Home 
 
-Si vous venez d'installer *Defold*, cette section est vide (voir image précédente). Cliquez sur le bouton `Create New Project` pour créer un nouveau projet. La section `New Project` (voir section suivante) s'affiche alors. Par la suite, la section `Home` affichera la liste de vos projets déjà ouverts dans *Defold* et stockés sur votre ordinateur. Sélectionnez alors un des projets de la liste puis cliquez sur le bouton `Open Selected` pour ouvrir le projet dans l'éditeur.
+Si vous venez d'installer *Defold*, cette section est vide (voir image précédente). Cliquez sur le texte `Create New Project` pour créer un nouveau projet. La section `New Project` (voir section suivante) s'affiche alors. Par la suite, la section `Home` affichera la liste de vos projets déjà ouverts dans *Defold* et stockés sur votre ordinateur. Sélectionnez alors un des projets de la liste puis cliquez sur le bouton `Open Selected` pour ouvrir le projet dans l'éditeur.
 
 ![Recent Projects](defold_recent_projects.png)
 
@@ -100,7 +98,7 @@ Cliquez sur l'un des trois onglets :
 - From Tutorial
 - From Sample
 
-**Conseil :** Si vous voulez créer un nouveau projet sans connexion *Internet*, créez des modèles de projets lorsque vous êtes connecté et sauvegardez-les sur votre ordinateur. Vous n'aurez plus qu'à les copier et à ouvrir ces copies dans *Defold*.
+**Conseil :** Si vous voulez créer un nouveau projet sans connexion *Internet*, créez des modèles de projets lorsque vous êtes connecté et sauvegardez-les sur votre ordinateur. Vous n'aurez plus qu'à les copier et à ouvrir ces copies de projets dans *Defold*.
 
 **Remarque :** N'oubliez pas de choisir un nom de projet et de définir son emplacement sur votre ordinateur en bas de la fenêtre de *Defold*.
 
@@ -114,7 +112,7 @@ Cette option crée un nouveau projet à partir de modèles pré-existants (voir 
 
 #### From Tutorial
 
-Cette option crée un projet destiné à apprendre à utiliser *Defold*. Chaque projet vous apprend une technique différente. Choisissez un des projets proposés et suivez les instructions (en anglais) contenues dans le fichier `README.md` situé dans la vue `Assets` (voir section `Editeur` plus loin).
+Cette option crée un projet destiné à apprendre à utiliser *Defold*. Chaque projet vous apprend une technique différente. Choisissez un des projets proposés et suivez les instructions (en anglais) contenues dans le fichier `README.md` situé dans la vue `Assets` (voir section **Editeur** plus loin).
 
 ![New Project From Tutorial](defold_new_project_from_tutorial.png)
 
@@ -142,19 +140,23 @@ Cette section est utilisée pour importer un de vos projets stockés en ligne (p
 
 Une fois un projet ouvert, vous vous retrouvez devant la fenêtre de l'éditeur. Elle se compose de nombreuses sections :
 
-- **Vue Assets :** Cette vue liste les fichiers ressources utiles à votre projet.
+### Vue Assets :
+
+Cette vue liste lesfichiers importés, les collections et les fichiers ressources utilisés dans votre projet.
 
 ![Assets panel](defold_assets_panel.png)
 
-Par un clic droit, créez des dossiers (`New Folder`) ou des éléments (`New` puis un des nombreux choix) utiles à votre jeu.
-Vous pouvez couper (`Cut`), copier (`Copy`), coller (`Paste`), effacer (`Delete`) ou renommer (`Rename…`) des fichiers.
-Vous pouvez afficher un dossier dans l'explorateur de votre système (`Show In Desktop`).
-Double cliquez sur un fichier pour l'ouvrir dans l'éditeur (pour les fichiers créés par *Defold*) ou un programme externe (pour les fichiers importés).
-Cliquez sur la flèche à gauche d'un nom de dossier pour le déplier ou le replier.
-Faites glisser des fichiers externes dans cette vue pour les importer (ils sont copiés) dans votre projet.
-Déplacez des fichiers dans la liste à un autre emplacement pour réorganiser votre projet.
+  - Par un clic droit, créez des dossiers (`New Folder`) ou des éléments (`New` puis un des nombreux choix) utiles à votre jeu.
+  - Vous pouvez couper (`Cut`), copier (`Copy`), coller (`Paste`), effacer (`Delete`) ou renommer (`Rename…`) des fichiers.
+  - Vous pouvez afficher un dossier dans l'explorateur de votre système (`Show In Desktop`).
+  - Double cliquez sur un fichier pour l'ouvrir dans l'éditeur (pour les fichiers créés par *Defold*) ou un programme externe (pour les fichiers importés).
+  - Cliquez sur la flèche à gauche d'un nom de dossier pour le déplier ou le replier.
+  - Faites glisser des fichiers externes depuis votre système dans cette vue pour les importer (ils sont copiés) dans votre projet.
+  - Déplacez des fichiers dans la liste à un autre emplacement pour réorganiser votre projet.
 
-- **Vue Changed Files :** Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
+### Vue Changed Files :
+
+Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
 
 ![Changed Files panel](defold_changed_files_panel.png)
 
@@ -168,19 +170,25 @@ Cliquez sur le bouton `Revert` pour rétablir l'état initial.
 
 **Remarque :** Cette vue ne fonctionne que si vous avez déjà synchronisé au moins une fois votre projet en ligne.
 
-- **Vue Outline :** Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
+### Vue Outline :
+
+Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
 
 ![Outline panel](defold_outline_panel.png)
 
 Par un clic droit puis `New`, créez de nouveaux éléments enfants (des sous-collections, des game objects ou des components).
 
-- **Vue Properties :** Cette vue affiche la liste des propriétés de l'élément sélectionné actuellement dans la vue `Outline` ou la vue `Editor`.
+### Vue Properties :
+
+Cette vue affiche la liste des propriétés de l'élément sélectionné actuellement dans la vue `Outline` ou la vue `Editor`.
 
 ![Properties panel](defold_properties_panel.png)
 
 Cela vous permet d'éditer les propriétés des divers éléments de votre jeu.
 
-- **Vue Console, Curve Editor, Build Errors, Search Results :** Cette vue affiche plusieurs outils utiles au développement du jeu.
+### Vue Console, Curve Editor, Build Errors, Search Results :
+
+Cette vue affiche plusieurs outils utiles au développement du jeu.
 
 ![Console, Curve Editor, Build Errors, Search Results panels](defold_tools_panel.png)
 
@@ -189,7 +197,9 @@ Cela vous permet d'éditer les propriétés des divers éléments de votre jeu.
   - **Onglet Build Errors :** Affiche les erreurs lors de la construction du projet.
   - **Onglet Search Results :** Affiche les recherches diverses.
 
-- **Vue Editor :** Double cliquez sur un fichier dans la vue `Assets` pour ouvrir l'éditeur correspondant. Selon le fichier ouvert, la vue `Editor` affiche un éditeur différent. Chaque fichier ouvert a son propre onglet.
+### Vue Editor :
+
+Double cliquez sur un fichier existant dans la vue `Assets` (ou créez-en un nouveau) pour ouvrir l'éditeur correspondant. Selon le fichier ouvert, la vue `Editor` affiche un éditeur différent. Chaque fichier s'ouvre dans son propre onglet :
 
 ![Editor panel](defold_editor_panel.png)
 
@@ -199,7 +209,7 @@ L'option `Join tab panes` rassemble les deux panneaux en un seul.
 
 **Remarque :** Le système de coordonnées de *Defold* est le même qu'en mathématiques. L'axe *Y* augmente vers le haut.
 
-### Editeur de scène
+#### Editeur de scène
 
 Double cliquez sur un fichier `.collection` ou `.go` (*game object*) dans la vue `Assets` pour ouvrir l'éditeur de scène.
 
@@ -212,15 +222,15 @@ Pour déplacer un élément sélectionné, activez le mode `Move` (touche `W`). 
 Pour faire tourner un élément sélectionné, activez le mode `Rotate` (touche `E`). Cliquez glissez sur une des lignes colorées du gizmo pour faire tourner l'élément sur un seul axe ou sur le cercle pour faire tourner l'élément librement.
 Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche `R`). Cliquez glissez sur un des carrés du gizmo pour redimensionner l'élément sur un seul axe ou proportionnellement.
 
-### Editeur de code
+#### Editeur de code
 
-Lorsque vous double-cliquez sur un fichier source en langage *Lua*, l'éditeur de code intégré à *Defold* ouvre le script.
+Lorsque vous double-cliquez sur un fichier source en langage *Lua* dans la vue `Assets`, l'éditeur de code intégré à *Defold* ouvre le script :
 
 ![Script Editor](defold_script_editor.png)
 
-### Editeur de configuration du projet
+#### Editeur de configuration du projet
 
-Tous les paramètres du projet sont définis dans un fichier de configuration appelé `game.project`. Si vous l'ouvrez dans *Defold* par un double clic, la vue `Editor` affiche un formulaire éditable qui vous permet de contrôler tous les paramètres de configuration. Les paramètres ayant des valeurs modifiées ont un bouton en forme de flèche circulaire pour rétablir leur valeur par défaut. Ils sont classés par catégories.
+Tous les paramètres du projet sont définis dans un fichier de configuration appelé `game.project`. Double cliquez sur lui dans la vue `Assets` pour afficher dans la vue `Editor` un formulaire éditable qui vous permet de contrôler tous les paramètres de configuration. Les paramètres ayant des valeurs modifiées ont un bouton en forme de flèche circulaire pour rétablir leur valeur par défaut. Ils sont classés par catégories.
 
 ![Configuration editor](defold_configuration_file.png)
 
@@ -245,9 +255,9 @@ main_collection = /main/main.collectionc
 
 Qui indique que le paramètre `main_collection` appartient à la catégorie `bootstrap`. Quand une référence à un fichier est utilisé (comme dans le cas précédent), le chemin doit être suivi du caractère `'c'` pour indiquer que l'on fait référence à une version compilée du fichier. Le caractère `'/'` initial indique que le chemin part de la racine du projet.
 
-#### Liste des paramètres
+##### Liste des paramètres
 
-##### Project
+*Project*
 
 **Title :** Le titre de l'application. Apparaît dans la barre de la fenêtre du jeu.
 
@@ -269,25 +279,25 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **bundle_exclude_resources (hidden setting) :** Définit une liste de ressources (séparées par des virgules) qui ne devraient pas être incluses dans le paquetage final du jeu.
 
-##### Bootstrap
+*Bootstrap*
 
 **Main Collection :** Définit le fichier collection à ouvrir au lancement du jeu. Par défaut : `/logic/main.collection`.
 
 **Render :** Définit quel pipeline de rendu utiliser pour afficher le jeu. Par défaut : `/builtins/render/default.render`.
 
-##### Library
+*Library*
 
 **Include Dirs :** Définit une liste de dossiers (séparés par un espace) à partager depuis votre projet via le partage de bibliothèque.
 
-##### Script
+*Script*
 
 **Shared State :** Cochez cette option si vous souhaitez partager un seul état *Lua* entre tous les types de scripts (standards, GUI et Render). Par défaut, non coché.
 
-##### Tracking
+*Tracking*
 
 **App Id :** Définit un identifiant unique de suivi pour ce projet. Cet identifiant peut être obtenu sur le dashboard du projet (sur le site de *Defold*).
 
-##### Display
+*Display*
 
 **Width :** La largeur en pixels de votre fenêtre de jeu. Par défaut : `960`.
 
@@ -307,7 +317,7 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Dynamic Orientation :** Check if the app should dynamically switch between portrait and landscape on device rotation. Note that the development app does not currently respect this setting.
 
-##### Physics
+*Physics*
 
 **Type :** Which type of physics to use, `2D` (default) or `3D`.
 
@@ -339,7 +349,7 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Trigger Overlap Capacity :** The maximum number of overlapping physics triggers. `16` par défaut.
 
-##### Graphics
+*Graphics*
 
 **Default Texture Min Filter :** Specifies which filtering to use for minification filtering, `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
 
@@ -353,7 +363,7 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Texture Profiles :** The texture profiles file to use for this project, `/builtins/graphics/default.texture_profiles` par défaut.
 
-##### Input
+*Input*
 
 **Repeat Delay :** Seconds to wait before a held down input should start repeating itself, `0.5` par défaut.
 
@@ -365,7 +375,7 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Use Accelerometer :** Check to make the engine receive accelerator input events each frame. Disabling accelerometer input may give some performance benefit, checked par défaut.
 
-##### Resource
+*Resource*
 
 **Http Cache :** If checked, a HTTP cache is enabled for faster loading of resources over the network to the running engine on device, unset par défaut.
 
@@ -373,15 +383,15 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Max Resources :** The max number of resources that can be loaded at the same time, `1024` par défaut.
 
-##### Network
+*Network*
 
 **Http Timeout :** The HTTP timeout in seconds. Set to `0` to disable timeout, which is the default.
 
-##### Collection
+*Collection*
 
 **Max Instances :** Max number of game object instances in a collection, `1024` par défaut.
 
-##### Sound
+*Sound*
 
 **Gain :** Global gain (volume), 0–1, The value is `1` par défaut.
 
@@ -393,20 +403,21 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Max Sound Instances :** Max number of concurrent sound instances, i.e. actual sounds played at the same time. `256` par défaut.
 
-##### Sprite
+*Sprite*
 
 **Max Count :** Max number of sprites, `128` par défaut.
 
 **Subpixels :** Check to allow sprites to appear unaligned with respect to pixels, checked par défaut.
 
-##### Spine
+*Spine*
 
 **Max Count :** Max number of spine models, `128` par défaut.
 
-##### model
+*model*
+
 **Max Count :** `128` par défaut.
 
-##### GUI
+*GUI*
 
 **Max Count :** Max number of GUI components, `64` par défaut.
 
@@ -414,31 +425,31 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Max Particle Count :** The max number of concurrent particles, `1024` par défaut.
 
-##### Label
+*Label*
 
 **Max Count :** Max number of labels, `64` par défaut.
 
 **Subpixels :** Check to allow lables to appear unaligned with respect to pixels, checked par défaut.
 
-##### Particle FX
+*Particle FX*
 
 **Max Count :** The max number of concurrent emitters, `64` par défaut.
 
 **Max Particle Count :** The max number of concurrent particles, `1024` par défaut.
 
-##### Collection proxy
+*Collection proxy*
 
-Max Count :** Max number of collection proxies, `8` par défaut.
+**Max Count :** Max number of collection proxies, `8` par défaut.
 
-##### Collection factory
+*Collection factory*
 
 **Max Count :** Max number of collection factories, `128` par défaut.
 
-##### Factory
+*Factory*
 
 **Max Count :** Max number of game object factories, `128` par défaut.
 
-##### iOS
+*iOS*
 
 **App Icon 57x57–180x180 :** Image file to use as application icon at given width and height dimensions W × H.
 
@@ -450,7 +461,7 @@ Max Count :** Max number of collection proxies, `8` par défaut.
 
 **Info.plist :** If specified, use this info.plist file when bundling your app.
 
-##### Android
+*Android*
 
 **App Icon 36x36–192x192 :** Image file to use as application icon at given width and height dimensions W × H.
 
@@ -474,7 +485,7 @@ Max Count :** Max number of collection proxies, `8` par défaut.
 
 **Immersive Mode :** If set, hides the navigation and status bars and lets your app capture all touch events on the screen.
 
-##### MacOS / OS X
+*MacOS / OS X*
 
 **App Icon :** Image file to use as application icon on MacOS.
 
@@ -482,13 +493,13 @@ Max Count :** Max number of collection proxies, `8` par défaut.
 
 **Bundle Identifier :** The bundle identifier lets OS X recognize updates to your app. Your bundle ID must be registered with Apple and be unique to your app. You cannot use the same identifier for both iOS and OS X apps.
 
-##### Windows
+*Windows*
 
 **App Icon :** Image file to use as application icon on Windows.
 
 **Iap Provider :** Specifies which store to use. Valid options are None and Gameroom, `None` par défaut.
 
-##### HTML5
+*HTML5*
 
 **Set Custom Heap Size :** If set, Emscripten allocates custom_heap_size number of bytes for the application heap.
 
@@ -506,45 +517,31 @@ Max Count :** Max number of collection proxies, `8` par défaut.
 
 **Archive Location Suffix :** Suffix to be appended to the archive files. Useful to, for instance, force non-cached content from a CDN (?version2 for example).
 
-##### Facebook
+*Facebook*
 
 **Appid :** The application id as issued by Facebook.
 
-##### IAP
+*IAP*
 
 **Auto Finish Transactions :** Check to automatically finish IAP transactions. If unchecked, you need to explicitly call `iap.finish()` after a successful transaction, checked par défaut.
 
-##### native_extension
+*native_extension*
 
 **App Manifest :** If set, use the app manifest to customize the engine build. This allows you to remove unneeded parts from the engine making it possible to decrease the final binary size. Note that this feature is in alpha state. Please visit the forum for information on how to proceed. Default empty.
 
-##### profiler
+*profiler*
 
 **TrackCpu :** If checked, enable CPU profiling in release versions of the builds. Normally, you can only access profiling information in debug builds. Default disabled.
 
-##### Live update
+*Live update*
 
 **Private Key :** If set, use the specified private key file when bundling live update content. If no key file is set, a key is generated.
 
 **Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
 
-#### Paramétrer les valeurs de configuration au démarrage du moteur
-
-Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer le paramètre du fichier `game.project` :
-
-```
-# Spécifie une collection bootstap
-$ dmengine --config=bootstrap.main_collection=/my.collectionc
-
-# Paramètre la valeur personnalisée "test.ma_valeur"
-$ dmengine --config=test.ma_valeur=4711
-```
-
-Les valeurs personnalisées peuvent être lues (comme toute autre valeur de configuration) depuis la fonction `sys.get_config()`.
-
 ## Importer les ressources externes
 
-*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, Modèles 2D) soient déjà prêtes. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
+*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, Modèles 2D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
 
 **Remarque :** Si vous utilisez des ressources externes temporaires, cela va vous compliquer les choses par la suite car vous devrez faire de nombreuses modifications (atlas, tile source, références aux fichiers dans les components, etc...).
 
@@ -558,13 +555,13 @@ Pour importer des images dans votre projet, faites simplement glisser depuis vot
 
 #### Gérer des images individuelles
 
-Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour plus d'informations, consultez la section *Atlas* de ce document.
+Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour plus d'informations, consultez la section **Atlas** de ce document.
 
 **Remarque :** *Defold* ne permet pas d'importer un atlas préparé depuis un outils externe. Vous devez importer les images séparément puis les ajouter à un fichier ressource atlas dans *Defold*.
 
 #### Gérer des tilesheet ou spritesheet
 
-Si un fichier image contient plusieurs images disposés sur une grille uniforme (chaque image est placé dans une case de taille identique), créez un fichier ressource `Tile Source` dans la vue `Assets`. Cette ressource permet de définir des tuiles et des animations dans l'image. Pour plus d'informations, consultez la section *Tile Source* de ce document.
+Si un fichier image contient plusieurs images disposés sur une grille uniforme (chaque image est placé dans une case de taille identique), créez un fichier ressource `Tile Source` dans la vue `Assets`. Cette ressource permet de définir des tuiles et des animations dans l'image. Pour plus d'informations, consultez la section **Tile Source** de ce document.
 
 ### Importer des modèles Spine
 
@@ -592,13 +589,13 @@ Pour importer des polices de caractères dans votre projet, faites simplement gl
 
 ## Structure du jeu
 
-Dans *Defold*, chaque écran de jeu est représenté par une `Collection`. Une collection est toujours un fichier. Dans le fichier de configuration `game.project`, un fichier `.collection` doit être défini comme collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
+Dans *Defold*, chaque écran de jeu est représenté par une *collection*. Une collection est toujours un fichier portant l'extension `.collection`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
 
-**Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de lancement dans le fichier de configuration de tout nouveau projet.
+**Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
 
 Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui représentera un écran de jeu complet.
 
-Un game object est un conteneur à components. Ils ne possèdent que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
+Un game object est un conteneur à components. Il ne possède par défaut que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection (*en place*) où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
 
 Les components sont les éléments essentiels au jeu. Ce sont eux qui définissent les graphismes, les sons ou les comportements des game objects qui les contiennent.
 
@@ -681,7 +678,7 @@ Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis clique
 
 **Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
 
-La vue `Properties` affiche les propriétés du groupe d'animation suivantes :
+Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Properties` affiche ses propriétés :
 
 ![Atlas Animation properties](defold_atlas_animation_properties.png)
 
@@ -1369,3 +1366,17 @@ function update(self, dt)
     end
 end
 ```
+
+#### Paramétrer les valeurs de configuration au démarrage du moteur
+
+Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer le paramètre du fichier `game.project` :
+
+```
+# Spécifie une collection bootstap
+$ dmengine --config=bootstrap.main_collection=/my.collectionc
+
+# Paramètre la valeur personnalisée "test.ma_valeur"
+$ dmengine --config=test.ma_valeur=4711
+```
+
+Les valeurs personnalisées peuvent être lues (comme toute autre valeur de configuration) depuis la fonction `sys.get_config()`.

@@ -8,7 +8,7 @@ Licence Creative Commons : Cette œuvre est mise à disposition selon les termes
 
 ## Introduction
 
-*Defold* est un outil pour créer des jeux vidéos. Il est gratuit mais non open source. La société *King* (Candy Crush) utilise ce moteur pour créer ses jeux et le fournit au public gratuitement et sans licence ni contrepartie. Les jeux créés avec *Defold* sont programmés en *Lua*, un langage de script facile à apprendre et puissant. Vous pouvez exporter vos jeux sur les plateformes *Windows*, *Mac OS X*, *Linux*, *Android*, *iOS* et *HTML*. Vous pouvez stocker vos projets sur le cloud dédié de *Defold* (ou un cloud compatible avec *Git*) et les partager avec d'autres membres de votre équipe ou, si vous préférez, sur votre propre ordinateur.
+*Defold* est un logiciel pour créer des jeux vidéos. Il est gratuit mais non open source. La société *King* (*Candy Crush*) utilise ce moteur pour créer ses jeux et le fournit au public gratuitement et sans licence ni contrepartie. Les jeux créés avec *Defold* sont programmés en *Lua*, un langage de script facile à apprendre et puissant. Vous pouvez exporter vos jeux sur les plateformes *Windows*, *Mac OS X*, *Linux*, *Android*, *iOS* et *HTML*. Vous pouvez stocker vos projets sur le cloud dédié de *Defold* (ou un cloud compatible avec *Git*) et les partager avec d'autres membres de votre équipe ou, si vous préférez, sur votre propre ordinateur.
 
 **Attention !** *Defold* nécessite de posséder un compte *Google* et vous devrez être connecté à *Internet* pour créer vos premiers projets (basés sur des modèles en ligne).
 
@@ -140,9 +140,11 @@ Cette section est utilisée pour importer un de vos projets stockés en ligne (p
 
 Une fois un projet ouvert, vous vous retrouvez devant la fenêtre de l'éditeur. Elle se compose de nombreuses sections :
 
+![Defold editor tour](defold_full_editor.png)
+
 ### Vue Assets :
 
-Cette vue liste lesfichiers importés, les collections et les fichiers ressources utilisés dans votre projet.
+Cette vue liste les fichiers ressources importés, les collections et les fichiers ressources créés dans *Defold* et utilisés dans votre projet.
 
 ![Assets panel](defold_assets_panel.png)
 
@@ -209,9 +211,9 @@ L'option `Join tab panes` rassemble les deux panneaux en un seul.
 
 **Remarque :** Le système de coordonnées de *Defold* est le même qu'en mathématiques. L'axe *Y* augmente vers le haut.
 
-#### Editeur de scène
+#### Editeur de collection et de ressources
 
-Double cliquez sur un fichier `.collection` ou `.go` (*game object*) dans la vue `Assets` pour ouvrir l'éditeur de scène.
+Double cliquez sur un fichier collection, ou la plupart des fichiers ressources dans la vue `Assets` pour ouvrir l'éditeur général :
 
 ![Collection Editor](defold_collection_editor.png)
 
@@ -224,7 +226,7 @@ Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche 
 
 #### Editeur de code
 
-Lorsque vous double-cliquez sur un fichier source en langage *Lua* dans la vue `Assets`, l'éditeur de code intégré à *Defold* ouvre le script :
+Lorsque vous double-cliquez sur un fichier script *Lua* dans la vue `Assets`, l'éditeur de code intégré à *Defold* ouvre le script :
 
 ![Script Editor](defold_script_editor.png)
 
@@ -578,6 +580,8 @@ Les images individuelles ne peuvent pas être directement utilisées dans *Defol
 
 Si un fichier image contient plusieurs images disposés sur une grille uniforme (chaque image est placé dans une case de taille identique), créez un fichier ressource `Tile Source` dans la vue `Assets`. Cette ressource permet de définir des tuiles et des animations dans l'image. Pour plus d'informations, consultez la section **Tile Source** de ce document.
 
+**Remarque :** *Defold* ne permet pas d'importer de spritesheet ou de tilesheet composées d'images disposées dans des cases de taille variable. Vous devez importer les images séparément puis les ajouter à un fichier ressource atlas dans *Defold*. Certains logiciels permettent d'extraire les images individuelles de tels fichiers (par exemple l'excellent [ShoeBox](https://renderhjs.net/shoebox/)).
+
 ### Importer des modèles Spine
 
 *Defold* est compatible avec les modèles d'animation exportés au format *Spine JSON* par le logiciel [Spine](http://fr.esotericsoftware.com/). Ce dernier vous permet d'animer un groupe d'images associées à un squelette. C'est utile si vous souhaitez donner du mouvement à des images fixes plutôt que de créer une série d'images pour définir une animation.
@@ -608,13 +612,13 @@ Dans *Defold*, chaque écran de jeu est représenté par une *collection*. Une c
 
 **Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
 
-Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui représentera un écran de jeu complet.
+Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui constituera un écran de jeu complet.
 
 Un game object est un conteneur à components. Il ne possède par défaut que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection (*en place*) où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
 
 Les components sont les éléments essentiels au jeu. Ce sont eux qui définissent les graphismes, les sons ou les comportements des game objects qui les contiennent.
 
-Enfin, certains components peuvent avoir comme enfants des éléments particuliers (par exemple les components `Collision Object` ont en général un élément enfant de type `Shape`).
+Enfin, certains components peuvent avoir comme enfants des fichiers ressources particuliers (par exemple, les components `Collision Object` ont en général un élément enfant de type `Shape`).
 
 Tous les fichiers qui ne sont pas des collections sont considérés comme des ressources et peuvent être référencés dans les collections. Il apparaissent alors avec le chemin du fichier écrit en italique à côté de leur nom (`Id`) dans la vue `Outline`.
 
@@ -624,9 +628,52 @@ En plus des fichiers externes importés, *Defold* vous permet de créer de nombr
 
 ![Resources list](defold_resources_list.png)
 
+## Propriétés communes aux components
+
+tous les components attachés en place à un game object ont les propriétés suivantes :
+
+![In place Component common properties](defold_in_place_component_properties.png)
+
+- Le champ `Id` vous permet de définir le nom de référence du component dans l'arborescence.
+- Le champ `Url` indique le chemin d'accès du component depuis un script (lecture seule).
+
+tous les fichiers ressources components attachés à un game object ont les propriétés suivantes :
+
+![File Component common properties](defold_file_component_properties.png)
+
+- Le champ `Path` vous permet de définir le fichier ressource correspondant au component. Cliquez sur le bouton `...` pour sélectionner le fichier.
+- Le champ `Id` vous permet de définir le nom de référence du component dans l'arborescence.
+- Le champ `Url` indique le chemin d'accès du component depuis un script (lecture seule).
+
 ### Animation Set
 
-[VIDE]
+Une ressource `Animation Set` contient une ou plusieurs animations d'un même modèle 3D. Référencez cette ressources depuis la propriété `Animations` d'un component `Model`.
+
+Pour créer un nouveau fichier ressource animation set, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Animation Set`. La boîte de dialogue `New Animation Set` apparaît :
+
+![New Animation Set dialog](defold_new_animation_set_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom de l'animation set.
+- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'animation set.
+- Le champ `Path` vous indique le chemin complet de l'animation set (lecture seule).
+
+Cliquez sur le bouton `OK` pour créer l'animation set ou le bouton `Cancel` pour annuler. Un nouvel animation set vide apparaît dans la vue `Editor` :
+
+![Animation Set Editor view](defold_animation_set_editor.png)
+
+#### Ajouter une animation à un animation set
+
+Pour ajouter une animation, cliquez sur le bouton `+` dans la vue `Editor` pour ouvrir la boîte de dialogue `Select Resource` :
+
+![Animation Set Select Resource dialog](defold_animation_set_select_resource_dialog.png)
+
+Sélectionnez le fichier ressource animation 3D (au format *Collada* `.dae`) à ajouter à l'animation set puis cliquez sur le bouton `OK` pour valider.
+
+**Remarque :** Vous pouvez également ajouter un autre fichier ressource animation set (`.animationset`) à un animation set plus large pour organiser vos animations en sous-groupes.
+
+#### Supprimer une animation à un animation set
+
+Pour supprimer une des animations de la liste, sélectionnez l'animation à supprimer puis cliquez sur le bouton `-` dans la vue `Editor`.
 
 ### Atlas
 
@@ -636,7 +683,7 @@ Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue
 
 - Le champ `Name` vous permet de définir le nom de l'atlas.
 - Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
-- Le champ `Path` vous indique le chemin complet de l'atlas.
+- Le champ `Path` vous indique le chemin complet de l'atlas (lecture seule).
 
 Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
 
@@ -646,7 +693,7 @@ La vue `Properties` vous permet de définir les propriétés de l'atlas :
 
 ![Atlas Properties](defold_atlas_properties.png)
 
-- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (non modifiable).
+- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (lecture seule).
 - Le champ `Margin` vous permet de définir la marge en pixels à ajouter autour des images de l'atlas.
 - Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre chaque image de l'atlas.
 - Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour de chaque image de l'atlas. *Defold* reproduit les pixels des images touchant les bords un nombre de pixels spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
@@ -710,7 +757,7 @@ Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Prope
   - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
   - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
 
-**Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
+**Remarque :** Sélectionnez une animation dans la vue `Outline` et appuyez sur la touche `ESPACE` pour la lire dans la vue `Editor`.
 
 ### Camera
 
@@ -742,12 +789,14 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ![Camera properties list](defold_camera_properties.png)
 
-The current default FOV value is misleading. It is not expressed in degrees but in radians. For a 45 degree FOV, change the value to 0.785 (𝛑 / 4).
-- **aspect_ratio :** The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
-- **fov :** The camera field of view expressed in radians.
-- **near_z :** The Z-value of the near clipping plane.
-- **far_z :** The Z-value of the far clipping plane.
-- **auto_aspect_ratio :** Set this to 1 to let the camera automatically set the aspect ratio based on the game’s screen settings.
+- Le champ `Id` vous permet de définir le nom de la caméra.
+- Le champ `Url` indique le chemin d'accès à la caméra dans un script (lecture seule).
+- Le champ `Aspect Ratio` The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
+- Le champ `Fov` The camera field of view expressed in radians. The current default FOV value is misleading. It is not expressed in degrees but in radians. For a 45 degree FOV, change the value to 0.785 (𝛑 / 4).
+- Le champ `Near Z` The Z-value of the near clipping plane.
+- Le champ `Far Z` The Z-value of the far clipping plane.
+- Le champ `Auto Aspect Ratio` Set this to 1 to let the camera automatically set the aspect ratio based on the game’s screen settings.
+
 - **Camera focus :** To activate the camera and have it feed its view and projection matrices, you send the component an `acquire_camera_focus` message:
 
 `msg.post("#camera", "acquire_camera_focus")`
@@ -855,11 +904,13 @@ This is almost what the default render script does, with the difference that the
 
 ### Collection
 
+Un jeu ne peut pas fonctionner sans collection. En effet, ces dernières rassemblent tous les éléments nécessaires à un écran du jeu dans une arborescence. Une collection est toujours définie sous forme d'un fichier.
+
 #### Créer une collection
 
-Pour créer un nouveau fichier collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilse l'extension `.collection` pour les fichiers collection. La boîte de dialogue `New Collection` apparaît :
+Pour créer une nouvelle collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilise l'extension `.collection` pour les fichiers collection. La boîte de dialogue `New Collection` apparaît :
 
-![Assets New Collection menu](defold_new_collection_menu.png)
+![New Collection dialog](defold_new_collection_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de la collection.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
@@ -869,7 +920,7 @@ Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour 
 
 ![New Collection Editor view](defold_new_collection_editor_view.png)
 
-La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous élément :
+La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous-élément :
 
 ![New Collection Outline view](defold_new_collection_outline_view.png)
 
@@ -893,27 +944,54 @@ Si vous voulez attacher un fichier ressource game object (préexistant sous la f
 
 ### Collection Factory
 
+Un component `Collection Factory` sert à [A DEFINIR].
+
 #### Créer un fichier ressource Collection Factory
 
-Pour créer un fichier ressource Collection Factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Factory`.
+Pour créer un fichier ressource collection factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Factory`.  La boîte de dialogue `New Collection Factory` apparaît :
+
+![New Collection Factory dialog](defold_new_collection_factory_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom de la collection factory.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection factory dans votre projet.
+- Le champ `Path` indique le chemin complet de la collection factory (lecture seule).
+
+Cliquez sur le bouton `OK` pour créer la collection factory ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection factory :
+
+![New Collection Factory Editor view](defold_new_collection_factory_editor_view.png)
 
 **Remarque :** Ce component peut être attaché en place à un game object.
 
 #### Propriétés de Collection Factory
 
-Les propriétés suivantes sont accessibles dans la vue `Properties` :
+Les propriétés suivantes sont accessibles dans la vue `Properties` ainsi que dans la vue `Editor` :
 
 ![Collection Factory properties list](defold_collection_factory_properties.png)
+
+- Le champ `Prototype` vous permet de définir le fichier collection à utiliser comme modèle de production de la collection factory.
+- La case `Load Dynamically` (inaccessible si le component est créé en place) vous permet de définir si la collection à produire devra être chargée dynamiquement (coché) ou si elle est chargée automatiquement dès le chargement de la collection factory (décoché). Par défaut, décoché.
 
 [VIDE]
 
 ### Collection Proxy
 
+Un component `Collection Proxy` sert à [VIDE].
+
 #### Créer un fichier ressource Collection Proxy
 
-Pour créer un fichier ressource Collection Proxy, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Proxy`.
+Pour créer un fichier ressource collection proxy, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Proxy`. La boîte de dialogue `New Collection Proxy` s'affiche :
 
-**Remarque :** Ce component peut être attaché en place à un game object.
+![New Collection Proxy dialog](defold_new_collection_proxy_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom du collection proxy.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du collection proxy dans votre projet.
+- Le champ `Path` indique le chemin complet du collection proxy (lecture seule).
+
+Cliquez sur le bouton `OK` pour créer le collection proxy ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau collection proxy :
+
+![New Collection Proxy Editor view](defold_new_collection_proxy_editor_view.png)
+
+**Remarque :** Ce component peut également être attaché en place à un game object.
 
 #### Propriétés de Collection Proxy
 
@@ -921,15 +999,28 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ![Collection Proxy properties list](defold_collection_proxy_properties.png)
 
-[VIDE]
+- Le champ `Collection` vous permet de définir le fichier collection à utiliser comme modèle de production du collection proxy.
+- La case `Exclude` vous permet d'exclure la collection spécifiée dans le champ `Collection` du jeu. Vous pourrez par la suite téléchargez cette collection depuis un script de mise à jour live.
 
 ### Collision Object
 
+Utilisez un component Collision Object pour attribuer un comportement physique à un game object.
+
 #### Créer un fichier ressource Collision Object
 
-Pour créer un fichier ressource Collision Object, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collision Object`.
+Pour créer un fichier ressource collision object, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collision Object`. La boîte de dialogue `New Collision Object` s'affiche :
 
-**Remarque :** Ce component peut être attaché en place à un game object.
+![New Collision Object dialog](defold_new_collision_object_dialog.png)
+
+- Le champ `Name` vous permet de définir le nom du collision object.
+- Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du collision object dans votre projet.
+- Le champ `Path` indique le chemin complet du collision object (lecture seule).
+
+Cliquez sur le bouton `OK` pour créer le collision object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau collision object :
+
+![New Collision Object Editor view](defold_new_collision_object_editor_view.png)
+
+**Remarque :** Ce component peut également être attaché en place à un game object.
 
 #### Propriétés de Collision Object
 
@@ -937,7 +1028,26 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ![Collision Object properties list](defold_collision_object_properties.png)
 
-Pour que ce component fonctionne avec le moteur physique, vous devez lui attacher une `Shape`. Faites un clic droit dans la vue `Outline` sur le collision object, choisissez `Add Shape` puis choisissez la forme `Box` (rectangle), `Capsule` ou `Sphere` (cercle).
+- Le champ `Collision Shape` vous permet de définir le fichier ressource tile map possédant une collision shape. Ne fonctionne que si le game object associé possède également un component `Tile Map`. Dans le cas contraire, laissez cette propriété vide et attachez des ressources `Shape` au collision object.
+- Le menu déroulant `Type` vous permet de définir le type de comportement physique du game object associé :
+  - L'option `Dynamic` définit un objet physique qui simule un comportement semi-réaliste d'un objet réel.
+  - L'option `Kinematic` définit un objet dont la gestion de la physique est dépendante du programmeur. C'est le type idéal pour un object contrôlé par le joueur.
+  - L'option `Static` définit un objet physique immobile (par exemple, un mur) qui ne réagit pas aux contacts des autres objects mais qui a une influence sur leur physique.
+  - L'option `Trigger` définit un object sans comportement physique mais qui déclenche un évènement en cas de contact.
+- Le champ `Mass` vous permet de définir la masse du collision object. Si son type est `Dynamic` vous devez attribuer une masse non nulle.
+- Le champ `Friction` vous permet de définir l'intensité de la friction du game object associé au moment d'un contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre 0 (pas de friction) et 1 (friction maximale).
+- Le champ `Restitution` vous permet de définir l'intensité du rebond du game object associé au moment du contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre 0 (pas de rebond) et 1 (rebond maximal).
+- Le champ `Linear Damping` vous permet de définir l'intensité de la réduction de vélocité du game object associé à chaque affichage. La valeur doit être comprise entre 0 (pas de réduction) et 1 (réduction maximale).
+- Le champ `Angular Damping` vous permet de définir l'intensité de la réduction de la rotation du game object associé à chaque affichage. La valeur doit être comprise entre 0 (pas de réduction) et 1 (réduction maximale).
+- La case `Locked Rotation` (si cochée) vous permet d'empêcher la rotation du game object associé lors des collisions. Par défaut désactivé.
+- Le champ `Group` vous permet de définir le groupe de collision auquel appartient le collision object (inutile pour les tilemaps car la propriété est déjà définie dans la tile source). Vous pouvez définir jusqu'à 16 groupes dans un projet.
+- Le champ `Mask` vous permet de définir la liste des groupes de collision qui peuvent intéragir avec le collision object. Séparez les groupes par une virgule. Si ce champ est vide, aucune collision n'est prise en compte.
+
+**Remarque :** Pour plus d'information sur la gestion de la physique dans *Defold*, consultez la section de la documentation sur la [physique](https://www.defold.com/manuals/physics/).
+
+#### Ajouter des ressources Shapes au collision object
+
+Si le game object associé n'a pas de tile map, pour que ce component fonctionne avec le moteur physique, vous devez lui attacher une ou plusieurs ressources `Shape`. Faites un clic droit dans la vue `Outline` sur le collision object, choisissez `Add Shape` puis choisissez la forme `Box` (rectangle), `Capsule` ou `Sphere`. Dans la vue `Editor`, modifiez la position, la taille et/ou l'échelle des shapes. Vous pouvez également utiliser la vue `Properties` pour paramétrer précisément les propriétés.
 
 ### Cubemap
 

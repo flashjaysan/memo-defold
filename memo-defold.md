@@ -10,12 +10,12 @@
       - [From Sample](#from-sample)
     + [Import Project](#import-project)
   * [Editeur](#editeur)
-    + [Vue Assets :](#vue-assets--)
-    + [Vue Changed Files :](#vue-changed-files--)
-    + [Vue Outline :](#vue-outline--)
-    + [Vue Properties :](#vue-properties--)
-    + [Vue Console, Curve Editor, Build Errors, Search Results :](#vue-console--curve-editor--build-errors--search-results--)
-    + [Vue Editor :](#vue-editor--)
+    + [Vue Assets](#vue-assets)
+    + [Vue Changed Files](#vue-changed-files)
+    + [Vue Outline](#vue-outline)
+    + [Vue Properties](#vue-properties)
+    + [Vue Console, Curve Editor, Build Errors, Search Results](#vue-console--curve-editor--build-errors--search-results)
+    + [Vue Editor](#vue-editor)
       - [Editeur de collection et de ressources](#editeur-de-collection-et-de-ressources)
       - [Editeur de code](#editeur-de-code)
       - [Editeur de configuration du projet](#editeur-de-configuration-du-projet)
@@ -269,7 +269,7 @@ Une fois un projet ouvert, vous vous retrouvez devant la fenêtre de l'éditeur.
 
 ![Defold editor tour](defold_full_editor.png)
 
-### Vue Assets :
+### Vue Assets
 
 Cette vue liste les fichiers ressources importés, les collections et les fichiers ressources créés dans *Defold* et utilisés dans votre projet.
 
@@ -283,7 +283,7 @@ Cette vue liste les fichiers ressources importés, les collections et les fichie
   - Faites glisser des fichiers externes depuis votre système dans cette vue pour les importer (ils sont copiés) dans votre projet.
   - Déplacez des fichiers dans la liste à un autre emplacement pour réorganiser votre projet.
 
-### Vue Changed Files :
+### Vue Changed Files
 
 Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
 
@@ -299,7 +299,7 @@ Cliquez sur le bouton `Revert` pour rétablir l'état initial.
 
 **Remarque :** Cette vue ne fonctionne que si vous avez déjà synchronisé au moins une fois votre projet en ligne.
 
-### Vue Outline :
+### Vue Outline
 
 Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
 
@@ -307,7 +307,7 @@ Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *
 
 Par un clic droit puis `New`, créez de nouveaux éléments enfants (des sous-collections, des game objects ou des components).
 
-### Vue Properties :
+### Vue Properties
 
 Cette vue affiche la liste des propriétés de l'élément sélectionné actuellement dans la vue `Outline` ou la vue `Editor`.
 
@@ -315,7 +315,7 @@ Cette vue affiche la liste des propriétés de l'élément sélectionné actuell
 
 Cela vous permet d'éditer les propriétés des divers éléments de votre jeu.
 
-### Vue Console, Curve Editor, Build Errors, Search Results :
+### Vue Console, Curve Editor, Build Errors, Search Results
 
 Cette vue affiche plusieurs outils utiles au développement du jeu.
 
@@ -326,7 +326,7 @@ Cette vue affiche plusieurs outils utiles au développement du jeu.
   - **Onglet Build Errors :** Affiche les erreurs lors de la construction du projet.
   - **Onglet Search Results :** Affiche les recherches diverses.
 
-### Vue Editor :
+### Vue Editor
 
 Double cliquez sur un fichier existant dans la vue `Assets` (ou créez-en un nouveau) pour ouvrir l'éditeur correspondant. Selon le fichier ouvert, la vue `Editor` affiche un éditeur différent. Chaque fichier s'ouvre dans son propre onglet :
 

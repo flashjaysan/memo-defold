@@ -31,7 +31,7 @@
     + [Importer des modèles 3D](#importer-des-mod-les-3d)
   * [Structure du jeu](#structure-du-jeu)
   * [Fichiers ressources](#fichiers-ressources)
-  * [Propriétés communes aux components](#propri-t-s-communes-aux-components)
+    + [Propriétés communes aux components](#propri-t-s-communes-aux-components)
     + [Animation Set](#animation-set)
       - [Ajouter une animation à un animation set](#ajouter-une-animation---un-animation-set)
       - [Supprimer une animation à un animation set](#supprimer-une-animation---un-animation-set)
@@ -755,7 +755,7 @@ En plus des fichiers externes importés, *Defold* vous permet de créer de nombr
 
 ![Resources list](defold_resources_list.png)
 
-## Propriétés communes aux components
+### Propriétés communes aux components
 
 tous les components attachés en place à un game object ont les propriétés suivantes :
 

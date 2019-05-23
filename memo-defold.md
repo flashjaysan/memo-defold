@@ -1,3 +1,130 @@
+- [Mémo Defold](#m-mo-defold)
+  * [Introduction](#introduction)
+  * [Télécharger et installer Defold](#t-l-charger-et-installer-defold)
+  * [Mettre à jour Defold](#mettre---jour-defold)
+  * [Création et ouverture de projets](#cr-ation-et-ouverture-de-projets)
+    + [Home](#home)
+    + [New Project](#new-project)
+      - [From Template](#from-template)
+      - [From Tutorial](#from-tutorial)
+      - [From Sample](#from-sample)
+    + [Import Project](#import-project)
+  * [Editeur](#editeur)
+    + [Vue Assets :](#vue-assets--)
+    + [Vue Changed Files :](#vue-changed-files--)
+    + [Vue Outline :](#vue-outline--)
+    + [Vue Properties :](#vue-properties--)
+    + [Vue Console, Curve Editor, Build Errors, Search Results :](#vue-console--curve-editor--build-errors--search-results--)
+    + [Vue Editor :](#vue-editor--)
+      - [Editeur de collection et de ressources](#editeur-de-collection-et-de-ressources)
+      - [Editeur de code](#editeur-de-code)
+      - [Editeur de configuration du projet](#editeur-de-configuration-du-projet)
+        * [Liste des paramètres](#liste-des-param-tres)
+  * [Etapes dans la création d'un projet](#etapes-dans-la-cr-ation-d-un-projet)
+  * [Importer les ressources externes](#importer-les-ressources-externes)
+    + [Importer des images](#importer-des-images)
+      - [Gérer des images individuelles](#g-rer-des-images-individuelles)
+      - [Gérer des tilesheet ou spritesheet](#g-rer-des-tilesheet-ou-spritesheet)
+    + [Importer des modèles Spine](#importer-des-mod-les-spine)
+    + [Importer des sons et des musiques](#importer-des-sons-et-des-musiques)
+    + [Importer des polices de caractères](#importer-des-polices-de-caract-res)
+    + [Importer des modèles 3D](#importer-des-mod-les-3d)
+  * [Structure du jeu](#structure-du-jeu)
+  * [Fichiers ressources](#fichiers-ressources)
+  * [Propriétés communes aux components](#propri-t-s-communes-aux-components)
+    + [Animation Set](#animation-set)
+      - [Ajouter une animation à un animation set](#ajouter-une-animation---un-animation-set)
+      - [Supprimer une animation à un animation set](#supprimer-une-animation---un-animation-set)
+    + [Atlas](#atlas)
+      - [Ajouter des images à un atlas](#ajouter-des-images---un-atlas)
+      - [Créer un groupe d'animation](#cr-er-un-groupe-d-animation)
+        * [Ajouter des images à un groupe d'animation](#ajouter-des-images---un-groupe-d-animation)
+    + [Camera](#camera)
+      - [Créer un fichier ressource Camera](#cr-er-un-fichier-ressource-camera)
+      - [Plans de caméra](#plans-de-cam-ra)
+      - [Champ de vue de caméra](#champ-de-vue-de-cam-ra)
+      - [Créer une caméra](#cr-er-une-cam-ra)
+      - [Propriétés de caméra](#propri-t-s-de-cam-ra)
+      - [Camera speed distance](#camera-speed-distance)
+      - [Rotated camera](#rotated-camera)
+      - [Orthographic projection](#orthographic-projection)
+    + [Collection](#collection)
+      - [Créer une collection](#cr-er-une-collection)
+      - [Attacher un game object en place à une collection](#attacher-un-game-object-en-place---une-collection)
+      - [Attacher un fichier ressource game object à une collection](#attacher-un-fichier-ressource-game-object---une-collection)
+    + [Collection Factory](#collection-factory)
+      - [Créer un fichier ressource Collection Factory](#cr-er-un-fichier-ressource-collection-factory)
+      - [Propriétés de Collection Factory](#propri-t-s-de-collection-factory)
+    + [Collection Proxy](#collection-proxy)
+      - [Créer un fichier ressource Collection Proxy](#cr-er-un-fichier-ressource-collection-proxy)
+      - [Propriétés de Collection Proxy](#propri-t-s-de-collection-proxy)
+    + [Collision Object](#collision-object)
+      - [Créer un fichier ressource Collision Object](#cr-er-un-fichier-ressource-collision-object)
+      - [Propriétés des collision objects](#propri-t-s-des-collision-objects)
+      - [Ajouter des ressources Shapes au collision object](#ajouter-des-ressources-shapes-au-collision-object)
+    + [Cubemap](#cubemap)
+    + [Display Profiles](#display-profiles)
+    + [Factory](#factory)
+      - [Créer un fichier ressource Factory](#cr-er-un-fichier-ressource-factory)
+      - [Propriétés de Factory](#propri-t-s-de-factory)
+    + [Font](#font)
+    + [Fragment Program](#fragment-program)
+    + [Game Object](#game-object)
+      - [Créer un game object en place](#cr-er-un-game-object-en-place)
+      - [Créer un fichier ressource Game Object](#cr-er-un-fichier-ressource-game-object)
+      - [Attacher un component à un game object](#attacher-un-component---un-game-object)
+    + [Gamepads](#gamepads)
+    + [Gui](#gui)
+    + [Gui Script](#gui-script)
+    + [Input Binding](#input-binding)
+    + [Label](#label)
+      - [Créer un fichier ressource Label](#cr-er-un-fichier-ressource-label)
+      - [Propriétés de Label](#propri-t-s-de-label)
+    + [Lua Module](#lua-module)
+    + [Material](#material)
+    + [Model](#model)
+      - [Créer un fichier ressource Model](#cr-er-un-fichier-ressource-model)
+      - [Propriétés de Model](#propri-t-s-de-model)
+    + [Particle FX](#particle-fx)
+    + [Render](#render)
+    + [Render Script](#render-script)
+    + [Script](#script)
+      - [Créer un fichier ressource Script](#cr-er-un-fichier-ressource-script)
+    + [Sound](#sound)
+      - [Créer un fichier ressource Sound](#cr-er-un-fichier-ressource-sound)
+      - [Propriétés de Sound](#propri-t-s-de-sound)
+    + [Spine Model](#spine-model)
+      - [Créer un fichier ressource Spine Model](#cr-er-un-fichier-ressource-spine-model)
+      - [Propriétés de Spine Model](#propri-t-s-de-spine-model)
+    + [Spine Scene](#spine-scene)
+    + [Sprite](#sprite)
+      - [Créer un fichier ressource Sprite](#cr-er-un-fichier-ressource-sprite)
+      - [Propriétés de Sprite](#propri-t-s-de-sprite)
+    + [Texture Profiles](#texture-profiles)
+    + [Tile Map](#tile-map)
+    + [Tile Source](#tile-source)
+      - [Créer une tile source](#cr-er-une-tile-source)
+      - [Attacher un fichier ressource image à une tile source](#attacher-un-fichier-ressource-image---une-tile-source)
+      - [Propriétés d'une tile source](#propri-t-s-d-une-tile-source)
+      - [Définir des animations de tile source](#d-finir-des-animations-de-tile-source)
+        * [Propriétés d'animations de tile source](#propri-t-s-d-animations-de-tile-source)
+    + [Vertex Program](#vertex-program)
+  * [Programmation](#programmation)
+    + [Portée des variables](#port-e-des-variables)
+    + [Définir une propriété visible dans la vue Properties](#d-finir-une-propri-t--visible-dans-la-vue-properties)
+    + [Adressage](#adressage)
+      - [Envoyer un message](#envoyer-un-message)
+    + [Créer un game object depuis un script](#cr-er-un-game-object-depuis-un-script)
+  * [Astuces diverses](#astuces-diverses)
+    + [Définir la collection principale](#d-finir-la-collection-principale)
+    + [Définir les dimensions logiques du jeu](#d-finir-les-dimensions-logiques-du-jeu)
+    + [Afficher une image](#afficher-une-image)
+    + [Afficher des images en pixel art](#afficher-des-images-en-pixel-art)
+    + [Quitter le jeu avec la touche Echap](#quitter-le-jeu-avec-la-touche-echap)
+    + [Tester une modification de script sans redémarrer le jeu](#tester-une-modification-de-script-sans-red-marrer-le-jeu)
+    + [Détruire un game object depuis un script](#d-truire-un-game-object-depuis-un-script)
+      - [Paramétrer les valeurs de configuration au démarrage du moteur](#param-trer-les-valeurs-de-configuration-au-d-marrage-du-moteur)
+
 # Mémo Defold
 
 *par flashjaysan*
@@ -944,7 +1071,7 @@ Si vous voulez attacher un fichier ressource game object (préexistant sous la f
 
 ### Collection Factory
 
-Un component `Collection Factory` sert à [A DEFINIR].
+Un component `Collection Factory` sert à générer dynamiquement un collection autant de fois que nécessaire dans le jeu.
 
 #### Créer un fichier ressource Collection Factory
 
@@ -975,7 +1102,7 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` ainsi que d
 
 ### Collection Proxy
 
-Un component `Collection Proxy` sert à [VIDE].
+Un component `Collection Proxy` sert à générer un collection associée dans un nouvel environnement. Utilisez-le pour charger différents niveaux ou écrans de jeu.
 
 #### Créer un fichier ressource Collection Proxy
 
@@ -1004,7 +1131,7 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Collision Object
 
-Utilisez un component Collision Object pour attribuer un comportement physique à un game object.
+Utilisez un component `Collision Object` pour attribuer un comportement physique à un game object.
 
 #### Créer un fichier ressource Collision Object
 
@@ -1022,7 +1149,7 @@ Cliquez sur le bouton `OK` pour créer le collision object ou le bouton `Cancel`
 
 **Remarque :** Ce component peut également être attaché en place à un game object.
 
-#### Propriétés de Collision Object
+#### Propriétés des collision objects
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
@@ -1035,10 +1162,10 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
   - L'option `Static` définit un objet physique immobile (par exemple, un mur) qui ne réagit pas aux contacts des autres objects mais qui a une influence sur leur physique.
   - L'option `Trigger` définit un object sans comportement physique mais qui déclenche un évènement en cas de contact.
 - Le champ `Mass` vous permet de définir la masse du collision object. Si son type est `Dynamic` vous devez attribuer une masse non nulle.
-- Le champ `Friction` vous permet de définir l'intensité de la friction du game object associé au moment d'un contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre 0 (pas de friction) et 1 (friction maximale).
-- Le champ `Restitution` vous permet de définir l'intensité du rebond du game object associé au moment du contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre 0 (pas de rebond) et 1 (rebond maximal).
-- Le champ `Linear Damping` vous permet de définir l'intensité de la réduction de vélocité du game object associé à chaque affichage. La valeur doit être comprise entre 0 (pas de réduction) et 1 (réduction maximale).
-- Le champ `Angular Damping` vous permet de définir l'intensité de la réduction de la rotation du game object associé à chaque affichage. La valeur doit être comprise entre 0 (pas de réduction) et 1 (réduction maximale).
+- Le champ `Friction` vous permet de définir l'intensité de la friction du game object associé au moment d'un contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre `0` (pas de friction) et `1` (friction maximale). La propriété de chaque collision object en contact est multipliée pour donner la valeur finale. Ce qui veut dire qu'un objet ayant une friction nulle donnera une valeur finale nulle.
+- Le champ `Restitution` vous permet de définir l'intensité du rebond du game object associé au moment du contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre `0` (pas de rebond) et `1` (rebond maximal). La valeur finale sera celle de l'objet en contact ayant la valeur la plus élevée.
+- Le champ `Linear Damping` vous permet de définir l'intensité de la réduction de vélocité du game object associé à chaque affichage. La valeur doit être comprise entre `0` (pas de réduction) et `1` (réduction maximale).
+- Le champ `Angular Damping` vous permet de définir l'intensité de la réduction de la rotation du game object associé à chaque affichage. La valeur doit être comprise entre `0` (pas de réduction) et `1` (réduction maximale).
 - La case `Locked Rotation` (si cochée) vous permet d'empêcher la rotation du game object associé lors des collisions. Par défaut désactivé.
 - Le champ `Group` vous permet de définir le groupe de collision auquel appartient le collision object (inutile pour les tilemaps car la propriété est déjà définie dans la tile source). Vous pouvez définir jusqu'à 16 groupes dans un projet.
 - Le champ `Mask` vous permet de définir la liste des groupes de collision qui peuvent intéragir avec le collision object. Séparez les groupes par une virgule. Si ce champ est vide, aucune collision n'est prise en compte.

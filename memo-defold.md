@@ -14,7 +14,7 @@
     + [Vue Changed Files](#vue-changed-files)
     + [Vue Outline](#vue-outline)
     + [Vue Properties](#vue-properties)
-    + [Vue Console, Curve Editor, Build Errors, Search Results](#vue-console--curve-editor--build-errors--search-results)
+    + [Vue Tools](#vue-tools)
     + [Vue Editor](#vue-editor)
       - [Editeur de collection et de ressources](#editeur-de-collection-et-de-ressources)
       - [Editeur de code](#editeur-de-code)
@@ -323,9 +323,9 @@ Cette vue affiche la liste des propriétés de l'élément sélectionné actuell
 
 Cela vous permet d'éditer les propriétés des divers éléments de votre jeu.
 
-### Vue Console, Curve Editor, Build Errors, Search Results
+### Vue Tools
 
-Cette vue affiche plusieurs outils utiles au développement du jeu.
+Cette vue affiche plusieurs outils utiles au développement du jeu dans des onglets spécifiques :
 
 ![Console, Curve Editor, Build Errors, Search Results panels](defold_tools_panel.png)
 

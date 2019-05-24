@@ -593,93 +593,93 @@ Qui indique que le paramètre `main_collection` appartient à la catégorie `boo
 
 *iOS*
 
-**App Icon 57x57–180x180 :** Image file to use as application icon at given width and height dimensions W × H.
+**App Icon 57x57–180x180 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données. Image file to use as application icon at given width and height dimensions W × H.
 
-**Launch Image 320x480–2436x1125 :** Image file to use as application launch image for resolution width and height dimensions W × H. iOS selects the display resolution based on the launch image.
+**Launch Image 320x480–2436x1125 :** Fichier image à utiliser en tant qu'image de lancement d'application aux dimensions (*largeur*x*hauteur*) données. iOS sélectionne la résolution d'affichage selon l'image de lancement.
 
-**Pre Rendered Icons :** (iOS 6 and earlier) Check if your icons are pre-rendered. If this is unchecked the icons will get a glossy highlight added automatically.
+**Pre Rendered Icons :** (iOS 6 et plus ancien) Cochez la case si vos icônes sont pré-rendues. Si la case est décochée, les icônes se verront ajouter un reflet brillant automatiquement.
 
-**Bundle Identifier :** The bundle identifier lets iOS recognize any updates to your app. Your bundle ID must be registered with Apple and be unique to your app. You cannot use the same identifier for both iOS and OS X apps.
+**Bundle Identifier :** L'identifiant de paquetage permet à iOS de reconnaître toute mise à jour de votre application. Votre identifiant de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identifiant pour des applications iOS et OS X.
 
-**Info.plist :** If specified, use this info.plist file when bundling your app.
+**Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
 
 *Android*
 
-**App Icon 36x36–192x192 :** Image file to use as application icon at given width and height dimensions W × H.
+**App Icon 36x36–192x192 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données.
 
-**Push Icon Small–LargeXxxhdpi :** Image files to be used as custom push notification icon on Android. The icons will automatically be used for both local or remote push notifications. If not set the application icon will be used par défaut.
+**Push Icon Small–LargeXxxhdpi :** Fichiers images à utiliser en tant qu'icônes de notifications *push* sur *Android*. Les icônes seront automatiquement utilisées pour les notifications locales et à distances. Si non spécifiées, l'icône d'application sera utilisée par défaut.
 
-**Push Field Title :** Specifies which payload JSON field should be used as notification title. Leaving this setting empty makes the pushes default to the application name as title.
+**Push Field Title :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que titre de notification. Laissez ce paramètre vide pour attribuer par défaut au titre de la notification le nom de l'application.
 
-**Push Field Text :** Specifies which payload JSON field should be used as notification text. If left empty, the text in the field alert is used, just as on iOS.
+**Push Field Text :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que texte de notification. Laissez ce paramètre vide pour attribuer par défaut au texte le champ `alert` comme sur *iOS*.
 
-**Version Code :** An integer value indicating the version of the app. Increase the value for each subsequent update.
+**Version Code :** Une valeur entière qui indique la version de l'application. Augmentez la valeur à chaque mise à jour.
 
-**Package :** Package identifier.
+**Package :** Identifiant du package.
 
-**Gcm Sender Id :** Google Cloud Messaging Sender Id. Set this to the string assigned by Google to enable push notifications.
+**Gcm Sender Id :** Identifiant *Google Cloud Messaging Sender*. Attribuez à ce paramètre la chaîne de caractères donnée par Google pour permettre les notifications *push*.
 
-**Manifest :** If set, use the specified Android manifest XML file when bundling.
+**Manifest :** Si spécifié, utilise le fichier *manifest XML Android* lorsque le jeu est exporté.
 
-**Iap Provider :** Specifies which store to use. Valid options are Amazon and GooglePlay, `GooglePlay` par défaut.
+**Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `Amazon` et `GooglePlay` (par défaut).
 
-**Input Method :** Specifies which method to use to get keyboard input on Android devices. Valid options are KeyEvent (old method) and HiddenInputField (new). `KeyEvent` par défaut.
+**Input Method :** Spécifie quelle méthode utiliser pour obtenir les entrées de clavier sur les appareils *Android*. Les options valides sont `KeyEvent` (ancienne méthode) et HiddenInputField (nouvelle méthode). `KeyEvent` par défaut.
 
-**Immersive Mode :** If set, hides the navigation and status bars and lets your app capture all touch events on the screen.
+**Immersive Mode :** Si spécifié, masque la barre de navigation ainsi que la barre de status et permet à votre application de capturer tous les évènements tactiles sur l'écran.
 
 *MacOS / OS X*
 
-**App Icon :** Image file to use as application icon on MacOS.
+**App Icon :** Fichier image à utiliser en tant qu'icône d'application sur MacOS.
 
-**Info.plist :** If set, use the specified info.plist file when bundling.
+**Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
 
-**Bundle Identifier :** The bundle identifier lets OS X recognize updates to your app. Your bundle ID must be registered with Apple and be unique to your app. You cannot use the same identifier for both iOS and OS X apps.
+**Bundle Identifier :** L'identificateur de paquetage permet à OS X de reconnaître toute mise à jour de votre application. Votre identificateur de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identificateur pour des applications iOS et OS X.
 
 *Windows*
 
-**App Icon :** Image file to use as application icon on Windows.
+**App Icon :** Fichier image à utiliser en tant qu'icône d'application sur  Windows.
 
-**Iap Provider :** Specifies which store to use. Valid options are None and Gameroom, `None` par défaut.
+**Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `None` (aucune) et `Gameroom`. `None` par défaut.
 
 *HTML5*
 
-**Set Custom Heap Size :** If set, Emscripten allocates custom_heap_size number of bytes for the application heap.
+**Set Custom Heap Size :** Si spécifié, *Emscripten* alloue au tas de l'application le nombre d'octets de la propriété `custom_heap_size`.
 
-**Custom Heap Size :** Sets the custom heap size (number of bytes) for Emscripten to use if `set_custom_heap_size` is set. If not set, `256MB` is allocated for the application heap.
+**Custom Heap Size :** Définit la taille personnalisée du tas (en nombre d'octets) à utiliser par *Emscripten* si le paramètre `set_custom_heap_size` est spécifié. Si non définit, `256 Mo` sont alloués au tas de l'application.
 
-**Include Dev Tool :** Includes a visual dev-tool in the application that allows tracking of memory usage.
+**Include Dev Tool :** Inclus un outil de développement visuel dans l'application qui permet de suivre l'utilisation de la mémoire.
 
-**.html Shell :** If set, use the specified template *HTML* file when bundling.
+**.html Shell :** Si défini, utilise le modèle *HTML* spécifié lors de l'exportation.
 
-**Custom .css :** If set, use the specified *CSS* file when bundling.
+**Custom .css :** Si défini, utilise le fichier *CSS* spécifié lors de l'exportation.
 
-**Splash Image :** If set, use the specified splash image on startup when bundling.
+**Splash Image :** Si défini, utilise l'image splash spécifié au démarrage lors de l'exportation.
 
-**Archive Location Prefix :** When bundling for *HTML5* game data is split up into one or more archive data files. When the engine starts the game, these archive files are read into memory. Use this setting to specify the location of the data, `archive` par défaut.
+**Archive Location Prefix :** Lors de l'export vers le *HTML5*, les données de jeu sont découpées en un ou plusieurs fichiers de données archivées. Lorsque le moteur démarre le jeu, ces fichiers archives sont chargés en mémoire. Utilisez ce paramètre pour spécifier l'emplacement de la donnée. `archive` par défaut.
 
-**Archive Location Suffix :** Suffix to be appended to the archive files. Useful to, for instance, force non-cached content from a CDN (?version2 for example).
+**Archive Location Suffix :** Suffixe à ajouter à la fin des fichiers archive. Utile par exemple pour forcer le contenu non mis en mémoire cache depuis un *CDN* [??] (`?version2` par exemple).
 
 *Facebook*
 
-**Appid :** The application id as issued by Facebook.
+**Appid :** L'identifiant de l'application attribué par *Facebook*.
 
 *IAP*
 
-**Auto Finish Transactions :** Check to automatically finish IAP transactions. If unchecked, you need to explicitly call `iap.finish()` after a successful transaction, checked par défaut.
+**Auto Finish Transactions :** Cochez la case pour terminer automatiquement les transactions *IAP*. Si décochée, vous devez explicitement appeler `iap.finish()` après une transaction réussi. Cochée par défaut.
 
 *native_extension*
 
-**App Manifest :** If set, use the app manifest to customize the engine build. This allows you to remove unneeded parts from the engine making it possible to decrease the final binary size. Note that this feature is in alpha state. Please visit the forum for information on how to proceed. Default empty.
+**App Manifest :** Si défini, utilise le manifest de l'application pour personnaliser le build du moteur. Cela vous permet de retirer des parties non désirées du moteur et d'en réduire la taille binaire finale. Cette fonctionnalité est en phase de test *alpha*. Veuillez visiter le forum pour plus d'informations sur la procédure. Vide par défaut.
 
 *profiler*
 
-**TrackCpu :** If checked, enable CPU profiling in release versions of the builds. Normally, you can only access profiling information in debug builds. Default disabled.
+**TrackCpu :** Si cochée, active le profilage du *CPU* dans les versions *release* des builds. Normalement, vous ne pouvez accéder aux informations de profilage que dans les builds *debug*. Désactivé par défaut.
 
 *Live update*
 
-**Private Key :** If set, use the specified private key file when bundling live update content. If no key file is set, a key is generated.
+**Private Key :** Si défini, utilise le fichier de clé privée spécifié lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, un clé est générée.
 
-**Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
+**Public Key :** Si défini, utilise le fichier de clé publique lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, une clé est générée.
 
 ##### Paramétrer les propriétés de configuration au démarrage du moteur
 
@@ -712,19 +712,21 @@ Voici une présentation des menus de *Defold* :
 - L'option `Close` (ou le raccourci `CTRL+W`) vous permet de fermer l'onglet actif de la vue `Editor`.
 - L'option `Close All` (ou le raccourci `CTRL+SHIFT+W`) vous permet de fermer tous les onglets ouverts dans la vue `Editor`.
 - L'option `Close Others` vous permet de fermer tous les onglets ouverts dans la vue `Editor` à l'exception de celui actif.
-- L'option `Referencing Files...` vous permet de [????].
-- L'option `Dependencies...` vous permet de [????].
+- L'option `Referencing Files...` vous permet de visualiser quels sont les collections ou les fichiers ressources qui font référence à l'élément sélectionné dans la vue `Assets`.
+- L'option `Dependencies...` à l'inverse du menu précédent vous permet de visualiser quels sont les fichiers ressources utilisés dans l'élément sélectionné dans la vue `Assets`.
 - L'option `Hot Reload` (ou le raccourci `CTRL+R`) vous permet de recharger le jeu s'il est déjà ouvert pour tester les effets de la modification d'un script.
 - L'option `Sign Out` vous permet de vous déconnecter de votre compte dans *Defold*.
 - L'option `Preferences...` (ou le raccourci `CTRL+,`) ouvre la boîte de dialogue `Preferences` et vous permet de configurer *Defold* (voir section suivante).
 - L'option `Quit` (ou le raccourci `CTRL+Q`) vous permet de quitter *Defold*. Si votre projet n'est pas sauvegardé, une demande de confirmation apparaît.
+
+**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte de l'éditeur.
 
 #### Boîte de dialogue `Preferences`
 
 ![Preferences dialog](defold_preferences_dialog.png)
 
 - Onglet `General`
-  - La case `Enable Texture Compression:` si cochée vous permet de [????]. Décochée par défaut.
+  - La case `Enable Texture Compression:` si cochée vous permet d'activer l'utilisation d'un fichier ressource `.texture_profiles` (profil de texture) spécifié dans le fichier de configuration `game.project` à la section `Graphics` > `Texture Profiles`. Pour plus d'information, consultez la section `Texture Profiles`. Décochée par défaut.
   - La case `Escape Quits Game:` si cochée vous permet de quitter le jeu avec la touche `ECHAP` lorsque vous testez le jeu dans *Defold*. Cochée par défaut.
   - La case `Track Active Tab in Asset Browser:` si cochée vous permet de [????]. Décochée par défaut.
 - Onglet `Scene`
@@ -753,7 +755,7 @@ Voici une présentation des menus de *Defold* :
 - L'option `Local Space` vous permet de modifier les objets dans l'éditeur dans les coordonnées locales au game object. Inactivée par défaut.  Si cette option est activée, l'option `World Space` est désactivée.
 - L'option `Move Whole Pixels` [???]. Actif par défaut.
 
-**Remarque :** Certaines options ne sont pas toujours accessibles car elles dépendent du contexte.
+**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte de l'éditeur.
 
 ### Menu `View`
 
@@ -1701,6 +1703,7 @@ go.property("nom_de_propriete", valeur)
 ```
 
 **Remarque :** La valeur attribuée définit le type de la propriété. Cela peut être une valeur de type :
+
 - nombre (entier ou à virgule)
 - booléen
 - hash
@@ -1775,10 +1778,6 @@ Ouvrez le fichier `game.project`. Dans la section `Bootstrap`, affectez le fichi
 
 Ouvrez le fichier `game.project`. Dans la section `Display`, saisissez la largeur dans le champ `Width` et la hauteur dans le champ `Height` (en pixels).
 
-### Afficher une image
-
-Attachez à la collection définie comme collection principale un game object et attachez à celui-ci un component `Sprite`. Enfin, attribuez au sprite un atlas contenant des images ou une animation et choisissez une animation.
-
 ### Afficher des images en pixel art
 
 N'oubliez pas de configurer le paramètre `Default Texture Mag Filter` de la section `graphics` à la valeur `nearest` dans le fichier de configuration `game.project` pour afficher vos images sans filtre de lissage.
@@ -1802,3 +1801,24 @@ function update(self, dt)
     end
 end
 ```
+
+### Réinitialiser le facteur de zoom de la vue `Editor`
+
+Pour réinitialiser le facteur de zoom, fermez l'onglet et rouvrez-le.
+
+### Quitter le jeu via un script
+
+Utilisez le code suivant :
+
+```
+function init(self)
+	msg.post(".", "acquire_input_focus")
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("escape") then
+		msg.post("@system:", "exit", {code = 0})
+	end
+end
+```
+

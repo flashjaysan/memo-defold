@@ -668,6 +668,141 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
 
+## Menus
+
+Voici une présentation des menus de *Defold* :
+
+### Menu `File`
+
+![File menu](defold_file_menu.png)
+
+- L'option `New...` (ou le raccourci `CTRL+N`) ouvre la boîte de dialogue `New...` et vous permet de créer une nouvelle ressource parmi celles proposées dans la liste. Cela a le même effet que d'effectuer un clic droit dans la vue `Assets` puis de choisir l'option `New...` suivie d'une des ressources de la liste. Consultez la section `Fichiers ressources` pour plus d'informations sur ces derniers.
+- L'option `Open` (ou le raccourci `CTRL+O`) vous permet d'ouvrir la ou les ressources sélectionnées dans la vue `Assets`. En général, un double clic sur une ressource dans cette vue est plus rapide.
+- L'option `Synchronize...` vous permet de synchroniser le projet ouvert dans *Defold* avec celui stocké sur le cloud. La vue `Changed Files` peut vous être utile dans ce cas. Gardez à l'esprit que pour utiliser cette fonctionnalité, vous devez être connecté à votre compte.
+- L'option `Save All` (ou le raccourci `CTRL+S`) vous permet de sauvegarder toutes les ressources ouvertes dans l'éditeur.
+- L'option `Open Assets...` (ou le raccourci `CTRL+SHIFT+R`) ouvre la boîte de dialogue `Open Assets` pour vous permettre d'ouvrir une ou plusieurs ressources.
+- L'option `Search in Files...` (ou le raccourci `CTRL+SHIFT+F`) ouvre la boîte de dialogue `Search in Files` et vous permet de rechercher un ou plusieurs mots dans les fichiers ressources.
+- L'option `Close` (ou le raccourci `CTRL+W`) vous permet de fermer l'onglet actif de la vue `Editor`.
+- L'option `Close All` (ou le raccourci `CTRL+SHIFT+W`) vous permet de fermer tous les onglets ouverts dans la vue `Editor`.
+- L'option `Close Others` vous permet de fermer tous les onglets ouverts dans la vue `Editor` à l'exception de celui actif.
+- L'option `Referencing Files...` vous permet de [????].
+- L'option `Dependencies...` vous permet de [????].
+- L'option `Hot Reload` (ou le raccourci `CTRL+R`) vous permet de recharger le jeu s'il est déjà ouvert pour tester les effets de la modification d'un script.
+- L'option `Sign Out` vous permet de vous déconnecter de votre compte dans *Defold*.
+- L'option `Preferences...` (ou le raccourci `CTRL+,`) ouvre la boîte de dialogue `Preferences` et vous permet de configurer *Defold* (voir section suivante).
+- L'option `Quit` (ou le raccourci `CTRL+Q`) vous permet de quitter *Defold*. Si votre projet n'est pas sauvegardé, une demande de confirmation apparaît.
+
+#### Boîte de dialogue `Preferences`
+
+![Preferences dialog](defold_preferences_dialog.png)
+
+- Onglet `General`
+  - La case `Enable Texture Compression:` si cochée vous permet de [????]. Décochée par défaut.
+  - La case `Escape Quits Game:` si cochée vous permet de quitter le jeu avec la touche `ECHAP` lorsque vous testez le jeu dans *Defold*. Cochée par défaut.
+  - La case `Track Active Tab in Asset Browser:` si cochée vous permet de [????]. Décochée par défaut.
+- Onglet `Scene`
+  - Le menu déroulant `Selection Color:` vous permet de définir une couleur pour les éléments sélectionnés dans la vue `Editor`. `Lime` par défaut.
+  - Le menu déroulant `Grid:` vous permet de choisir [????] (`Auto`) ou (`Manual`) pour la grille. `Auto` par défaut.
+  - Le menu déroulant `Grid Size:` vous permet de choisir la taille des cases la grille. `100` par défaut.
+  - Le menu déroulant `Grid Color:` vous permet de définir une couleur pour la grille. `#999999` par défaut.
+- Onglet `Code`
+  - Le champ `Custom Editor:` [????]. Vide par défaut.
+  - Le champ `Open File:` [????]. `{file}` par défaut.
+  - Le champ `Open File at Line:` [????]. `{file}:{line}` par défaut.
+- Onglet `Extensions`
+  - Le champ `Build Server:` [????]. `https://build.defold.com` par défaut.
+
+### Menu `Edit`
+
+![Edit menu](defold_edit_menu.png)
+
+- L'option `Undo` (ou le raccourci `CTRL+Z`) vous permet d'annuler la dernière action effectuée.
+- L'option `Redo` (ou le raccourci `CTRL+SHIFT+Z`) vous permet de rétablir la dernière action annulée.
+- L'option `Cut` (ou le raccourci `CTRL+X`) vous permet de couper le ou les éléments sélectionnés.
+- L'option `Copy` (ou le raccourci `CTRL+C`) vous permet de copier le ou les éléments sélectionnés.
+- L'option `Paste` (ou le raccourci `CTRL+V`) vous permet de coller à l'endroit sélectionné, le ou les éléments coupés ou copiés.
+- L'option `Delete` (ou le raccourci `SUPPR`) vous permet d'effacer ou de supprimer le ou les éléments sélectionnés. Une boîte de dialogue vous demander de confirmer la suppression.
+- L'option `World Space` [????]. Actif par défaut.
+- L'option `Local Space` [????]. Inactif par défaut.
+- L'option `Move Whole Pixels` . Actif par défaut.
+
+**Remarque :** Certaines options ne sont pas toujours accessibles car elles dépendent du contexte.
+
+### Menu `View`
+
+![View menu](defold_view_menu.png)
+
+- L'option `Toggle Assets Pane` (ou le raccourci `F6`) vous permet d'afficher ou de masquer la vue `Assets`.
+- L'option `Toggle Tools Pane` (ou le raccourci `F7`) vous permet d'afficher ou de masquer la vue `Tools` contenant les onglets `Console`, `Curve Editor`, `Build Errors` et `Search Results`. Il est souvent plus simple d'afficher la vue `Tools` et de cliquer sur l'onglet désiré.
+- L'option `toggle Properties Pane` (ou le raccourci `F8`) vous permet d'afficher ou de masquer les vues `Outline` et `Properties`.
+- L'option `Show Console` vous permet d'afficher la vue `Tools` sur l'onglet `Console`.
+- L'option `Show Curve Editor` vous permet d'afficher la vue `Tools` sur l'onglet `Curve Editor`.
+- L'option `Show Build Errors` vous permet d'afficher la vue `Tools` sur l'onglet `Build Errors`.
+- L'option `Show Search Results` vous permet d'afficher la vue `Tools` sur l'onglet `Search Results`.
+- L'option `Toggle Visibility Filters` (ou le raccourci `CTRL+SHIFT+I`) vous permet [????].
+- L'option `Toggle Component Guides` (ou le raccourci `CTRL+H`) vous permet [????].
+- L'option `Toggle Grid` vous permet d'afficher ou de masquer la grille.
+- L'option `Hide Selected Objects` (ou le raccourci `CTRL+E`) vous permet de masquer les objets sélectionnés.
+- L'option `Hide Unselected Objects`  vous permet de masquer les objets non sélectionnés.
+- L'option `Show Selected Objects`  vous permet d'afficher les objets sélectionnés.
+- L'option `Show Last hidden Objects` (ou le raccourci CTRL+SHIFT+E) vous permet d'afficher les derniers objets masqués.
+- L'option `Show All Hidden Objects` vous permet d'afficher tous les objects masqués.
+- L'option `Frame Selection` (ou le raccourci `F`) vous permet de centrer la vue `Editor` sur le ou les objets sélectionnés.
+- L'option `Realign Camera` (ou le raccourci `.`) vous permet de réajuster la caméra de la vue `Editor` sur l'axe *Z*.
+
+**Remarque :** Certaines options ne sont pas toujours accessibles car elles dépendent du contexte.
+
+### Menu `Project`
+
+![Project menu](defold_project_menu.png)
+
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+
+[VIDE]
+
+### Menu `Debug`
+
+![Debug menu](defold_debug_menu.png)
+
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+- L'option `-` .
+
+[VIDE]
+
+### Menu `Help`
+
+![Help menu](defold_help_menu.png)
+
+- L'option `Profiler` [????].
+- L'option `Reload Stylesheet` [????].
+- L'option `Show Logs` [????].
+- L'option `Documentation` (ou le raccourci `F1`) ouvre votre navigateur par défaut sur la page de documentation de *Defold*.
+- L'option `Support Forum` [????].
+- L'option `Find Assets` [????].
+- L'option `Report Issue` vous permet d'envoyer aux développeurs de *Defold* des problèmes que vous auriez notés dans *Defold*.
+- L'option `Report Suggestion` vous permet d'envoyer aux développeurs de *Defold* des suggestions pour améliorer ce dernier.
+- L'option `Search Issues` vous permet d'effectuer des recherches d problèmes.
+- L'option `About` affiche une fenêtre contenant les informations sur la version de *Defold* que vous utilisez.
+
+[VIDE]
+
 ## Etapes dans la création d'un projet
 
 Voici un découpage grossier des étapes de création d'un jeu :
@@ -685,7 +820,7 @@ Voici un découpage grossier des étapes de création d'un jeu :
 
 ## Importer les ressources externes
 
-*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, Modèles 2D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
+*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, modèles 3D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
 
 **Remarque :** Si vous utilisez des ressources externes temporaires, cela va vous compliquer les choses par la suite car vous devrez faire de nombreuses modifications (atlas, tile source, références aux fichiers dans les components, etc...).
 
@@ -735,7 +870,7 @@ Pour importer des polices de caractères dans votre projet, faites simplement gl
 
 ## Structure du jeu
 
-Dans *Defold*, chaque écran de jeu est représenté par une *collection*. Une collection est toujours un fichier portant l'extension `.collection`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
+Dans *Defold*, un écran de jeu est représenté par une *Collection*. Une collection est toujours un fichier portant l'extension `.collection`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
 
 **Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
 

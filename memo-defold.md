@@ -797,6 +797,10 @@ Voici une présentation des menus de *Defold* :
 - L'option `Enter Target IP` [????].
 - L'option `Target Discovery Log` [????].
 
+#### Bibliothèques supplémentaires
+
+Defold allows you to share data between projects through a powerful library mechanism. You can use it to set up shared libraries that are accessible from all your projects, either for yourself or across the whole team. Read more about the library mechanism in the Libraries documentation.
+
 #### Exporter le jeu
 
 Le menu `Bundle` propose plusieurs plateforme cibles pour exporter votre jeu :
@@ -915,21 +919,25 @@ Pour importer des polices de caractères dans votre projet, faites simplement gl
 
 ### Importer des modèles 3D
 
-*Defold* est compatible avec les modèles 3D exportés au format *Collada* (`.dae`).
+*Defold* est compatible avec les modèles 3D exportés au format *Collada* (`.dae`). Ces derniers peuvent stocker des informations d'un modèle mais également d'animations (utile pour la ressource `Animation Set`), de matériaux, etc...
 
 **Remarque :** Je n'utilise pas ce genre de modèles. Je ne peux donc pas vous expliquer correctement comment utiliser ce format.
 
 ## Structure du jeu
 
-Dans *Defold*, un écran de jeu est représenté par une *Collection*. Une collection est toujours un fichier portant l'extension `.collection`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
+Dans *Defold*, un écran de jeu est représenté par une *Collection*. Une collection est toujours un fichier portant l'extension `.collection` et est introduite statiquement dans le jeu en la plaçant manuellement dans l'éditeur ou dynamiquement avec des scripts ou des components `Collection Factory` ou `Collection Proxy`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
 
 **Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
+
+Une collection définit un modèle (ce que d'autres moteurs appellent *prefabs*) dans lequel une hiérarchie de game objects peut être réutilisé. Les collections sont des structures *arbre* qui contiennent des game objects et d'autres collections.
 
 Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui constituera un écran de jeu complet.
 
 Un game object est un conteneur à components. Il ne possède par défaut que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection (*en place*) où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
 
-Les components sont les éléments essentiels au jeu. Ce sont eux qui définissent les graphismes, les sons ou les comportements des game objects qui les contiennent.
+[????] Game objects are simple objects that have a separate lifespan during the execution of your game. Game objects are containers and are usually equipped with visual or audible components, like a sound or a sprite. They can also be equipped with behavior through script components. You create game objects and place them in collections in the editor, or spawn them dynamically at run-time with factories.
+
+Les components sont les éléments essentiels au jeu. Ils sont utilisés pour donner des fonctionnalités spécifiques aux game objects comme des graphismes, des animations, des sons ou des comportements programmés. Ils sont obligatoirement rattachés à un game object. Il en existe une multitude.
 
 Enfin, certains components peuvent avoir comme enfants des fichiers ressources particuliers (par exemple, les components `Collision Object` ont en général un élément enfant de type `Shape`).
 
@@ -960,7 +968,7 @@ tous les fichiers ressources components attachés à un game object ont les prop
 
 ### Animation Set
 
-Une ressource `Animation Set` contient une ou plusieurs animations d'un même modèle 3D. Référencez cette ressources depuis la propriété `Animations` d'un component `Model`.
+Une ressource `Animation Set` contient une ou plusieurs animations (sous forme de fichers `.dae`) d'un même modèle 3D. Référencez cette ressources depuis la propriété `Animations` d'un component `Model`.
 
 Pour créer un nouveau fichier ressource animation set, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Animation Set`. La boîte de dialogue `New Animation Set` apparaît :
 
@@ -982,13 +990,15 @@ Pour ajouter une animation, cliquez sur le bouton `+` dans la vue `Editor` pour 
 
 Sélectionnez le fichier ressource animation 3D (au format *Collada* `.dae`) à ajouter à l'animation set puis cliquez sur le bouton `OK` pour valider.
 
-**Remarque :** Vous pouvez également ajouter un autre fichier ressource animation set (`.animationset`) à un animation set plus large pour organiser vos animations en sous-groupes.
+**Remarque :** Vous pouvez également ajouter un autre fichier ressource animation set (`.animationset`) à un animation set plus large pour organiser vos animations en sous-groupes. Ajouter des fichiers `.animationset` à un animation set peut être utile si vous partagez des animations partielles communes à plusieurs modèles.
 
 #### Supprimer une animation à un animation set
 
 Pour supprimer une des animations de la liste, sélectionnez l'animation à supprimer puis cliquez sur le bouton `-` dans la vue `Editor`.
 
 ### Atlas
+
+Une ressource `Atlas` est un ensemble d'images séparées qui sont rassemblées en une texture unique pour des raisons de performance et de mémoire. Elles peuvent contenir des images fixes ou une série d'image représentant une animation image par image. Les atlas sont utilisé par les components `GUI`, `Sprite`, `Spine Model` et les `ParticleFX` pour partager les ressources graphiques. 
 
 Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
 
@@ -1073,6 +1083,8 @@ Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Prope
 **Remarque :** Sélectionnez une animation dans la vue `Outline` et appuyez sur la touche `ESPACE` pour la lire dans la vue `Editor`.
 
 ### Camera
+
+Le component `Camera` permet de déterminer quelle partie du monde de jeu doit être visible et comment il devrait être projeté. Un cas classique est d'attacher une caméra au game object joueur ou d'avoir un game object séparé avec une caméra qui suit le joueur avec un algorithme pour fluidifier le mouvement.
 
 #### Créer un fichier ressource Camera
 
@@ -1257,7 +1269,7 @@ Si vous voulez attacher un fichier ressource game object (préexistant sous la f
 
 ### Collection Factory
 
-Un component `Collection Factory` sert à générer dynamiquement un collection autant de fois que nécessaire dans le jeu.
+Un component `Collection Factory` sert à générer dynamiquement des hiérarchies de game objects (contenues dans une collection) autant de fois que nécessaire dans le jeu.
 
 #### Créer un fichier ressource Collection Factory
 
@@ -1288,7 +1300,7 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` ainsi que d
 
 ### Collection Proxy
 
-Un component `Collection Proxy` sert à générer un collection associée dans un nouvel environnement. Utilisez-le pour charger différents niveaux ou écrans de jeu.
+Un component `Collection Proxy` sert à charger et activer à la volée une collection associée dans un nouvel environnement durant l'exécution du jeu. Utilisez-le pour charger différents niveaux ou écrans de jeu.
 
 #### Créer un fichier ressource Collection Proxy
 
@@ -1317,7 +1329,7 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Collision Object
 
-Utilisez un component `Collision Object` pour attribuer un comportement physique à un game object.
+Les components `Collision Object` étendent les game objects avec des propriétés physiques (telles que des formes spaciales, des masses, des frictions et des restitutions). Ces propriétés gouvernent la façon dont le collision object entre en collision avec d'autres collision objects. Les types les plus communs des collision objects sont les *kinematic*, *dynamic* et *trigger*. Un objet *kinematic* transmet des informations de collision détaillées que vous devez gérer manuellement. Un objet *dynamic* est automatiquement géré par le moteur physique pour obéir aux lois Newtoniennes de la physique. Les objets *trigger* sont de simples formes qui détèctent si d'autres formes sont entrées en contact ou sorties de leur zone. Utilisez un component `Collision Object` pour attribuer un comportement physique à un game object.
 
 #### Créer un fichier ressource Collision Object
 
@@ -1364,13 +1376,19 @@ Si le game object associé n'a pas de tile map, pour que ce component fonctionne
 
 ### Cubemap
 
+A cubemap is a special type of texture that consists of 6 different textures that are mapped on the sides of a cube. This is useful for rendering skyboxes and different kinds of reflection and illumination maps.
+
 [VIDE]
 
 ### Display Profiles
 
+The display profiles resource file is used for specifying GUI layouts depends on the orientation, aspect ratio or device model. It helps to adapt your UI for any kind of devices.
+
 [VIDE]
 
 ### Factory
+
+In some situations you cannot manually place all needed game objects in a collection, you have to create the game objects dynamically, on the fly. For instance, a player might fire bullets and each shot should be dynamically spawned and sent off whenever the player presses the trigger. To create game objects dynamically (from a pre-allocated pool of objects), you use a factory component.
 
 #### Créer un fichier ressource Factory
 
@@ -1388,9 +1406,13 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Font
 
+A Font resource is built from a TrueType or OpenType font file. The Font specifies which size to render the font in and what type of decoration (outline and shadow) the rendered font should have. Fonts are used by GUI and Label components.
+
 [VIDE]
 
 ### Fragment Program
+
+This is a program that is run on the graphics processor for each pixel (fragment) in a polygon when it is drawn to the screen. The purpose of the fragment shader is to decide the color of each resulting fragment. This is done by calculation, texture lookups (one or several) or a combination of lookups and computations. 
 
 [VIDE]
 
@@ -1455,21 +1477,31 @@ Contrairement à un component attaché en place, un component défini dans un fi
 
 ### Gamepads
 
+A gamepads resource file defines how specific gamepad device input is mapped to gamepad input triggers on a certain platform. See the Input manual for details.
+
 [VIDE]
 
 ### Gui
+
+A GUI component contains elements used to construct user interfaces: text and colored and/or textured blocks. Elements can be organized into hierarchical structures, scripted and animated. GUI components are typically used to create heads-up displays, menu systems and on-screen notifications. GUI components are controlled with GUI scripts that define the behavior of the GUI and control the user interaction with it. Read more in the GUI documentation.
 
 [VIDE]
 
 ### Gui Script
 
+GUI scripts are used to control the behaviour of GUI components. They control GUI animations and how the user interacts with the GUI. See the Lua in Defold manual for details on how Lua scripts are used in Defold.
+
 [VIDE]
 
 ### Input Binding
 
+[????] Input binding files define how the game should interpret hardware input (mouse, keyboard, touchscreen and gamepad). The file binds hardware input to high level input actions like “jump” and “move_forward”. In script components that listen to input you are able to script the actions the game or app should take given certain input. See the Input documentation for details.
+
 [VIDE]
 
 ### Label
+
+[????] The label component allows you to attach text content to any game object. It renders a piece of text with a particular font, on screen, in game space. See the Label manual for more information.
 
 #### Créer un fichier ressource Label
 
@@ -1487,13 +1519,19 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Lua Module
 
+Lua modules allow you to structure your project and create reusable library code. Read more about it in the Lua modules manual.
+
 [VIDE]
 
 ### Material
 
+Materials define how different objects should be rendered by specifying shaders and their properties. See the Material manual for more information.
+
 [VIDE]
 
 ### Model
+
+With the 3D model component can import Collada mesh, skeleton and animation assets into your game. See the Model manual for more information.
 
 #### Créer un fichier ressource Model
 
@@ -1511,17 +1549,25 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Particle FX
 
+Particles are very useful for creating nice visual effects, particularly in games. you can use them to create fog, smoke, fire, rain or falling leaves. Defold contains a powerful particle effects editor that allows you to build and tweak effects while you run them real time in your game. The ParticleFX documentation gives you the details on how that works.
+
 [VIDE]
 
 ### Render
+
+Render files contain settings used when rendering the game to the screen. Render files define which Render script to use for rendering and which materials to use. See the Render manual for more details.
 
 [VIDE]
 
 ### Render Script
 
+A Render script is a Lua script that controls how the game or app should be rendered to the screen. There is a default Render script that covers most common cases, but you can write your own if you need custom lighting models and other effects. See the Render manual for more details on how the render pipeline works, and the Lua in Defold manual for details on how Lua scripts are used in Defold.
+
 [VIDE]
 
 ### Script
+
+A script is a component that contains a program that defines game object behaviors. With scripts you can specify the rules of your game, how objects should respond to various interactions (with the player as well as other objects). All scripts are written in the Lua programming language. To be able to work with Defold, you or someone on your team needs to learn how to program in Lua. See the Lua in Defold manual for an overview on Lua and details on how Lua scripts are used in Defold.
 
 #### Créer un fichier ressource Script
 
@@ -1530,6 +1576,8 @@ Pour créer un fichier ressource Script, faites un clic droit dans la vue `Asset
 [VIDE]
 
 ### Sound
+
+The sound component is responsible for playing a specific sound. Currently, Defold supports sound files in the WAV and Ogg Vorbis formats. See the Sound manual for more information.
 
 #### Créer un fichier ressource Sound
 
@@ -1547,6 +1595,8 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Spine Model
 
+The Spine model component is used to bring Spine skeletal animations to life in Defold. Read more about how to use it in the Spine model manual.
+
 #### Créer un fichier ressource Spine Model
 
 Pour créer un fichier ressource Spine Model, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Spine Model`.
@@ -1563,9 +1613,13 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Spine Scene
 
+The Spine scene resource ties together the Spine JSON data file and the Defold image atlas file that is used to fill bone slots with graphics. The Spine animation manual contains more information.
+
 [VIDE]
 
 ### Sprite
+
+A sprite is a component that extends game objects with graphics. It displays an image either from a Tile source or from an Atlas. Sprites have built-in support for flip-book and bone animation. Sprites are usually used for characters and items.
 
 #### Créer un fichier ressource Sprite
 
@@ -1583,13 +1637,19 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 ### Texture Profiles
 
+The texture profiles resource file is used in the bundling process to automatically process and compress image data (in Atlas, Tile sources, Cubemaps and stand-alone textures used for models, GUI etc). Read more in the Texture profiles manual.
+
 [VIDE]
 
 ### Tile Map
 
+Tile map components display images from a tile source in one or more overlaid grids. They are most commonly used to build game environments: ground, walls, buildings and obstacles. A tile map can display several layers aligned on top of each other with a specified blend mode. This is useful to, for example, put foliage on top of grass background tiles. It is also possible to dynamically change the displayed image in a tile. That allows you to, for instance, destroy a bridge and make it impassable by simply replacing the tiles with ones depicting the broken down bridge and containing the corresponding physics shape. See the Tile map documentation for more information.
+
 [VIDE]
 
 ### Tile Source
+
+A tile source describes a texture that is composed of multiple smaller images, each with the same size. You can define flip-book animations from a sequence of images in a tile source. Tile sources can also automatically calculate collision shapes from image data. This is very useful for creating tiled levels that object can collide and interact with. Tile sources are used by Tile map components (and Sprite and ParticleFX) to share graphics resources. Note that Atlases are often a better fit than tile sources. See the Tile map documentation for more information.
 
 Un fichier ressource `Tile Source` contient une référence à un seul fichier image constitué d'un groupe d'images placées sur une grille homogène. Utilisez cette ressource pour définir des animations d'une sprite sheet à utiliser avec une ressource `Sprite` ou un jeu de tuiles d'une tile sheet à utiliser avec une ressource `Tile Map`.
 
@@ -1673,6 +1733,8 @@ Editez les propriétés de l'animation dans la vue `Properties` :
 **Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
 
 ### Vertex Program
+
+The vertex shader computes the screen geometry of a component’s primitive polygon shapes. For any type of visual component, be it a sprite, spine model or model, the shape is represented by a set of polygon vertex positions. The vertex shader program processes each vertex (in world space) and computes the resulting coordinate that each vertex of a primitive should have. See the Shader manual for more information.
 
 [VIDE]
 
@@ -1768,6 +1830,14 @@ Chaque game object ou component supporte un certain nombre de messages associés
 
 [VIDE]
 
+### Débogage
+
+At some point your game will behave in an unexpected way and you need to figure out what is wrong. Learning how to debug is an art and fortunately Defold ships with a built in debugger to help you out. See the Debugging manual for more information.
+
+### Profilage
+
+Good performance is key in games and it is vital that you are able to do performance and memory profiling to measure your game and identify performance bottlenecks and memory problems that needs to be fixed. See the Profiling manual for more information on the profiling tools available for Defold.
+
 ## Astuces diverses
 
 ### Définir la collection principale
@@ -1787,6 +1857,8 @@ N'oubliez pas de configurer le paramètre `Default Texture Mag Filter` de la sec
 Dans le menu `File` > `Preferences`, dans l'onglet `General`, cochez la case `Escape Quits Game`. Cette option ne fonctionne qu'en phase de test.
 
 ### Tester une modification de script sans redémarrer le jeu
+
+[????] The Defold editor allows you to update content in an already running game, on desktop and device. This feature is extremely powerful and can improve the development workflow a lot. See the Hot reload manual for more information.
 
 Avec la commande `File` > `Hot Reload`, vous pouvez tester les modifications apportées à un script alors que votre jeu s'exécute déjà.
 
@@ -1821,4 +1893,3 @@ function on_input(self, action_id, action)
 	end
 end
 ```
-

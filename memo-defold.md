@@ -17,15 +17,18 @@
     + [Vue Tools](#vue-tools)
     + [Vue Editor](#vue-editor)
       - [Editeur de collections et de ressources](#editeur-de-collections-et-de-ressources)
+        * [Filtres d'affichages](#filtres-d-affichages)
       - [Editeur de code](#editeur-de-code)
       - [Editeur de configuration du projet](#editeur-de-configuration-du-projet)
         * [Liste des paramètres](#liste-des-param-tres)
+        * [Paramétrer les propriétés de configuration au démarrage du moteur](#param-trer-les-propri-t-s-de-configuration-au-d-marrage-du-moteur)
   * [Menus](#menus)
     + [Menu `File`](#menu--file-)
       - [Boîte de dialogue `Preferences`](#bo-te-de-dialogue--preferences-)
     + [Menu `Edit`](#menu--edit-)
     + [Menu `View`](#menu--view-)
     + [Menu `Project`](#menu--project-)
+      - [Exporter le jeu](#exporter-le-jeu)
     + [Menu `Debug`](#menu--debug-)
     + [Menu `Help`](#menu--help-)
   * [Etapes dans la création d'un projet](#etapes-dans-la-cr-ation-d-un-projet)
@@ -131,7 +134,6 @@
     + [Quitter le jeu avec la touche Echap](#quitter-le-jeu-avec-la-touche-echap)
     + [Tester une modification de script sans redémarrer le jeu](#tester-une-modification-de-script-sans-red-marrer-le-jeu)
     + [Détruire un game object depuis un script](#d-truire-un-game-object-depuis-un-script)
-      - [Paramétrer les valeurs de configuration au démarrage du moteur](#param-trer-les-valeurs-de-configuration-au-d-marrage-du-moteur)
 
 # Mémo Defold
 
@@ -317,11 +319,11 @@ Par un clic droit puis `New`, créez de nouveaux éléments enfants (des sous-co
 
 ### Vue Properties
 
-Cette vue affiche la liste des propriétés de l'élément sélectionné actuellement dans la vue `Outline` ou la vue `Editor`.
+Cette vue affiche la liste des propriétés de l'élément sélectionné dans la vue `Outline` ou la vue `Editor`.
 
 ![Properties panel](defold_properties_panel.png)
 
-Cela vous permet d'éditer les propriétés des divers éléments de votre jeu.
+Vous pouvez éditer la plupart des propriétés de l'élément sélectionné dans cette vue.
 
 ### Vue Tools
 
@@ -406,21 +408,18 @@ Qui indique que le paramètre `main_collection` appartient à la catégorie `boo
 
 **Version :** Version de l'application. Utile pour les mises à jour du jeu.
 
-**Write Log :** Si vous cochez cette option, *Defold* crée un fichier `log.txt` dans la racine du projet. Sur *iOS*, le fichier `log` peut être accédé avec *iTunes* et l'onglet `App` dans la section `Partage de Fichier`. Sur *Android*, le fichier est stocké dans l'emplacement externe de l'application. Lorsque vous exécutez l'application de développement `dmengine`, vous pouvez voir le `log` avec la commande :
+**Write Log :** Cochez cette option pour que *Defold* crée un fichier `log.txt` dans la racine du projet. Sur *iOS*, le fichier `log` peut être accédé avec *iTunes* et l'onglet `App` dans la section `Partage de Fichier`. Sur *Android*, le fichier est stocké dans un emplacement externe à l'application. Lorsque vous exécutez l'application de développement `dmengine`, vous pouvez voir le `log` avec la commande :
 `$ adb shell cat /mnt/sdcard/Android/data/com.defold.dmengine/files/log.txt`
 
-**Compress Archive :** Active la compression des archives lors du paquetage du jeu. Cela s'applique à toutes les plateformes à l'exception d'*Android* où l'`apk` compress toujours les données.
+**Compress Archive :** Cochez cette case pour activer la compression des archives lors du paquetage du jeu. Cela s'applique à toutes les plateformes à l'exception d'*Android* où une `apk` est sytématiquement compressée.
 
-**Dependencies :** Définit la liste des adresses ùURL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'`URL` se trouve sur la page du projet dans le dashboard (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez être un membre de ces projets.
+**Dependencies :** Définit la liste des adresses *URL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'*URL* se trouve sur la page du projet dans le *dashboard* (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez être un membre de ces projets. Utilisez ensuite le menu `Project` > `Fetch Libraries` pour télécharger dans votre projet les fichiers de ces bibliothèques.
 
-**Custom Resources :** Définit une liste de ressources (séparées par des virgules) qui doivent être incluses dans le paquetage final du jeu. Si des dossiers sont spécifiés, tous les sous éléments sont inclus récursivement.
+**Custom Resources :** Définit une liste de ressources (séparées par des virgules) qui doivent être incluses dans le paquetage lors de l'exportation du jeu. Si des dossiers sont spécifiés, tous les sous-éléments sont inclus récursivement.
 
-**bundle_resources (hidden setting) :** A directory containing resource files and folders that should be copied as-is into the resulting package when bundling. The directory is specified with an absolute path from the project root, for example /res. The resource directory must contain subfolders named by platform, or architecure-platform.
-Supported platforms are *ios*, *android*, *osx*, *win32*, *linux*, *web*.
-Supported arc-platform pairs are *armv7-ios*, *arm64-ios*, *armv7-android*, *x86-osx*, *x86_64-osx*, *x86-win32*, *x86_64-win32*, *x86-linux*, *x86_64-linux*, *js-web*.
-A subfolder named `common` is also allowed, containing resource files common for all platforms.
+**bundle_resources (paramètre caché) :** Définit un dossier contenant des fichiers de ressources et de sous-dossiers qui devront être copiés tel quel dans le paquetage lors de l'exportation du jeu. Le répertoire est spécifié par un chemin absolu par rapport à la racine du projet (par exemple `/res`). Le répertoire de ressource doit contenir des sous-dossiers par plateforme cible ou par architecture de plateforme. Les plateformes acceptées *ios*, *android*, *osx*, *win32*, *linux*, *web*. Les architectures de plateformes sont *armv7-ios*, *arm64-ios*, *armv7-android*, *x86-osx*, *x86_64-osx*, *x86-win32*, *x86_64-win32*, *x86-linux*, *x86_64-linux*, *js-web*. Un sous-dossier nommé `common` (contenant les fichiers de ressources communs à toutes les plateformes) est également accepté.
 
-**bundle_exclude_resources (hidden setting) :** Définit une liste de ressources (séparées par des virgules) qui ne devraient pas être incluses dans le paquetage final du jeu.
+**bundle_exclude_resources (paramètre caché) :** Définit une liste de ressources (séparées par des virgules) qui ne devraient pas être incluses dans le paquetage lors de l'exportation du jeu.
 
 *Bootstrap*
 
@@ -434,7 +433,7 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 *Script*
 
-**Shared State :** Cochez cette option si vous souhaitez partager un seul état *Lua* entre tous les types de scripts (standards, GUI et Render). Par défaut, non coché.
+**Shared State :** Cochez cette case si vous souhaitez partager un seul état *Lua* entre tous les types de scripts (standards, GUI et Render). Par défaut, non coché.
 
 *Tracking*
 
@@ -442,9 +441,9 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 *Display*
 
-**Width :** La largeur en pixels de votre fenêtre de jeu. Par défaut : `960`.
+**Width :** La largeur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
 
-**Height :** La hauteur en pixels de votre fenêtre de jeu. Par défaut : `640`.
+**Height :** La hauteur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
 
 **High Dpi :** Crée un tampon vidéo haute résolution sur les écran qui le supportent. Typiquement, le jeu sera rendu au double de la résolution spécifiée avec les réglages `Width` et `Height` qui seront utilisés dans les scripts et les propriétés.
 
@@ -454,143 +453,143 @@ A subfolder named `common` is also allowed, containing resource files common for
 
 **Update Frequency :** Fréquence de rafraîchissement en images par secondes. Par défaut : `60`. Les valeurs autorisées sont : `60`, `30`, `20`, `15`, `12`, `10`, `6`, `5`, `4`, `3`, `2` ou `1`.
 
-**Variable Dt :** Check if time step should be measured against actual time spent in the update loop, uncheck if you want fixed time step (as set in `update_frequency`).
+**Variable Dt :** cochez la case si vous voulez que le pas de temps soit mesué contre le temps réel passé dans la boucle update. Décochez la case si vous voulez un pas de temps fixe (réglé dans le paramètre `update_frequency`).
 
-**Display Profiles :** Specifies which display profiles file to use, `/builtins/render/default.display_profilesc` par défaut.
+**Display Profiles :** Spécifie quel fichier de profil d'affichage utiliser. `/builtins/render/default.display_profilesc` par défaut.
 
-**Dynamic Orientation :** Check if the app should dynamically switch between portrait and landscape on device rotation. Note that the development app does not currently respect this setting.
+**Dynamic Orientation :** cochez la casie si l'application devrait changer d'orientation dynamiquement lors de la rotation de l'appareil. L'application de développement ne respecte pas ce réglage.
 
 *Physics*
 
-**Type :** Which type of physics to use, `2D` (default) or `3D`.
+**Type :** Quel type de physique utiliser. `2D` (par defaut) or `3D`.
 
-**Gravity Y :** World gravity along y-axis, -10 par défaut (natural gravity)
+**Gravity Y :** La valeur de gravité du monde le long de l'axe *Y*. -10 par défaut (gravité naturelle).
 
-**Debug :** Check if physics should be visualized for debugging.
+**Debug :** cochez la case si vous souhaitez voir les objets responsables de la physique lors du débogage.
 
-**Debug Alpha :** Alpha component value for visualized physics, 0–1. The value is `0.9` par défaut.
+**Debug Alpha :** Définit la valeur de la composante transparente `Alpha` des objets responsables de la physique. Doit être comprise entre `0` et `1`. `0.9` par défaut.
 
 **World Count :** Max number of concurrent physics worlds, 4 par défaut. If you load more than 4 worlds simultaneously through collection proxies you need to increase this value. Be aware that each physics world allocates a fair amount of memory.
 
-**Gravity X :** World gravity along x-axis, `0` par défaut.
+**Gravity X :** La valeur de gravité du monde le long de l'axe *X*. `0` par défaut.
 
-**Gravity Z :** World gravity along z-axis, `0` par défaut.
+**Gravity Z :** La valeur de gravité du monde le long de l'axe *Z*. `0` par défaut.
 
-**Scale :** Tells the physics engine how to scale the physics worlds in relation to the game world for numerical precision, 0.01–1.0. If the value is set to 0.02, it means that the physics engine will view 50 units as 1 meter (1 / 0.021/0.02). The default value is `1.0`.
+**Scale :** Pour la précision numérique, définit l'échelle utilisée par le moteur physique par rapport au monde de jeu. Doit être comprise entre `0.01` et `1.0`. Si la valeur est réglée sur `0.02`, cela veut dire que le moteur physique considère 50 unités comme étant équivalentes à un mètre (1 / 0.021 / 0.02). `1.0` par défaut.
 
-**Debug Scale :** How big to draw unit objects in physics, like triads and normals, `30` par défaut.
+**Debug Scale :** Définit la taille des objets unitaires [????] (telles que les triades et les normales) dans le moteur physique. `30` par défaut.
 
-**Max Collisions :** How many collisions that will be reported back to the scripts, `64` par défaut.
+**Max Collisions :** Combien de collisions seront transmises aux scripts. `64` par défaut.
 
-**Max Contacts :** How many contact points that will be reported back to the scripts, `128` par défaut.
+**Max Contacts :** Combien de points de contact seront transmis aux scripts. `128` par défaut.
 
-**Contact Impulse Limit :** Ignore contact impulses with values less than this setting, `0.0` par défaut.
+**Contact Impulse Limit :** Ignore les impulsions de contact ayant des valeurs inférieures à ce paramètre. `0.0` par défaut.
 
-**Ray Cast Limit 2d :** The max number of 2d ray cast requests per frame. `64` par défaut.
+**Ray Cast Limit 2d :** Le nombre maximum de requètes de lancers de rayons 2d par affichage. `64` par défaut.
 
-**Ray Cast Limit 3d :** The max number of 3d ray cast requests per frame. `128` par défaut.
+**Ray Cast Limit 3d :** Le nombre maximum de requètes de lancers de rayons 3d par affichage. `128` par défaut.
 
-**Trigger Overlap Capacity :** The maximum number of overlapping physics triggers. `16` par défaut.
+**Trigger Overlap Capacity :** Le nombre maximum de déclencheurs de physique qui se chevauchent. `16` par défaut.
 
 *Graphics*
 
-**Default Texture Min Filter :** Specifies which filtering to use for minification filtering, `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
+**Default Texture Min Filter :** Spécifie quel type de filtre utiliser pour le filtrage de réduction de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
 
-**Default Texture Mag Filter :** Specifies which filtering to use for magnification filtering, `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
+**Default Texture Mag Filter :** Spécifie quel type de filtre utiliser pour le filtrage d'augmentation de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
 
-**Max Draw Calls :** The max number of render calls, `1024` par défaut.
+**Max Draw Calls :** Le nombre maximum d'appels de rendu. `1024` par défaut.
 
-**Max Characters :** The number of characters pre-allocated in the text rendering buffer, i.e. the number of characters that can be displayed each frame, `8192` par défaut.
+**Max Characters :** Le nombre de caractères pré-alloués dans le tampon de rendu de texte (le nombre de caractères qui peuvent être affichés à chaque affichage). `8192` par défaut.
 
-**Max Debug Vertices :** The maximum number of debug vertices. Used for physics shape rendering among other things, 10000 par défaut.
+**Max Debug Vertices :** Le nombre maximum de vertices de débogage. Utilisé entre autre pour le rendu de formes de physique. `10000` par défaut.
 
-**Texture Profiles :** The texture profiles file to use for this project, `/builtins/graphics/default.texture_profiles` par défaut.
+**Texture Profiles :** Le fichier de profil de texture à utiliser pour le projet. `/builtins/graphics/default.texture_profiles` par défaut.
 
 *Input*
 
-**Repeat Delay :** Seconds to wait before a held down input should start repeating itself, `0.5` par défaut.
+**Repeat Delay :** Le nombre de secondes à attendre avant qu'une entrée maintenue commence à se répéter. `0.5` par défaut.
 
-**Repeat Interval :** Seconds to wait between each repetition of a held down input, `0.2` par défaut.
+**Repeat Interval :** Le nombre de secondes à attendre entre chaque répétition d'une entrée maintenue. `0.2` par défaut.
 
-**Gamepads :** File reference of the gamepads config file, which maps gamepad signals to OS, `/builtins/input/default.gamepads` par défaut.
+**Gamepads :** Référence au fichier de configuration des gamepads qui associe les signaux de gamepad au système. `/builtins/input/default.gamepads` par défaut.
 
-**Game Binding :** File reference of the input config file, which maps hardware inputs to actions, `/input/game.input_binding` par défaut.
+**Game Binding :** Référence au fichier de configuration d'entrée qui associe les entrées hardware aux actions. `/input/game.input_binding` par défaut.
 
-**Use Accelerometer :** Check to make the engine receive accelerator input events each frame. Disabling accelerometer input may give some performance benefit, checked par défaut.
+**Use Accelerometer :** Cochez la case pour que le moteur reçoive les évènements d'entrée de l'accéléromètre à chaque affichage. Désactiver l'entrée de l'accéléromètre peut améliorer les performanches. Coché par défaut.
 
 *Resource*
 
-**Http Cache :** If checked, a HTTP cache is enabled for faster loading of resources over the network to the running engine on device, unset par défaut.
+**Http Cache :** Si cochée, un tampon HTTP est activé pour un chargement plus rapide des ressources depuis le réseau vers le moteur d'exécution de l'appareil. Décoché par défaut.
 
-**Uri :** Where to find the project build data, in URI format.
+**Uri :** Où trouver les données de construction du projet, au format *URI*.
 
-**Max Resources :** The max number of resources that can be loaded at the same time, `1024` par défaut.
+**Max Resources :** Le nombre maximum de ressource qui peuvent être chargées en même temps. `1024` par défaut.
 
 *Network*
 
-**Http Timeout :** The HTTP timeout in seconds. Set to `0` to disable timeout, which is the default.
+**Http Timeout :** La temporisation HTTP en secondes. `0` pour désactiver la temporisation (par défaut).
 
 *Collection*
 
-**Max Instances :** Max number of game object instances in a collection, `1024` par défaut.
+**Max Instances :** Le nombre maximum d'instances de game objects dans une collection. `1024` par défaut.
 
 *Sound*
 
-**Gain :** Global gain (volume), 0–1, The value is `1` par défaut.
+**Gain :** Gain global (volume). doit être compris entre `0` et `1`. `1` par défaut.
 
-**Max Sound Data :** Max number of sound resources, i.e the number of unique sound files at runtime, `128` par défaut.
+**Max Sound Data :** Le nombre maximum de ressources de sons (le nombre de fichiers sons uniques à l'exécution). `128` par défaut.
 
-**Max Sound Buffers :** (Currently not used) Max number of concurrent sound buffers, `32` par défaut.
+**Max Sound Buffers :** (non utilisé) Le nombre maximum de tampons de sons concurrents. `32` par défaut.
 
-**Max Sound Sources :** (Currently not used) Max number of concurrently playing sounds, `16` par défaut.
+**Max Sound Sources :** (non utilisé) Le nombre maximum de sons joués en même temps. `16` par défaut.
 
-**Max Sound Instances :** Max number of concurrent sound instances, i.e. actual sounds played at the same time. `256` par défaut.
+**Max Sound Instances :** Le nombre maximum d'instances de sons concurrentes (les sons réels joués en même temps). `256` par défaut.
 
 *Sprite*
 
-**Max Count :** Max number of sprites, `128` par défaut.
+**Max Count :** Le nombre maximum de sprites. `128` par défaut.
 
-**Subpixels :** Check to allow sprites to appear unaligned with respect to pixels, checked par défaut.
+**Subpixels :** Cochez la case pour permettre aux sprites d'apparaître non alignés sur les pixels. Cochée par défaut.
 
 *Spine*
 
-**Max Count :** Max number of spine models, `128` par défaut.
+**Max Count :** Le nombre maximum de modèles *Spine*. `128` par défaut.
 
 *model*
 
-**Max Count :** `128` par défaut.
+**Max Count :** Le nombre maximum de modèles 3d. `128` par défaut.
 
 *GUI*
 
-**Max Count :** Max number of GUI components, `64` par défaut.
+**Max Count :** Le nombre maximum de components *GUI*. `64` par défaut.
 
-**Max Particlefx Count :** The max number of concurrent emitters, `64` par défaut.
+**Max Particlefx Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
 
-**Max Particle Count :** The max number of concurrent particles, `1024` par défaut.
+**Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
 
 *Label*
 
-**Max Count :** Max number of labels, `64` par défaut.
+**Max Count :** Le nombre maximum de labels. `64` par défaut.
 
-**Subpixels :** Check to allow lables to appear unaligned with respect to pixels, checked par défaut.
+**Subpixels :** Cochez la case pour permettre aux labels d'apparaître non alignés sur les pixels. Cochée par défaut.
 
 *Particle FX*
 
-**Max Count :** The max number of concurrent emitters, `64` par défaut.
+**Max Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
 
-**Max Particle Count :** The max number of concurrent particles, `1024` par défaut.
+**Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
 
 *Collection proxy*
 
-**Max Count :** Max number of collection proxies, `8` par défaut.
+**Max Count :** Le nombre maximum de collection proxies. `8` par défaut.
 
 *Collection factory*
 
-**Max Count :** Max number of collection factories, `128` par défaut.
+**Max Count :** Le nombre maximum de collection factories. `128` par défaut.
 
 *Factory*
 
-**Max Count :** Max number of game object factories, `128` par défaut.
+**Max Count :** Le nombre maximum de factories. `128` par défaut.
 
 *iOS*
 
@@ -681,6 +680,20 @@ A subfolder named `common` is also allowed, containing resource files common for
 **Private Key :** If set, use the specified private key file when bundling live update content. If no key file is set, a key is generated.
 
 **Public Key :** If set, use the specified public key file when bundling live update content. If no key file is set, a key is generated.
+
+##### Paramétrer les propriétés de configuration au démarrage du moteur
+
+Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer le paramètre du fichier `game.project` :
+
+```
+# Spécifie une collection bootstap
+$ dmengine --config=bootstrap.main_collection=/my.collectionc
+
+# Paramètre la valeur personnalisée "test.ma_valeur"
+$ dmengine --config=test.ma_valeur=4711
+```
+
+Les valeurs personnalisées peuvent être lues (comme toute autre valeur de configuration) depuis la fonction `sys.get_config()`.
 
 ## Menus
 
@@ -1789,17 +1802,3 @@ function update(self, dt)
     end
 end
 ```
-
-#### Paramétrer les valeurs de configuration au démarrage du moteur
-
-Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer le paramètre du fichier `game.project` :
-
-```
-# Spécifie une collection bootstap
-$ dmengine --config=bootstrap.main_collection=/my.collectionc
-
-# Paramètre la valeur personnalisée "test.ma_valeur"
-$ dmengine --config=test.ma_valeur=4711
-```
-
-Les valeurs personnalisées peuvent être lues (comme toute autre valeur de configuration) depuis la fonction `sys.get_config()`.

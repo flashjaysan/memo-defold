@@ -16,7 +16,7 @@
     + [Vue Properties](#vue-properties)
     + [Vue Tools](#vue-tools)
     + [Vue Editor](#vue-editor)
-      - [Editeur de collection et de ressources](#editeur-de-collection-et-de-ressources)
+      - [Editeur de collections et de ressources](#editeur-de-collections-et-de-ressources)
       - [Editeur de code](#editeur-de-code)
       - [Editeur de configuration du projet](#editeur-de-configuration-du-projet)
         * [Liste des paramètres](#liste-des-param-tres)
@@ -346,7 +346,7 @@ L'option `Join tab panes` rassemble les deux panneaux en un seul.
 
 **Remarque :** Le système de coordonnées de *Defold* est le même qu'en mathématiques. L'axe *Y* augmente vers le haut.
 
-#### Editeur de collection et de ressources
+#### Editeur de collections et de ressources
 
 Double cliquez sur un fichier collection, ou la plupart des fichiers ressources dans la vue `Assets` pour ouvrir l'éditeur général :
 
@@ -358,6 +358,12 @@ Sélectionnez plusieurs éléments par cliqué glissé dans l'éditeur ou utilis
 Pour déplacer un élément sélectionné, activez le mode `Move` (touche `W`). Cliquez glissez sur une des flèches du gizmo pour déplacer l'élément sur un seul axe. Faites de même sur les carrés pour déplacer l'élément librement.
 Pour faire tourner un élément sélectionné, activez le mode `Rotate` (touche `E`). Cliquez glissez sur une des lignes colorées du gizmo pour faire tourner l'élément sur un seul axe ou sur le cercle pour faire tourner l'élément librement.
 Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche `R`). Cliquez glissez sur un des carrés du gizmo pour redimensionner l'élément sur un seul axe ou proportionnellement.
+
+##### Filtres d'affichages
+
+Cliquez sur l'icône en forme d'oeil dans la vue `Editor` pour afficher un menu qui vous permet d'activer ou de désactiver les filtres d'affichages de certains éléments :
+
+![visibility Filters list](defold_visibility_filters.png)
 
 #### Editeur de code
 
@@ -730,9 +736,9 @@ Voici une présentation des menus de *Defold* :
 - L'option `Copy` (ou le raccourci `CTRL+C`) vous permet de copier le ou les éléments sélectionnés.
 - L'option `Paste` (ou le raccourci `CTRL+V`) vous permet de coller à l'endroit sélectionné, le ou les éléments coupés ou copiés.
 - L'option `Delete` (ou le raccourci `SUPPR`) vous permet d'effacer ou de supprimer le ou les éléments sélectionnés. Une boîte de dialogue vous demander de confirmer la suppression.
-- L'option `World Space` [????]. Actif par défaut.
-- L'option `Local Space` [????]. Inactif par défaut.
-- L'option `Move Whole Pixels` . Actif par défaut.
+- L'option `World Space` vous permet de modifier les objets dans l'éditeur dans les coordonnées globales du monde du jeu. Activée par défaut. Si cette option est activée, l'option `Local Space` est désactivée.
+- L'option `Local Space` vous permet de modifier les objets dans l'éditeur dans les coordonnées locales au game object. Inactivée par défaut.  Si cette option est activée, l'option `World Space` est désactivée.
+- L'option `Move Whole Pixels` [???]. Actif par défaut.
 
 **Remarque :** Certaines options ne sont pas toujours accessibles car elles dépendent du contexte.
 
@@ -747,7 +753,7 @@ Voici une présentation des menus de *Defold* :
 - L'option `Show Curve Editor` vous permet d'afficher la vue `Tools` sur l'onglet `Curve Editor`.
 - L'option `Show Build Errors` vous permet d'afficher la vue `Tools` sur l'onglet `Build Errors`.
 - L'option `Show Search Results` vous permet d'afficher la vue `Tools` sur l'onglet `Search Results`.
-- L'option `Toggle Visibility Filters` (ou le raccourci `CTRL+SHIFT+I`) vous permet [????].
+- L'option `Toggle Visibility Filters` (ou le raccourci `CTRL+SHIFT+I`) vous permet d'activer ou de désactiver les filtres d'affichage de certains éléments dans la vue `Editor`. consultez la section `Filtres d'affichage` pour voir la liste des filtres disponibles.
 - L'option `Toggle Component Guides` (ou le raccourci `CTRL+H`) vous permet [????].
 - L'option `Toggle Grid` vous permet d'afficher ou de masquer la grille.
 - L'option `Hide Selected Objects` (ou le raccourci `CTRL+E`) vous permet de masquer les objets sélectionnés.
@@ -764,41 +770,65 @@ Voici une présentation des menus de *Defold* :
 
 ![Project menu](defold_project_menu.png)
 
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
+- L'option `Build` (ou le raccourci `CTRL+B`) vous permet de compiler et de tester votre jeu.
+- L'option `Rebuild` (ou le raccourci CTRL+SHIFT+B) vous permet de [????].
+- L'option `Build HTML5` vous permet de compiler et de tester votre jeu au format HTML5 dans votre navigateur par défaut.
+- L'option `Bundle` [????].
+- L'option `Rebundle` (ou le raccourci CTRL+U) [????].
+- L'option `Fetch Libraries` vous permet de télécharger les bibliothèques spécifiées dans le fichier de configuration `game.project` à la section `Project` > `Dependencies` et que vous souhaitez inclure dans votre projet.
+- L'option `Live Update Settings` [????].
+- L'option `Target` vous permet de sélectionner l'appareil connecté à votre ordinateur à utiliser pour tester votre jeu.
+  - L'option `New Local Engine` [????].
+- L'option `Enter Target IP` [????].
+- L'option `Target Discovery Log` [????].
 
-[VIDE]
+#### Exporter le jeu
+
+Le menu `Bundle` propose plusieurs plateforme cibles pour exporter votre jeu :
+
+![Bundle menu](defold_bundle_menu.png)
+
+- L'option `Android Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Android* :
+
+![Bundle Android Application dialog](defold_bundle_android_application_dialog.png)
+
+- L'option `macOS Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *macOS* :
+
+![Bundle macOS Application dialog](defold_bundle_macos_application_dialog.png)
+
+- L'option `Windows Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Windows* :
+
+![Bundle Windows Application dialog](defold_bundle_windows_application_dialog.png)
+
+- L'option `Linux Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Linux* :
+
+![Bundle Linux Application dialog](defold_bundle_linux_application_dialog.png)
+
+- L'option `HTML5 Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *HTML5* :
+
+![Bundle HTML5 Application dialog](defold_bundle_html5_application_dialog.png)
 
 ### Menu `Debug`
 
 ![Debug menu](defold_debug_menu.png)
 
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-- L'option `-` .
-
-[VIDE]
+- L'option `Start / Attach` (ou le raccourci `F5`) [????].
+- L'option `Break` [????].
+- L'option `Step Over` (ou le raccourci `F10`) [????].
+- L'option `Step Into` (ou le raccourci `F11`) [????].
+- L'option `Step Out` (ou le raccourci `SHIFT+F11`) [????].
+- L'option `Detach Debugger` [????].
+- L'option `Stop Debugger` (ou le raccourci `SHIFT+F5`) [????].
+- L'option `Open Web Profiler` [????].
+- L'option `Simulate Resolution` [????].
 
 ### Menu `Help`
 
 ![Help menu](defold_help_menu.png)
 
-- L'option `Profiler` [????].
+- L'option `Profiler` [????] :
+  - L'option `Measure` [????].
+  - L'option `Measure and Show` [????].
 - L'option `Reload Stylesheet` [????].
 - L'option `Show Logs` [????].
 - L'option `Documentation` (ou le raccourci `F1`) ouvre votre navigateur par défaut sur la page de documentation de *Defold*.
@@ -808,8 +838,6 @@ Voici une présentation des menus de *Defold* :
 - L'option `Report Suggestion` vous permet d'envoyer aux développeurs de *Defold* des suggestions pour améliorer ce dernier.
 - L'option `Search Issues` vous permet d'effectuer des recherches d problèmes.
 - L'option `About` affiche une fenêtre contenant les informations sur la version de *Defold* que vous utilisez.
-
-[VIDE]
 
 ## Etapes dans la création d'un projet
 

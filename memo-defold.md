@@ -220,6 +220,8 @@ Si vous venez d'installer *Defold*, cette section est vide (voir image précéde
 
 ![Recent Projects](defold_recent_projects.png)
 
+#### Ouvrir un projet stocké localement
+
 Le bouton `Open From Disk…` présent dans les deux cas de figure vous permet d'ouvrir un projet *Defold* situé sur votre ordinateur. Une boîte de dialogue s'ouvre alors et vous demande de sélectionner un fichier `game.project` associé à un projet.
 
 ### New Project
@@ -295,7 +297,7 @@ Cette vue liste les fichiers ressources importés, les collections et les fichie
 
 ### Vue Changed Files
 
-Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne.
+Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne. En synchronisant le projet régulièrement, vous pouvez garder votre copie locale à jour avec ce qui est stocké sur le *repository Git* du projet. De cette façon, vous pouvez collaborer avec une équipe et vous ne perdrez pas votre travail si des problèmes techniques venaient à survenir. 
 
 ![Changed Files panel](defold_changed_files_panel.png)
 
@@ -306,6 +308,7 @@ Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dern
 
 Cliquez sur le bouton `Diff` pour voir les modifications effectuées sur un fichier.
 Cliquez sur le bouton `Revert` pour rétablir l'état initial.
+Faites un clic droit sur un fichier pour afficher un menu où vous pouvez ouvrir une fenêtre affichant les différences, annuler toutes les modifications effectuées sur le fichier, trouver son emplacement, etc...
 
 **Remarque :** Cette vue ne fonctionne que si vous avez déjà synchronisé au moins une fois votre projet en ligne.
 
@@ -335,6 +338,8 @@ Cette vue affiche plusieurs outils utiles au développement du jeu dans des ongl
   - **Onglet Curve Editor :** Affiche l'éditeur de courbes pour la gestion des particules.
   - **Onglet Build Errors :** Affiche les erreurs lors de la construction du projet.
   - **Onglet Search Results :** Affiche les recherches diverses.
+  
+  **Remarque :** La console est également utilisée pour interagir avec le débogueur intégré.
 
 ### Vue Editor
 
@@ -355,9 +360,9 @@ Double cliquez sur un fichier collection, ou la plupart des fichiers ressources 
 ![Collection Editor](defold_collection_editor.png)
 
 Pour sélectionner un élément, cliquez dessus dans l'éditeur de scène ou dans l'arborescence de la vue `Outline`.
-Un objet sélectionné est encadré d'une ligne verte dans l'éditeur de scène et son élément est surligné dans la vue `Outline`.
+Un objet sélectionné est encadré d'un contour coloré (par défaut verte) dans l'éditeur de scène et son élément est surligné dans la vue `Outline`.
 Sélectionnez plusieurs éléments par cliqué glissé dans l'éditeur ou utilisez la touche `SHIFT` ou `CTRL` dans l'éditeur ou la vue `Outline`.
-Pour déplacer un élément sélectionné, activez le mode `Move` (touche `W`). Cliquez glissez sur une des flèches du gizmo pour déplacer l'élément sur un seul axe. Faites de même sur les carrés pour déplacer l'élément librement.
+Pour déplacer un élément sélectionné, activez le mode `Move` (touche `W`). Cliquez glissez sur une des flèches du gizmo (le manipulateur graphique) pour déplacer l'élément sur un seul axe. Faites de même sur les carrés pour déplacer l'élément librement.
 Pour faire tourner un élément sélectionné, activez le mode `Rotate` (touche `E`). Cliquez glissez sur une des lignes colorées du gizmo pour faire tourner l'élément sur un seul axe ou sur le cercle pour faire tourner l'élément librement.
 Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche `R`). Cliquez glissez sur un des carrés du gizmo pour redimensionner l'élément sur un seul axe ou proportionnellement.
 
@@ -413,7 +418,7 @@ Qui indique que le paramètre `main_collection` appartient à la catégorie `boo
 
 **Compress Archive :** Cochez cette case pour activer la compression des archives lors du paquetage du jeu. Cela s'applique à toutes les plateformes à l'exception d'*Android* où une `apk` est sytématiquement compressée.
 
-**Dependencies :** Définit la liste des adresses *URL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'*URL* se trouve sur la page du projet dans le *dashboard* (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez être un membre de ces projets. Utilisez ensuite le menu `Project` > `Fetch Libraries` pour télécharger dans votre projet les fichiers de ces bibliothèques.
+**Dependencies :** Définit la liste des adresses *URL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'*URL* se trouve sur la page du projet dans le *dashboard* (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez en être un membre. Utilisez ensuite le menu `Project` > `Fetch Libraries` pour télécharger dans votre projet les fichiers de ces bibliothèques.
 
 **Custom Resources :** Définit une liste de ressources (séparées par des virgules) qui doivent être incluses dans le paquetage lors de l'exportation du jeu. Si des dossiers sont spécifiés, tous les sous-éléments sont inclus récursivement.
 
@@ -875,7 +880,7 @@ Voici un découpage grossier des étapes de création d'un jeu :
 
 ## Importer les ressources externes
 
-*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles Spine, modèles 3D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
+*Defold* suppose que les ressources externes (images, sons, polices de caractères, modèles *Spine*, modèles 3D) nécessaires au projet soient finalisées. Vous devez donc commencer par les importer dans votre projet ou à défaut, utiliser des ressources temporaires.
 
 **Remarque :** Si vous utilisez des ressources externes temporaires, cela va vous compliquer les choses par la suite car vous devrez faire de nombreuses modifications (atlas, tile source, références aux fichiers dans les components, etc...).
 
@@ -891,7 +896,7 @@ Pour importer des images dans votre projet, faites simplement glisser depuis vot
 
 Les images individuelles ne peuvent pas être directement utilisées dans *Defold*. Elles doivent d'abord être intégrées à un fichier ressource `Atlas`. Ce dernier rassemble plusieurs images individuelles dans une seule texture (une image chargée en mémoire vidéo) pour optimiser le jeu (principalement pour économiser la mémoire et améliorer la performance d'accès à ces images). Un atlas peut en outre posséder des groupes d'animations qui contiendront à leur tour une série d'images qui définiront une animation. Pour plus d'informations, consultez la section **Atlas** de ce document.
 
-**Remarque :** *Defold* ne permet pas d'importer un atlas préparé depuis un outils externe. Vous devez importer les images séparément puis les ajouter à un fichier ressource atlas dans *Defold*.
+**Remarque :** *Defold* ne permet pas d'importer un atlas préparé depuis un outil externe. Vous devez importer les images séparément puis les ajouter à un fichier ressource atlas dans *Defold*.
 
 #### Gérer des tilesheet ou spritesheet
 
@@ -903,7 +908,7 @@ Si un fichier image contient plusieurs images disposés sur une grille uniforme 
 
 *Defold* est compatible avec les modèles d'animation exportés au format *Spine JSON* par le logiciel [Spine](http://fr.esotericsoftware.com/). Ce dernier vous permet d'animer un groupe d'images associées à un squelette. C'est utile si vous souhaitez donner du mouvement à des images fixes plutôt que de créer une série d'images pour définir une animation.
 
-**Remarque :** Je n'utilise pas ce logiciel et la documentation de *Defold* est assez limitée sur ce sujet. Je ne peux donc pas vous expliquer correctement comment utiliser ce format. Voici le lien vers la documentation de *Defold* sur les [modèles Spine](https://www.defold.com/manuals/spine/).
+**Remarque :** Je n'utilise pas ce genre de modèles pour l'instant. Je ne peux donc pas vous expliquer correctement comment utiliser ce format. Consultez la documentation de *Defold* sur les [modèles Spine](https://www.defold.com/manuals/spine/).
 
 ### Importer des sons et des musiques
 
@@ -919,25 +924,23 @@ Pour importer des polices de caractères dans votre projet, faites simplement gl
 
 ### Importer des modèles 3D
 
-*Defold* est compatible avec les modèles 3D exportés au format *Collada* (`.dae`). Ces derniers peuvent stocker des informations d'un modèle mais également d'animations (utile pour la ressource `Animation Set`), de matériaux, etc...
+*Defold* est compatible avec les modèles 3D exportés au format *Collada* (`.dae`). Ces derniers peuvent stocker des informations d'un modèle mais également celles d'animations (utile pour la ressource `Animation Set`), de matériaux, etc...
 
 **Remarque :** Je n'utilise pas ce genre de modèles. Je ne peux donc pas vous expliquer correctement comment utiliser ce format.
 
 ## Structure du jeu
 
-Dans *Defold*, un écran de jeu est représenté par une *Collection*. Une collection est toujours un fichier portant l'extension `.collection` et est introduite statiquement dans le jeu en la plaçant manuellement dans l'éditeur ou dynamiquement avec des scripts ou des components `Collection Factory` ou `Collection Proxy`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
+Dans *Defold*, un écran de jeu est représenté par une *Collection*. Une collection est toujours un fichier portant l'extension `.collection` et est introduite statiquement dans le jeu en la plaçant manuellement dans l'éditeur ou dynamiquement grâce à des scripts ou des components `Collection Factory` ou `Collection Proxy`. Dans le fichier de configuration `game.project`, un fichier collection doit définir la collection de démarrage du jeu (section `Bootstrap` > `Main collection`).
 
-**Remarque :** Par défaut, *Defold* crée un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
+**Remarque :** Par défaut, *Defold* crée automatiquement un fichier `main.collection` défini comme collection de démarrage dans le fichier de configuration de tout nouveau projet.
 
 Une collection définit un modèle (ce que d'autres moteurs appellent *prefabs*) dans lequel une hiérarchie de game objects peut être réutilisé. Les collections sont des structures *arbre* qui contiennent des game objects et d'autres collections.
 
 Une collection est constituée de sous-éléments (de sous-collections et de game objects) qui définissent les éléments essentiels du jeu. Ces derniers sont à leur tour constitués de sous-éléments constituant ainsi une arborescence. Une collection ouverte dans l'éditeur affiche la hiérarchie de ses éléments dans la vue `Outline`. Une sous-collection peut servir à définir un ensemble de game objects constituant un élément du jeu. Elle peut ensuite être attachée à une collection mère qui constituera un écran de jeu complet.
 
-Un game object est un conteneur à components. Il ne possède par défaut que des propriétés de transformations (position, rotation, échelle). Vous pouvez intégrer des game objects directement dans une collection (*en place*) où les sauvegarder en tant que fichier de ressource ayant l'extension `.go`.
+Un game object est un conteneur à components. Il ne possède par défaut que des propriétés de transformations (position, rotation, échelle). Il est destiné à recevoir des components qui vont étendre ses fonctionnalités ou ses comportements. Vous pouvez intégrer des game objects directement dans une collection (*en place*) où les sauvegarder en tant que fichier de ressource portant l'extension `.go` et les charger dynamiquement à l'éxécution avec des components `Factory`.
 
-[????] Game objects are simple objects that have a separate lifespan during the execution of your game. Game objects are containers and are usually equipped with visual or audible components, like a sound or a sprite. They can also be equipped with behavior through script components. You create game objects and place them in collections in the editor, or spawn them dynamically at run-time with factories.
-
-Les components sont les éléments essentiels au jeu. Ils sont utilisés pour donner des fonctionnalités spécifiques aux game objects comme des graphismes, des animations, des sons ou des comportements programmés. Ils sont obligatoirement rattachés à un game object. Il en existe une multitude.
+Les components sont les éléments essentiels au jeu. Ils sont utilisés pour donner des fonctionnalités spécifiques aux game objects comme des graphismes, des animations, des sons ou des comportements programmés. Ils sont obligatoirement rattachés à un game object. Il en existe une multitude. consultez la section `fichiers ressources` pour plus d'informations.
 
 Enfin, certains components peuvent avoir comme enfants des fichiers ressources particuliers (par exemple, les components `Collision Object` ont en général un élément enfant de type `Shape`).
 
@@ -951,14 +954,14 @@ En plus des fichiers externes importés, *Defold* vous permet de créer de nombr
 
 ### Propriétés communes aux components
 
-tous les components attachés en place à un game object ont les propriétés suivantes :
+Tous les components attachés en place à un game object ont les propriétés suivantes :
 
 ![In place Component common properties](defold_in_place_component_properties.png)
 
 - Le champ `Id` vous permet de définir le nom de référence du component dans l'arborescence.
 - Le champ `Url` indique le chemin d'accès du component depuis un script (lecture seule).
 
-tous les fichiers ressources components attachés à un game object ont les propriétés suivantes :
+Tous les fichiers ressources components attachés à un game object ont les propriétés suivantes :
 
 ![File Component common properties](defold_file_component_properties.png)
 
@@ -968,7 +971,7 @@ tous les fichiers ressources components attachés à un game object ont les prop
 
 ### Animation Set
 
-Une ressource `Animation Set` contient une ou plusieurs animations (sous forme de fichers `.dae`) d'un même modèle 3D. Référencez cette ressources depuis la propriété `Animations` d'un component `Model`.
+Une ressource `Animation Set` contient une ou plusieurs animations (sous forme de fichers `.dae`) d'un même modèle 3D. Référencez cette ressource depuis la propriété `Animations` d'un component `Model`.
 
 Pour créer un nouveau fichier ressource animation set, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Animation Set`. La boîte de dialogue `New Animation Set` apparaît :
 
@@ -990,7 +993,7 @@ Pour ajouter une animation, cliquez sur le bouton `+` dans la vue `Editor` pour 
 
 Sélectionnez le fichier ressource animation 3D (au format *Collada* `.dae`) à ajouter à l'animation set puis cliquez sur le bouton `OK` pour valider.
 
-**Remarque :** Vous pouvez également ajouter un autre fichier ressource animation set (`.animationset`) à un animation set plus large pour organiser vos animations en sous-groupes. Ajouter des fichiers `.animationset` à un animation set peut être utile si vous partagez des animations partielles communes à plusieurs modèles.
+**Remarque :** Vous pouvez également ajouter un autre fichier ressource animation set (`.animationset`) à un animation set plus large pour organiser vos animations en sous-groupes. Cela peut être utile si vous partagez des animations partielles communes à plusieurs modèles.
 
 #### Supprimer une animation à un animation set
 
@@ -998,7 +1001,9 @@ Pour supprimer une des animations de la liste, sélectionnez l'animation à supp
 
 ### Atlas
 
-Une ressource `Atlas` est un ensemble d'images séparées qui sont rassemblées en une texture unique pour des raisons de performance et de mémoire. Elles peuvent contenir des images fixes ou une série d'image représentant une animation image par image. Les atlas sont utilisé par les components `GUI`, `Sprite`, `Spine Model` et les `ParticleFX` pour partager les ressources graphiques. 
+Une ressource `Atlas` sert à rassembler automatiquement un ensemble d'images séparées (importées dans *Defold*) en une texture unique pour des raisons de performance et de mémoire (en particulier sur les mobiles et tablettes). Elle peut contenir des images fixes individuelles ou une série d'images représentant une animation image par image. Les atlas sont utilisé par les components `GUI`, `Sprite`, `Spine Model` et `ParticleFX` pour partager les ressources graphiques. 
+
+#### Créer un fichier ressource atlas
 
 Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
 
@@ -1016,14 +1021,16 @@ La vue `Properties` vous permet de définir les propriétés de l'atlas :
 
 ![Atlas Properties](defold_atlas_properties.png)
 
-- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (lecture seule).
-- Le champ `Margin` vous permet de définir la marge en pixels à ajouter autour des images de l'atlas.
-- Le champ `Inner Padding` vous permet de définir l'espacement en pixels à ajouter entre chaque image de l'atlas.
-- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour de chaque image de l'atlas. *Defold* reproduit les pixels des images touchant les bords un nombre de pixels spécifié dans cette section. Cela est utile lorsque le fragment shader échantillonne les pixels au bord d'une image, les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
+- Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (lecture seule). Elles s'adaptent automatiquement selon les images ajoutées à la valeur la plus proche d'une puissance de deux.
+- Le champ `Margin` vous permet de définir la marge en pixels que l'atlas doit ajouter autour des images.
+- Le champ `Inner Padding` vous permet de définir l'espacement en pixels que l'atlas doit ajouter entre chaque image.
+- Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour de chaque image de l'atlas. *Defold* reproduit les pixels des images touchant les bords un nombre de pixels spécifié dans cette section. Cela est utile lorsque le *fragment shader* échantillonne les pixels au bord d'une image, car les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
+
+**Remarque :** Si vous avez activé la compression de texture dans les paramètres du projet, certains formats imposent que la largeur et la hauteur de l'atlas soient identiques.
 
 #### Ajouter des images à un atlas
 
-Pour ajouter des images à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Images...` :
+Pour ajouter des images à un atlas, assurez vous de les avoir ajoutées au projet puis faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Images...` :
 
 ![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
 
@@ -1031,13 +1038,19 @@ La boîte de dialogue `Select Images` apparaît :
 
 ![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
 
-Sélectionnez les images à ajouter à l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des fichiers ressources images (en *italique* suivi de leur chemin complet) :
+Sélectionnez la ou les images à ajouter à l'atlas puis cliquez sur le bouton `OK`.
+
+**Remarque :** Vous pouvez filtrer la liste des ressources en saisissant un texte dans le champ `Type to filter`.
+
+La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des fichiers ressources images (en *italique* suivi de leur chemin complet) :
 
 ![Atlas with images added](defold_atlas_with_images.png)
 
+**Remarque :** Vous pouvez recentrer la vue `Editor` sur l'atlas en pressant la touche `F`.
+
 #### Créer un groupe d'animation
 
-Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composées d'une série d'images définissant une animation. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
+Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composés d'une série d'images définissant une animation image par image. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
 
 ![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
 
@@ -1045,11 +1058,11 @@ Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
 
 ![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
 
-**Remarque :** Vous pouvez renommer le groupe d'animation dans la vue `Properties`.
+**Remarque :** N'oubliez pas de renommer le groupe d'animation dans la vue `Properties` si besoin.
 
 ##### Ajouter des images à un groupe d'animation
 
-Pour ajouter des images à un groupe d'animation, faites un clic droit sur celui-ci puis sélectionnez l'option `Add Images...` :
+Pour ajouter des images à un groupe d'animation, faites un clic droit sur celui-ci dans la vue `Outline` puis sélectionnez l'option `Add Images...` :
 
 ![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
 
@@ -1061,21 +1074,21 @@ Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis clique
 
 ![Atlas Animation with Images](defold_atlas_animation_with_images.png)
 
-**Remarque :** Si vos images ne sont pas dans l'ordre, vous devez les importer une à une.
+**Remarque :** Si vos images ne sont pas dans l'ordre, vous pouvez les déplacer en les sélectionnant dans la vue `Outline` puis en utilisant le raccourci `ALT+HAUT` ou `ALT+BAS`. Vous pouvez également recentrer la vue `Editor` sur l'atlas en pressant la touche `F`.
 
 Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Properties` affiche ses propriétés :
 
 ![Atlas Animation properties](defold_atlas_animation_properties.png)
 
 - Le champ `Id` vous permet de définir le nom du groupe d'animation.
-- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes).
-- L'option' `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement ou non (décoché par défaut).
-- L'option' `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement ou non (décoché par défaut).
+- Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes). `60` par défaut.
+- La case `Flip Horizontal` vous permet de définir si l'animation doit être retournée horizontalement (cochée) ou non (décochée par défaut).
+- La case `Flip Vertical` vous permet de définir si l'animation doit être retournée verticalement (cochée) ou non (décochée par défaut).
 - Le menu déroulant `Playback` vous permet de définir la façon dont est lue l'animation :
   - L'option `None` bloque l'animation sur la première image.
   - L'option `Once Forward` lit l'animation en avant une seule fois.
-  - L'option `One Backward` lit l'animation à l'envers une seule fois.
-  - L'option `Once Ping Pong` lit l'animation en avant puis à l'envers une seule fois.
+  - L'option `One Backward` lit l'animation en arrière une seule fois.
+  - L'option `Once Ping Pong` lit l'animation en avant puis en arrière une seule fois.
   - L'option `Loop Forward` (par défaut) lit l'animation en avant indéfiniment.
   - L'option `Loop Backward` lit l'animation en arrière indéfiniment.
   - L'option `Loop Ping Pong` lit l'animation en avant puis en arrière indéfiniment.
@@ -1084,51 +1097,52 @@ Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Prope
 
 ### Camera
 
-Le component `Camera` permet de déterminer quelle partie du monde de jeu doit être visible et comment il devrait être projeté. Un cas classique est d'attacher une caméra au game object joueur ou d'avoir un game object séparé avec une caméra qui suit le joueur avec un algorithme pour fluidifier le mouvement.
+Le component `Camera` permet de déterminer quelle partie du monde de jeu doit être visible et comment elle devrait être projetée sur l'écran. Un cas classique est d'attacher une caméra au game object représentant le joueur ou de définir un game object séparé possédant un component caméra qui suit le joueur selon un algorithme pour fluidifier le déplacement.
 
-#### Créer un fichier ressource Camera
+Dans *Defold*, une caméra est un component qui gère la vue dans le jeu. Il n'y a pas besoin de caméra par défaut, mais si votre jeu nécessite de se déplacer dans un niveau, *Defold* fournit un component de base appelé `Camera`. Les caméras ont une position dans l'espace. Elles peuvent être déplacées en manipulant leur game object parent. Elle incluent un script de rendu avec les données nécessaires pour rendre la vue correctement. Dans *OpenGL*, les caméras sont définies par un système de coordonnées composé d'un observateur (ou oeil), d'une position, et d'un plan limite de vue de près et de loin. Le plan de près est le plan de projection visible (ou l'écran).
 
-Pour créer un fichier ressource Camera, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Camera`.
+Une caméra 3D possède un volume de vue (un *frustum*) qui a la forme d'une pyramide rectangulaire tronquée. Tout ce qui est en dehors de cette zone n'est pas visible. Les objets les plus éloignés de la caméra apparaissent plus petits. Plus le champ de vision est large, plus la caméra voit de parties de la scène et plus la différence entre des objets éloignés est importante.  La perspective est réaliste.
 
-**Remarque :** Ce component peut être attaché en place à un game object.
+#### Créer un fichier ressource caméra
 
-Dans *Defold*, une caméra est un component qui gère la vue dans le jeu. Il n'y a pas besoin de caméra par défaut, mais si votre jeu nécessite de se déplacer dans un niveau, *Defold* fournit un component de base appelé `Camera`. Les caméras ont une position dans l'espace. Elles peuvent être déplacées en positionnant le game object les contenants. Elle incluent un script de rendu avec les données nécessaires pour rendre la vue correctement. *OpenGL* définit les caméras par un système de coordonnées composé d'un observateur (ou oeil), d'une position, et d'un plan limite de vue de près et de loin. Le plan de près est le plan visible (ou l'écran).
+Pour créer un fichier ressource caméra, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Camera`. La boîte de dialogue `New Camera` apparaît :
 
-#### Plans de caméra 
+![New Camera dialog](defold_new_camera_dialog.png)
 
-Une caméra 3D a généralement un volume de vue (un frustum) qui a la forme d'une pyramide rectangulaire tronquée. Les objets les plus éloignés de la caméra apparaissent donc plus petits. La perspective est réaliste. Plus le champ de vision est large, plus la caméra voit de parties de la scène et plus la différence entre des objets éloignés est importante.
+**Remarque :** Ce component peut être attaché en place à un game object. Pour attacher en place un component `Camera` à un game object, dans la vue `Outline` faites un clic droit sur le game object puis choisissez l'option `Add Component` > `Camera`.
 
-#### Champ de vue de caméra
+- Le champ `Name` vous permet de définir le nom de la caméra.
+- Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de la caméra.
+- Le champ `Path` vous indique le chemin complet de la caméra (lecture seule).
 
-[VIDE]
+Cliquez sur le bouton `OK` pour créer la caméra ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
 
-#### Créer une caméra
-
-Pour créer une caméra, vous pouvez attacher en place un component `Camera` à un game object ou créer un fichier ressource `Camera`. Pour attacher en place un component `Camera` à un game object, dans la vue `Outline` faites un clic droit sur le game object puis choisissez l'option `Add Component` > `Camera`. Pour créer un fichier ressource `Camera` réutilisable, faites un clic droit dans la vue `Assets`, choisissez l'option `New` > `Camera`. *Defold* utilse l'extension `.camera` pour les fichiers ressources `Camera`.
-
-The camera component has a set of properties that defines the camera frustum.
+![Camera Editor view](defold_new_camera_editor.png)
 
 #### Propriétés de caméra
 
-Les propriétés suivantes sont accessibles dans la vue `Properties` :
+Outre la vue `Editor`, la vue `Properties` vous permet également de définir les propriétés de la caméra pour configurer son *frustum* :
 
-![Camera properties list](defold_camera_properties.png)
+![Camera Properties](defold_new_camera_properties.png)
 
-- Le champ `Id` vous permet de définir le nom de la caméra.
-- Le champ `Url` indique le chemin d'accès à la caméra dans un script (lecture seule).
-- Le champ `Aspect Ratio` The ratio between the frustum width and height. 1.0 means that you assume a quadratic view. 1.33 is good for a 4:3 view like 1024x768. 1.78 is good for a 16:9 view.
-- Le champ `Fov` The camera field of view expressed in radians. The current default FOV value is misleading. It is not expressed in degrees but in radians. For a 45 degree FOV, change the value to 0.785 (𝛑 / 4).
-- Le champ `Near Z` The Z-value of the near clipping plane.
-- Le champ `Far Z` The Z-value of the far clipping plane.
-- Le champ `Auto Aspect Ratio` Set this to 1 to let the camera automatically set the aspect ratio based on the game’s screen settings.
+- Le champ `Aspect Ratio` définit le rapport entre la largeur et la hauteur du *frustum*. Une valeur de `1.0` suppose une vue carrée (par défaut). `1.33` est adaptée à une vue au format 4/3. `1.78` est adaptée à une vue au format 16/9.
+- Le champ `Fov` définit la largeur du champ de vision (en radians). La valeur par défaut `45` est trompeuse car elle n'est pas exprimée en degrés. Pour une largeur de 45 degrés, donnez la valeur `0.785` (*PI / 4*).
+- Le champ `Near-Z` définit la limite du plan visible le plus proche sur l'axe *Z*. `0.1` par défaut.
+- Le champ `Far-Z` définit la limite du plan visible le plus éloigné sur l'axe *Z*. `1000` par défaut.
+- La case `Auto Aspect Ratio` si cochée laisse la caméra régler le rapport entre la largeur et la hauteur du *frustum* automatiquement suivant les réglages de l'écran du jeu. Décochée par défaut.
+
+
+
 
 - **Camera focus :** To activate the camera and have it feed its view and projection matrices, you send the component an `acquire_camera_focus` message:
 
-`msg.post("#camera", "acquire_camera_focus")`
+```lua
+msg.post("#camera", "acquire_camera_focus")
+```
 
 As soon as the camera component has camera focus, each frame it will send a `set_view_projection` message to the `@render` socket, i.e. to your render script:
 
-```
+```lua
 -- example.render_script
 
 function update(self)
@@ -1149,7 +1163,7 @@ end
 
 If you use both camera view and projection in your render script you will get a camera view into your game world with 3D perspective, even if your game content is strictly 2D. This is sometimes useful. You can, for instance, move the camera back to reveal more of the level. A simple camera script that measures the current camera move speed and pulls it back relative that speed could look like this:
 
-```
+```lua
 -- camera.script
 
 function init(self)
@@ -1187,7 +1201,7 @@ end
 
 Of course, we’re not limited to moving the camera around. We can also rotate it along its X, Y and Z axis.
 
-```
+```lua
 -- 0.314 radians is about 18 degrees.
 go.set_rotation(vmath.quat_rotation_z(0.314) * vmath.quat_rotation_y(0.314))
 ```
@@ -1199,11 +1213,12 @@ go.set_rotation(vmath.quat_rotation_z(0.314) * vmath.quat_rotation_y(0.314))
 #### Orthographic projection
 
 For many 2D games, the business of having a camera that can move back and forth becomes a problem, especially if you have content that you would like to render pixel perfect. Instead of trying to place your camera at the perfect Z distance to get the view you want, you should instead set up a camera with orthographic projection. This means that the view of the camera is no longer dictated by a frustum, but by a much simpler box.
- Orthographic projection 
+
+Orthographic projection 
 
 Orthographic projection is unrealistic in that it does not alter the size of objects based on their distance. A person standing 10000 meters away will still render at the same size as the person standing right in front of the camera. However, this method of projecting graphics is sometimes useful and 2D games often benefit from using it. To use orthographic projection you just have to modify your render script:
 
-```
+```lua
 -- example.render_script
 
 function update(self)
@@ -1229,21 +1244,25 @@ This is almost what the default render script does, with the difference that the
 
 ### Collection
 
-Un jeu ne peut pas fonctionner sans collection. En effet, ces dernières rassemblent tous les éléments nécessaires à un écran du jeu dans une arborescence. Une collection est toujours définie sous forme d'un fichier.
+Un jeu ne peut pas fonctionner sans collection. En effet, ces dernières rassemblent dans une arborescence tous les éléments nécessaires à un écran du jeu. Une collection est toujours définie sous la forme d'un fichier. Elle fournit un mécanisme puissant pour créer un modèle réutilisable dans *Defold*. Une collection peut être placée directement dans une arborescence statique dans l'éditeur ou elle peut être insérée dynamiquement dans votre jeu.
+
+**Remarque :** Pour générer dynamiquement une collection durant l'exécution du jeu, utilisez un component `Collection Factory`. Consultez la section dédiée.
 
 #### Créer une collection
 
-Pour créer une nouvelle collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection` et donnez-lui un nom. *Defold* utilise l'extension `.collection` pour les fichiers collection. La boîte de dialogue `New Collection` apparaît :
+Pour créer une nouvelle collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection`. La boîte de dialogue `New Collection` apparaît :
 
 ![New Collection dialog](defold_new_collection_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de la collection.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
-- Le champ `Path` indique le chemin complet de la collection.
+- Le champ `Path` indique le chemin complet de la collection (lecture seule).
 
 Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
 
 ![New Collection Editor view](defold_new_collection_editor_view.png)
+
+**Remarque :** *Defold* utilise l'extension `.collection` pour les fichiers collection.
 
 La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous-élément :
 
@@ -1263,15 +1282,19 @@ Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses 
 
 Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
 
-#### Attacher un fichier ressource game object à une collection
+#### Attacher une sous-collection ou un fichier ressource game object à une collection
 
-Si vous voulez attacher un fichier ressource game object (préexistant sous la forme d'un fichier) dans la vue `Assets`, faites un clic droit sur la collection dans la vue `Outline`, choisissez l'option `Add Game Object File` puis choisissez le game object désiré.
+Si vous voulez attacher une sous-collection ou un fichier ressource game object à une collection, faites un clic droit sur la collection dans la vue `Outline`, choisissez l'option `Add Collection File` ou `Add Game Object File` puis choisissez le fichier désiré.
 
 ### Collection Factory
 
-Un component `Collection Factory` sert à générer dynamiquement des hiérarchies de game objects (contenues dans une collection) autant de fois que nécessaire dans le jeu.
+Le component `Collection Factory` est utilisé pour générer dynamiquement toute une arborescence de game objects contenue dans un fichier collection. Il permet d'insérer dans votre jeu une collection associée (appelée `prototype`) servant de modèle.
 
-#### Créer un fichier ressource Collection Factory
+Avec un component collection factory, vous pouvez générer le contenu d'un fichier collection dans le monde de jeu. Cela est plus simple que de générer plusieurs game objects grâce à un component `Factory` puis de construire une hiérarchie entre ces objets. Un cas typique d'utilisation est de générer des ennemis composés de multiples game objects (par exemple, un ennemi et son arme).
+
+**Attention !** Ne confondez pas le component `Collection Proxy` et le component `Collection Factory`. Un collection proxy génère une instance de collection dans un nouveau monde de jeu avec un nouvel espace mémoire en plus de celui existant auparavant, de nouvelles règles physiques, etc... Une collection factory génère une instance de collection dans le monde de jeu existant.
+
+#### Créer un fichier ressource Collection Factory 
 
 Pour créer un fichier ressource collection factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Factory`.  La boîte de dialogue `New Collection Factory` apparaît :
 
@@ -1294,13 +1317,145 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` ainsi que d
 ![Collection Factory properties list](defold_collection_factory_properties.png)
 
 - Le champ `Prototype` vous permet de définir le fichier collection à utiliser comme modèle de production de la collection factory.
-- La case `Load Dynamically` (inaccessible si le component est créé en place) vous permet de définir si la collection à produire devra être chargée dynamiquement (coché) ou si elle est chargée automatiquement dès le chargement de la collection factory (décoché). Par défaut, décoché.
+- La case `Load Dynamically` (inaccessible si le component est créé en place) vous permet de définir si la collection modèle ne doit pas être chargée en mémoire (cochée) ou si elle est chargée (décochée) automatiquement lors du chargement de la collection factory. Par défaut, décochée. Dans ce cas, les ressources sont donc immédiatement accessibles. Si la case est cochée, c'est au programmeur de gérer manuellement le chargement en mémoire de la collection modèle.
 
-[VIDE]
+**Remarque :** N'oubliez par de créer un fichier collection contenant l'arborescence modèle à générer.
+
+#### Chargement dynamique de la collection modèle
+
+En cochant la case `Load Dynamically` des propriétés d'une ressource collection factory, le moteur reporte le chargement des ressources associées à la collection modèle. Vous avez deux options :
+
+##### Chargement synchrone
+
+Appelez la fonction `collectionfactory.create()` lorsque vous voulez générer une instance du modèle. Cela chargera les ressources de manière synchrone, ce qui peut provoquer un ralentissement, puis génèrera une nouvelle instance :
+
+```lua
+function init(self)
+    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente est chargée.
+    -- Appeler la fonction create sans avoir appelé la fonction load créeré les ressources de manière synchrone.
+    self.go_ids = collecionfactory.create("#collectionfactory")
+end
+
+function final(self)  
+    -- Efface le game object et diminue le compteur de références des ressources.
+    -- Dans ce cas les ressources sont effacées car la collection factory
+    -- ne comporte plus de référence.
+    go.delete_all(self.go_ids)
+
+    -- Appeler la fonction unload n'aura aucun effet car la collection factory ne contient aucune référence
+    collectionfactory.unload("#factory")
+end
+```
+
+##### Chargement asynchrone
+
+Appelez la fonction `collectionfactory.load()` pour charger explicitement les ressources de manière asynchrone. Lorsque le modèle est chargé, un *callback* est reçu :
+
+```lua
+function load_complete(self, url, result)
+    -- Le chargement est terminé, les ressources sont prêtes à être générées
+    self.go_ids = collectionfactory.create(url)
+end
+
+function init(self)
+    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente
+    -- charge les ressources. Appeler la fonction load chargera les ressources.
+    collectionfactory.load("#factory", load_complete)
+end
+
+function final(self)
+    -- Efface le game object et diminue le compteur de références des ressources.
+    -- Dans ce cas les ressources ne sont pas effacées car la collection factory
+    -- comporte encore une référence.
+    go.delete_all(self.go_ids)
+
+    -- Appeler la fonction unload diminue le compteur de références des ressources
+    -- contenues dans la collection factory ce qui entraîne la destruction des ressources.
+    collectionfactory.unload("#factory")
+end
+```
+
+#### Générer une instance de collection
+
+
+
+
+
+Suppose we want a character game object and a separate shield game object childed to the character. We build the game object hierarchy in a collection file and save it as `bean.collection`.
+
+We then add a Collection factory component to a gameobject that will take care of the spawning and set `bean.collection` as the component’s Prototype:
+
+Spawning a bean and shield is now just a matter of calling the `collectionfactory.create()` function:
+
+```lua
+local bean_ids = collectionfactory.create("#bean_factory")
+```
+
+The function takes 5 parameters:
+
+- **url** The id of the collection factory component that should spawn the new set of game objects.
+- **position** (optional) The world position of the spawned game objects. This should be a vector3. If you do not specify a position, the objects are spawned at the position of the collection factory component.
+- **rotation** (optional) The world rotation of the new game objects. This should be a quat.
+- **properties** (optional) A Lua table with id-table pairs used to initiate the spawned game objects. See below for how to construct this table.
+- **scale** (optional) The scale of the spawned game objects. The scale can be expressed as a number (greater than 0) which specifies uniform scaling along all axes. You can also provide a vector3 where each component specifies scaling along the corresponding axis.
+
+`collectionfactory.create()` returns the identities of the spawned game objects as a table. The table keys map the hash of the collection-local id of each object to the runtime id of each object:
+
+The parent-child relationship between “bean” and “shield” is not reflected in the returned table. This relation only exist in the runtime scene-graph, i.e. how objects are transformed together. Re-parenting an object never changes its id.
+
+```lua
+local bean_ids = collectionfactory.create("#bean_factory")
+go.set_scale(0.5, bean_ids[hash("/bean")])
+pprint(bean_ids)
+-- DEBUG:SCRIPT:
+-- {
+--   hash: [/shield] = hash: [/collection0/shield], 
+--   hash: [/bean] = hash: [/collection0/bean],
+-- }
+```
+
+A prefix `/collection[N]/`, where `[N]` is a counter, is added to the id to uniquely identify each instance:
+
+##### Propriétés
+
+When spawning a collection, you can pass property parameters to each game object by constructing a table where the keys are object ids and the values are tables with the script properties to set.
+
+```lua
+local props = {}
+props[hash("/bean")] = { shield = false }
+local ids = collectionfactory.create("#bean_factory", nil, nil, props)
+```
+
+Supposing the “bean” game object in “bean.collection” defines the “shield” property. The Script property manual contains information on script properties.
+
+```lua
+-- bean/controller.script
+go.property("shield", true)
+
+function init(self)
+    if not self.shield then
+        go.delete("shield")
+    end     
+end
+```
+
+
+
+
 
 ### Collection Proxy
 
+
+
+The collection proxy component is used to create a new game world, including a separate physics world, based on a collection. The new world is accessed through a new socket. All assets contained in the collection are loaded through the proxy when you message the proxy to start loading. This makes them very useful to, for instance, change levels in a game. New game worlds come with quite a lot of overhead though so do not use them for dynamic loading of small stuff. For more information, see the Collection proxy documentation.
+
+
+
+
+
 Un component `Collection Proxy` sert à charger et activer à la volée une collection associée dans un nouvel environnement durant l'exécution du jeu. Utilisez-le pour charger différents niveaux ou écrans de jeu.
+
+**Attention !** Ne confondez pas le component `Collection Proxy` et le component `Collection Factory`. Un collection proxy génère uneinstance de collection dans un nouveau monde de jeu avec  un nouvel espace mémoire en plus de celui existant auparavant, de nouvelles règles physiques, etc... Une collection factory génère une instance de collection dans le monde de jeu existant.
 
 #### Créer un fichier ressource Collection Proxy
 
@@ -1364,7 +1519,7 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 - Le champ `Restitution` vous permet de définir l'intensité du rebond du game object associé au moment du contact avec un autre game object appartenant au groupe de collision défini dans la propriété `Mask`. La valeur doit être comprise entre `0` (pas de rebond) et `1` (rebond maximal). La valeur finale sera celle de l'objet en contact ayant la valeur la plus élevée.
 - Le champ `Linear Damping` vous permet de définir l'intensité de la réduction de vélocité du game object associé à chaque affichage. La valeur doit être comprise entre `0` (pas de réduction) et `1` (réduction maximale).
 - Le champ `Angular Damping` vous permet de définir l'intensité de la réduction de la rotation du game object associé à chaque affichage. La valeur doit être comprise entre `0` (pas de réduction) et `1` (réduction maximale).
-- La case `Locked Rotation` (si cochée) vous permet d'empêcher la rotation du game object associé lors des collisions. Par défaut désactivé.
+- La case `Locked Rotation` (si cochée) vous permet d'empêcher la rotation du game object associé lors des collisions. Par défaut décochée.
 - Le champ `Group` vous permet de définir le groupe de collision auquel appartient le collision object (inutile pour les tilemaps car la propriété est déjà définie dans la tile source). Vous pouvez définir jusqu'à 16 groupes dans un projet.
 - Le champ `Mask` vous permet de définir la liste des groupes de collision qui peuvent intéragir avec le collision object. Séparez les groupes par une virgule. Si ce champ est vide, aucune collision n'est prise en compte.
 
@@ -1746,11 +1901,13 @@ La programmation de la logique du jeu s'effectue dans des fichiers scripts écri
 
 Les variables locales à un script (hors de toute fonction) sont communes à toutes les instances contenant ce script :
 
-`local nom_de_propriete = valeur`
+```lua
+local nom_de_propriete = valeur
+```
 
 Les propriétés associées au paramètre `self` de certaines fonctions sont uniques à chaque instance contenant ce script :
 
-```
+```lua
 function init(self)
     self.nom_de_propriete = valeur
 end
@@ -1760,7 +1917,7 @@ end
 
 Pour définir une propriété qui apparaîtra dans la vue `Properties`, utilisez la fonction `go.property` en dehors de toute fonction plutôt que la syntaxe *Lua* habituelle :
 
-```
+```lua
 go.property("nom_de_propriete", valeur)
 ```
 
@@ -1776,7 +1933,7 @@ go.property("nom_de_propriete", valeur)
 
 Une propriété définie avec la fonction `go.property` est accessible depuis le paramètre `self` des fonctions de rappel :
 
-```
+```lua
 function update(self, dt)
     self.nom_de_propriete = valeur
 end
@@ -1788,41 +1945,59 @@ Vous pouvez éditer cette propriété dans la vue `Properties`. Si vous modifiez
 
 Pour cibler le script courant, utiliser la chaîne `"#"` :
 
-`"#"`
+```lua
+"#"
+```
 
 Pour cibler le game object courant, utiliser la chaîne `"."` :
 
-`"."`
+```lua
+"."
+```
 
 Pour cibler un component situé dans le même game object que le script, utilisez l'identifiant du component précédé du signe `#` :
 
-`#component_id`
+```lua
+#component_id
+```
 
 Pour cibler un component situé dans un autre game object que le script mais dans la même collection, utilisez l'identifiant du game object, suivi du signe `#` puis de l'identifiant du Component :
 
-`go_id#component_id`
+```lua
+go_id#component_id
+```
 
 Pour cibler un component situé dans un autre game object que le script et dans une autre collection statique, vous devez utiliser l'adressage absolu. Utilisez le caractère `/` pour indiquer que vous commencez l'adressage à la racine suivi de l'identifiant de la collection à cibler suivi du caractère `/` puis de l'identifiant du game object, suivi du signe `#` et enfin de l'identifiant du component :
 
-`/main/go_id#component_id`
+```lua
+/main/go_id#component_id
+```
 
 **Remarque :** Vous pouvez également cibler une sous-collection :
 
-`/main/sub/go_id#component_id`
+```lua
+/main/sub/go_id#component_id
+```
 
 Pour cibler un component situé dans un autre game object que le script et dans une collection générée par un component `Collection Proxy`, vous devez utiliser l'adressage absolu en précisant le socket du monde de jeu à cibler. Utilisez l'identifiant de la collection à cibler suivi des caractères `:/` puis de l'identifiant du game object, suivi du signe `#` et enfin de l'identifiant du component :
 
-`main:/go_id#component_id`
+```lua
+main:/go_id#component_id
+```
 
 **Remarque :** Vous pouvez également cibler une sous-collection :
 
-`main:/sub/go_id#component_id`
+```lua
+main:/sub/go_id#component_id
+```
 
 #### Envoyer un message
 
 Pour envoyer un message à un script d'un autre game object, utilisez la fonction `msg.post` :
 
-`msg.post(other_game_objet#other_script, "message")`
+```lua
+msg.post(other_game_objet#other_script, "message")
+```
 
 Chaque game object ou component supporte un certain nombre de messages associés à des fonctions à exécuter. Consultez la section [API](https://www.defold.com/ref/sys/) de la documentation de *Defold*.
 
@@ -1866,7 +2041,7 @@ Avec la commande `File` > `Hot Reload`, vous pouvez tester les modifications app
 
 Dans la fonction `update`, utilisez la fonction `go.delete` (en général selon une condition particulière) :
 
-```
+```lua
 function update(self, dt)
     if go.get_position().x < 0 then
         go.delete()
@@ -1876,13 +2051,13 @@ end
 
 ### Réinitialiser le facteur de zoom de la vue `Editor`
 
-Pour réinitialiser le facteur de zoom, fermez l'onglet et rouvrez-le.
+Fermez simplement l'onglet à réinitialiser et ouvrez-le à nouveau.
 
 ### Quitter le jeu via un script
 
 Utilisez le code suivant :
 
-```
+```lua
 function init(self)
 	msg.post(".", "acquire_input_focus")
 end
@@ -1893,3 +2068,32 @@ function on_input(self, action_id, action)
 	end
 end
 ```
+### Transférer un projet du cloud *Defold* vers *GitHub*
+
+Consultez les explications fournies sur le forum :
+
+[Alternative Project Hosting](https://forum.defold.com/t/howto-alternative-project-hosting/1309)
+
+## A éditer
+
+Cette section est une zone temporaire où je place les informations que je n'ai pas encore structurées dans ce document.
+
+### Vsync, frame cap, and swap interval
+
+The first thing of note is that on desktop platforms vsync can be controlled globally by graphics card settings. If for example vsync is force-enabled in the graphics control panel it is not user controllable, e.g. the setting cannot be accessed or modified from Defold. Most mobile devices also has vsync enabled by default.
+
+With Vsync checked in game.project the engine relies on hardware vsync and uses a fixed time step dt based on any detected monitor refresh rate. This is the default setting. With Vsync checked and Frame cap > 0, the rate will be clamped to a swap interval that matches any detected main monitor refresh rate. With Vsync unchecked and Frame cap 0, the time step is not fixed but instead uses actual elapsed time difference for dt. With Vsync unchecked and Frame cap > 0, timers are used to respect the set frame cap value. There is no guarantee that the frame cap will be achieved depending on platform specifics and hardware settings.
+
+Swap interval is the interval with which to swap the front and back buffers in sync with vertical blanks (v-blank), the hardware event where the screen image is updated with data from the front buffer. A value of 1 swaps the buffers at every v-blank, a value of 2 swaps the buffers every other v-blank and so on. A value of 0 disables waiting for v-blank before swapping the buffers*. Setting swap_interval is done by sending a message to the system socket: swap_interval
+
+### Caveat
+
+Currently, Defold queries for monitor refresh rate at init and uses that as a basis for picking a fixed dt. If you want to support monitors using variable refresh rate (GSync or FreeSync for example) or other scenarios where the refresh rate might not be trivial to query, uncheck Vsyncto let the engine measure actual dt each frame instead of relying on a fixed time step.
+
+### Vsync and frame cap in Defold
+
+|  | Frame cap 0 (default) | Frame cap > 0 |
+| --- | --- | --- |
+| **Vsync checked (default)** | Relies on hardware vsync. Fixed dt of 1/(detected monitor refresh rate). | Fixed dt of (swap interval)/(detected monitor refresh rate) where swap interval is clamped to the closest matching monitor refresh rate frame cap multiple. |
+| **Vsync unchecked** | Calculates dt each frame based on elapsed system time. Vsync might still be enabled in driver settings. | Uses a fixed dt of 1 / (Frame cap). Uses timers and sleeps to respect the set frame cap. |
+

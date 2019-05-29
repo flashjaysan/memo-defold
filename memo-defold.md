@@ -4,6 +4,7 @@
   * [Mettre à jour Defold](#mettre---jour-defold)
   * [Création et ouverture de projets](#cr-ation-et-ouverture-de-projets)
     + [Home](#home)
+      - [Ouvrir un projet stocké localement](#ouvrir-un-projet-stock--localement)
     + [New Project](#new-project)
       - [From Template](#from-template)
       - [From Tutorial](#from-tutorial)
@@ -28,6 +29,7 @@
     + [Menu `Edit`](#menu--edit-)
     + [Menu `View`](#menu--view-)
     + [Menu `Project`](#menu--project-)
+      - [Bibliothèques supplémentaires](#biblioth-ques-suppl-mentaires)
       - [Exporter le jeu](#exporter-le-jeu)
     + [Menu `Debug`](#menu--debug-)
     + [Menu `Help`](#menu--help-)
@@ -47,14 +49,12 @@
       - [Ajouter une animation à un animation set](#ajouter-une-animation---un-animation-set)
       - [Supprimer une animation à un animation set](#supprimer-une-animation---un-animation-set)
     + [Atlas](#atlas)
+      - [Créer un fichier ressource atlas](#cr-er-un-fichier-ressource-atlas)
       - [Ajouter des images à un atlas](#ajouter-des-images---un-atlas)
       - [Créer un groupe d'animation](#cr-er-un-groupe-d-animation)
         * [Ajouter des images à un groupe d'animation](#ajouter-des-images---un-groupe-d-animation)
     + [Camera](#camera)
-      - [Créer un fichier ressource Camera](#cr-er-un-fichier-ressource-camera)
-      - [Plans de caméra](#plans-de-cam-ra)
-      - [Champ de vue de caméra](#champ-de-vue-de-cam-ra)
-      - [Créer une caméra](#cr-er-une-cam-ra)
+      - [Créer un fichier ressource caméra](#cr-er-un-fichier-ressource-cam-ra)
       - [Propriétés de caméra](#propri-t-s-de-cam-ra)
       - [Camera speed distance](#camera-speed-distance)
       - [Rotated camera](#rotated-camera)
@@ -62,7 +62,7 @@
     + [Collection](#collection)
       - [Créer une collection](#cr-er-une-collection)
       - [Attacher un game object en place à une collection](#attacher-un-game-object-en-place---une-collection)
-      - [Attacher un fichier ressource game object à une collection](#attacher-un-fichier-ressource-game-object---une-collection)
+      - [Attacher une sous-collection ou un fichier ressource game object à une collection](#attacher-une-sous-collection-ou-un-fichier-ressource-game-object---une-collection)
     + [Collection Factory](#collection-factory)
       - [Créer un fichier ressource Collection Factory](#cr-er-un-fichier-ressource-collection-factory)
       - [Propriétés de Collection Factory](#propri-t-s-de-collection-factory)
@@ -126,14 +126,27 @@
     + [Adressage](#adressage)
       - [Envoyer un message](#envoyer-un-message)
     + [Créer un game object depuis un script](#cr-er-un-game-object-depuis-un-script)
+    + [Charger dynamiquement le prototype d'une collection factory](#charger-dynamiquement-le-prototype-d-une-collection-factory)
+      - [Chargement synchrone](#chargement-synchrone)
+      - [Chargement asynchrone](#chargement-asynchrone)
+      - [Générer une instance de collection avec une collection factory](#g-n-rer-une-instance-de-collection-avec-une-collection-factory)
+      - [Gérer les propriétés de collection factories dynamiquement](#g-rer-les-propri-t-s-de-collection-factories-dynamiquement)
+    + [Débogage](#d-bogage)
+    + [Profilage](#profilage)
   * [Astuces diverses](#astuces-diverses)
     + [Définir la collection principale](#d-finir-la-collection-principale)
     + [Définir les dimensions logiques du jeu](#d-finir-les-dimensions-logiques-du-jeu)
-    + [Afficher une image](#afficher-une-image)
     + [Afficher des images en pixel art](#afficher-des-images-en-pixel-art)
     + [Quitter le jeu avec la touche Echap](#quitter-le-jeu-avec-la-touche-echap)
     + [Tester une modification de script sans redémarrer le jeu](#tester-une-modification-de-script-sans-red-marrer-le-jeu)
     + [Détruire un game object depuis un script](#d-truire-un-game-object-depuis-un-script)
+    + [Réinitialiser le facteur de zoom de la vue `Editor`](#r-initialiser-le-facteur-de-zoom-de-la-vue--editor-)
+    + [Quitter le jeu via un script](#quitter-le-jeu-via-un-script)
+    + [Transférer un projet du cloud *Defold* vers *GitHub*](#transf-rer-un-projet-du-cloud--defold--vers--github-)
+  * [A éditer](#a--diter)
+    + [Vsync, frame cap, and swap interval](#vsync--frame-cap--and-swap-interval)
+    + [Caveat](#caveat)
+    + [Vsync and frame cap in Defold](#vsync-and-frame-cap-in-defold)
 
 # Mémo Defold
 
@@ -141,31 +154,31 @@
 
 Licence Creative Commons : Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale 4.0 Internationale.
 
-![Creative Commons Non Commercial logo](ccnc.png)
+![Creative Commons Non Commercial logo](images/creative_common_non_commercial_logo.png)
 
 ## Introduction
 
 *Defold* est un logiciel pour créer des jeux vidéos. Il est gratuit mais non open source. La société *King* (*Candy Crush*) utilise ce moteur pour créer ses jeux et le fournit au public gratuitement et sans licence ni contrepartie. Les jeux créés avec *Defold* sont programmés en *Lua*, un langage de script facile à apprendre et puissant. Vous pouvez exporter vos jeux sur les plateformes *Windows*, *Mac OS X*, *Linux*, *Android*, *iOS* et *HTML*. Vous pouvez stocker vos projets sur le cloud dédié de *Defold* (ou un cloud compatible avec *Git*) et les partager avec d'autres membres de votre équipe ou, si vous préférez, sur votre propre ordinateur.
 
-**Attention !** *Defold* nécessite de posséder un compte *Google* et vous devrez être connecté à *Internet* pour créer vos premiers projets (basés sur des modèles en ligne).
+**Attention !** *Defold* nécessite de posséder un compte *Google*. Vous devrez en outre être connecté à *Internet* pour créer vos premiers projets (basés sur des modèles en ligne).
 
 ## Télécharger et installer Defold
 
 Visitez le site de [Defold](https://www.defold.com/) et cliquez sur la section `Get Defold` :
 
-![Get Defold link](defold_get.png)
+![Get Defold link](images/defold_get.png)
 
 Pour télécharger *Defold*, vous devez vous identifier avec un compte *Google* :
 
-![Google login](defold_google.png)
+![Google login](images/defold_google.png)
 
 Une fois connecté, cliquez sur la section `Dashboard` :
 
-![Defold dashboard](defold_dashboard.png)
+![Defold dashboard](images/defold_dashboard.png)
 
 Téléchargez la dernière version de *Defold* correspondante à votre système en cliquant sur le bouton `Download editor` :
 
-![Defold download](defold_download.png)
+![Defold download](images/defold_download.png)
 
 - Sur *Windows*, décompressez l'intégralité du contenu du fichier téléchargé à l'emplacement de votre choix puis exécutez le fichier `Defold.exe`.
 - Sur *Mac OS X*, montez le fichier téléchargé et faites glisser l'application `Defold` dans le dossier `Applications` puis lancez-la.
@@ -175,31 +188,31 @@ Téléchargez la dernière version de *Defold* correspondante à votre système 
 
 Au démarrage de *Defold*, si une nouvelle version est disponible, le texte `Update Available` apparaît :
 
-![Update Available](defold_update.png)
+![Update Available](images/defold_update.png)
 
 Cliquez dessus pour afficher la boîte de dialogue `Update Available` :
 
-![Update Available dialog](defold_update_dialog.png)
+![Update Available dialog](images/defold_update_dialog.png)
 
 Cliquez alors sur le bouton `Download` pour télécharger et mettre à jour *Defold* ou sur le bouton `Not Now` pour annuler la procédure.
 
 Si vous effectuez une mise à jour de *Defold*, une barre de chargement apparaît pour indiquer l'état d'avancement du téléchargement :
 
-![update progress bar](defold_update_progress.png)
+![update progress bar](images/defold_update_progress.png)
 
 **Attention !** Le téléchargement d'une mise à jour est assez long.
 
 **Remarque :** Vous pouvez continuer à utiliser *Defold* pendant le téléchargement de la mise à jour. Une barre de progression apparaît en bas de l'éditeur :
  
-![update progress bar in editor](defold_update_progress2.png)
+![update progress bar in editor](images/defold_update_progress2.png)
 
 Lorsque le téléchargement est terminé, le texte `Restart to Update` s'affiche :
 
-![Restart to Update](defold_update_restart.png)
+![Restart to Update](images/defold_update_restart.png)
 
 Cliquez dessus pour afficher la boîte de dialogue `Please Confirm` :
 
-![Restart to Update dialog](defold_update_restart_dialog.png)
+![Restart to Update dialog](images/defold_update_restart_dialog.png)
 
 Cliquez alors sur le bouton `OK` pour redémarrer *Defold* et installer la mise à jour automatiquement ou sur le bouton `Cancel` pour annuler la procédure.
 
@@ -207,7 +220,7 @@ Cliquez alors sur le bouton `OK` pour redémarrer *Defold* et installer la mise 
 
 Lorsque vous démarrez *Defold*, l'écran de création et de sélection de projet s'affiche :
 
-![Defold startup](defold_start.png)
+![Defold startup](images/defold_start.png)
 
 Sur la gauche, il y a trois options :
 - Home (par défaut)
@@ -218,7 +231,7 @@ Sur la gauche, il y a trois options :
 
 Si vous venez d'installer *Defold*, cette section est vide (voir image précédente). Cliquez sur le texte `Create New Project` pour créer un nouveau projet. La section `New Project` (voir section suivante) s'affiche alors. Par la suite, la section `Home` affichera la liste de vos projets déjà ouverts dans *Defold* et stockés sur votre ordinateur. Sélectionnez alors un des projets de la liste puis cliquez sur le bouton `Open Selected` pour ouvrir le projet dans l'éditeur.
 
-![Recent Projects](defold_recent_projects.png)
+![Recent Projects](images/defold_recent_projects.png)
 
 #### Ouvrir un projet stocké localement
 
@@ -228,16 +241,16 @@ Le bouton `Open From Disk…` présent dans les deux cas de figure vous permet d
 
 Cette section sert à créer de nouveaux projets.
 
-![New Project](defold_new_project.png)
+![New Project](images/defold_new_project.png)
 
-**Attention !** Vous devez obligatoirement être connecté à *Internet* pour créer un nouveau projet car *Defold* se base sur des modèles stockés en ligne. 
+**Attention !** Vous devez obligatoirement être connecté à *Internet* pour créer un nouveau projet depuis *Defold* car il se base sur des modèles stockés en ligne. 
 
 Cliquez sur l'un des trois onglets :
 - From Template (par défaut)
 - From Tutorial
 - From Sample
 
-**Conseil :** Si vous voulez créer un nouveau projet sans connexion *Internet*, créez des modèles de projets lorsque vous êtes connecté et sauvegardez-les sur votre ordinateur. Vous n'aurez plus qu'à les copier et à ouvrir ces copies de projets dans *Defold*.
+**Conseil :** Si vous voulez créer un nouveau projet sans connexion *Internet*, créez des modèles de projets lorsque vous êtes connecté et sauvegardez-les sur votre ordinateur. Vous n'aurez plus qu'à les copier et à ouvrir ces copies de projets dans *Defold*. Une autre possibilté est de vous rendre sur le site [*GitHub* de *Defold*](https://github.com/defold) et de télécharger un des projets `template` puis de l'ouvrir dans *Defold* avec l'option `Open From Disk...`.
 
 **Remarque :** N'oubliez pas de choisir un nom de projet et de définir son emplacement sur votre ordinateur en bas de la fenêtre de *Defold*.
 
@@ -253,13 +266,13 @@ Cette option crée un nouveau projet à partir de modèles pré-existants (voir 
 
 Cette option crée un projet destiné à apprendre à utiliser *Defold*. Chaque projet vous apprend une technique différente. Choisissez un des projets proposés et suivez les instructions (en anglais) contenues dans le fichier `README.md` situé dans la vue `Assets` (voir section **Editeur** plus loin).
 
-![New Project From Tutorial](defold_new_project_from_tutorial.png)
+![New Project From Tutorial](images/defold_new_project_from_tutorial.png)
 
 #### From Sample
 
 Cette option crée un projet à partir de projets exemples divers. Choisissez un des projets proposés et examinez les différents éléments les constituants pour étudier leur structure.
 
-![New Project From Sample](defold_new_project_from_sample.png)
+![New Project From Sample](images/defold_new_project_from_sample.png)
 
 **Remarque :** N'oubliez pas de choisir un nom de projet et de définir son emplacement sur votre ordinateur en bas de la fenêtre de *Defold*.
 
@@ -267,11 +280,11 @@ Cette option crée un projet à partir de projets exemples divers. Choisissez un
 
 Cette section est utilisée pour importer un de vos projets stockés en ligne (par défaut sur le cloud de *Defold* mais vous pouvez paramétrer un autre cloud *Git*). Ces projets peuvent être partagés avec d'autres personnes.
 
-![Import Project](defold_import_project.png)
+![Import Project](images/defold_import_project.png)
 
 **Attention !** Vous devez vous connecter à *Defold* avec votre compte *Google* pour utiliser cette option. Celle-ci vous permet de télécharger un des projets stockés en ligne et de travailler localement dessus. C'est utile si vous travaillez à plusieurs sur le projet ou si vous utilisez plusieurs machines pour développer votre jeu. Cliquez sur le bouton `Sign in with Google` pour vous connecter ou sur le texte `Create Account` pour créer un nouveau compte. Une fois connecté, *Defold* affiche la liste des projets stockés en ligne. Sélectionnez alors un des projets de la liste puis cliquez sur le bouton `Import Project` pour télécharger et ouvrir le projet dans l'éditeur.
 
-![Import Project connected](defold_import_project_connected.png)
+![Import Project connected](images/defold_import_project_connected.png)
 
 **Remarque :** N'oubliez pas de choisir un emplacement sur votre ordinateur en bas de la fenêtre de *Defold*.
 
@@ -279,13 +292,13 @@ Cette section est utilisée pour importer un de vos projets stockés en ligne (p
 
 Une fois un projet ouvert, vous vous retrouvez devant la fenêtre de l'éditeur. Elle se compose de nombreuses sections :
 
-![Defold editor tour](defold_full_editor.png)
+![Defold editor tour](images/defold_full_editor.png)
 
 ### Vue Assets
 
 Cette vue liste les fichiers ressources importés, les collections et les fichiers ressources créés dans *Defold* et utilisés dans votre projet.
 
-![Assets panel](defold_assets_panel.png)
+![Assets panel](images/defold_assets_panel.png)
 
   - Par un clic droit, créez des dossiers (`New Folder`) ou des éléments (`New` puis un des nombreux choix) utiles à votre jeu.
   - Vous pouvez couper (`Cut`), copier (`Copy`), coller (`Paste`), effacer (`Delete`) ou renommer (`Rename…`) des fichiers.
@@ -294,17 +307,19 @@ Cette vue liste les fichiers ressources importés, les collections et les fichie
   - Cliquez sur la flèche à gauche d'un nom de dossier pour le déplier ou le replier.
   - Faites glisser des fichiers externes depuis votre système dans cette vue pour les importer (ils sont copiés) dans votre projet.
   - Déplacez des fichiers dans la liste à un autre emplacement pour réorganiser votre projet.
+  
+**Attention !** Le dossier `builtins` est en lecture seule. Vous ne pouvez pas éditer les fichiers qui s'y trouvent. Vous pouvez toutefois les copier pour vous en servir de modèle.
 
 ### Vue Changed Files
 
-Cette vue affiche les fichiers qui ont été modifiés ou créés depuis la dernière synchronisation avec les fichiers stockés en ligne. En synchronisant le projet régulièrement, vous pouvez garder votre copie locale à jour avec ce qui est stocké sur le *repository Git* du projet. De cette façon, vous pouvez collaborer avec une équipe et vous ne perdrez pas votre travail si des problèmes techniques venaient à survenir. 
+Cette vue affiche les fichiers qui ont changé depuis la dernière synchronisation avec les fichiers stockés en ligne. En synchronisant le projet régulièrement, vous pouvez garder votre copie locale à jour avec ce qui est stocké sur le *repository Git* du projet. De cette façon, vous pouvez collaborer avec une équipe et vous ne perdrez pas votre travail si des problèmes techniques venaient à survenir. 
 
-![Changed Files panel](defold_changed_files_panel.png)
+![Changed Files panel](images/defold_changed_files_panel.png)
 
-  - Les fichiers modifiés sont précédés du signe `*`.
-  - Les fichiers créés sont précédés du signe `+`.
-  - Les fichiers supprimés sont précédés du signe `-`.
-  - Les fichiers déplacés sont précédés du signe `>>`.
+  - Les fichiers modifiés depuis la dernière synchronisation sont précédés du signe `*`.
+  - Les fichiers créés depuis la dernière synchronisation sont précédés du signe `+`.
+  - Les fichiers supprimés depuis la dernière synchronisation sont précédés du signe `-`.
+  - Les fichiers déplacés depuis la dernière synchronisation sont précédés du signe `>>`.
 
 Cliquez sur le bouton `Diff` pour voir les modifications effectuées sur un fichier.
 Cliquez sur le bouton `Revert` pour rétablir l'état initial.
@@ -314,9 +329,9 @@ Faites un clic droit sur un fichier pour afficher un menu où vous pouvez ouvrir
 
 ### Vue Outline
 
-Cette vue montre la structure d'une collection ou d'une ressource ouverte dans *Defold*.
+Cette vue montre la structure d'une collection ou d'une ressource ouverte (onglet actif) dans la vue `Editor` de *Defold*.
 
-![Outline panel](defold_outline_panel.png)
+![Outline panel](images/defold_outline_panel.png)
 
 Par un clic droit puis `New`, créez de nouveaux éléments enfants (des sous-collections, des game objects ou des components).
 
@@ -324,17 +339,17 @@ Par un clic droit puis `New`, créez de nouveaux éléments enfants (des sous-co
 
 Cette vue affiche la liste des propriétés de l'élément sélectionné dans la vue `Outline` ou la vue `Editor`.
 
-![Properties panel](defold_properties_panel.png)
+![Properties panel](images/defold_properties_panel.png)
 
-Vous pouvez éditer la plupart des propriétés de l'élément sélectionné dans cette vue.
+Vous pouvez éditer la plupart des propriétés de l'élément sélectionné dans cette vue. Les propriétés grisées sont en lecture seule.
 
 ### Vue Tools
 
 Cette vue affiche plusieurs outils utiles au développement du jeu dans des onglets spécifiques :
 
-![Console, Curve Editor, Build Errors, Search Results panels](defold_tools_panel.png)
+![Console, Curve Editor, Build Errors, Search Results panels](images/defold_tools_panel.png)
 
-  - **Onglet Console :** Affiche les traces des scripts avec la fonction prédéfinie de *Lua* `print`. Également utilisé avec le débogueur intégré.
+  - **Onglet Console :** Affiche les traces des scripts avec les fonctions prédéfinies de *Lua* `print` et `pprint`. Également utilisé avec le débogueur intégré. Fonctionne également avec les appareils connectés.
   - **Onglet Curve Editor :** Affiche l'éditeur de courbes pour la gestion des particules.
   - **Onglet Build Errors :** Affiche les erreurs lors de la construction du projet.
   - **Onglet Search Results :** Affiche les recherches diverses.
@@ -345,7 +360,7 @@ Cette vue affiche plusieurs outils utiles au développement du jeu dans des ongl
 
 Double cliquez sur un fichier existant dans la vue `Assets` (ou créez-en un nouveau) pour ouvrir l'éditeur correspondant. Selon le fichier ouvert, la vue `Editor` affiche un éditeur différent. Chaque fichier s'ouvre dans son propre onglet :
 
-![Editor panel](defold_editor_panel.png)
+![Editor panel](images/defold_editor_panel.png)
 
 Par un clic droit sur un onglet et en sélectionnant `Move to other tab pane`, vous pouvez scinder la vue en deux pour travailler avec deux fichiers ouverts en même temps (par exemple, pour lire le tutoriel d'un fichier `README.md` tout en effectuant les consignes).
 L'option `Swap with other tab pane` inverse le contenu des deux panneaux de la vue `Editor`.
@@ -357,7 +372,7 @@ L'option `Join tab panes` rassemble les deux panneaux en un seul.
 
 Double cliquez sur un fichier collection, ou la plupart des fichiers ressources dans la vue `Assets` pour ouvrir l'éditeur général :
 
-![Collection Editor](defold_collection_editor.png)
+![Collection Editor](images/defold_collection_editor.png)
 
 Pour sélectionner un élément, cliquez dessus dans l'éditeur de scène ou dans l'arborescence de la vue `Outline`.
 Un objet sélectionné est encadré d'un contour coloré (par défaut verte) dans l'éditeur de scène et son élément est surligné dans la vue `Outline`.
@@ -370,19 +385,19 @@ Pour redimensionner un élément sélectionné, activez le mode `Scale` (touche 
 
 Cliquez sur l'icône en forme d'oeil dans la vue `Editor` pour afficher un menu qui vous permet d'activer ou de désactiver les filtres d'affichages de certains éléments :
 
-![visibility Filters list](defold_visibility_filters.png)
+![visibility Filters list](images/defold_visibility_filters.png)
 
 #### Editeur de code
 
 Lorsque vous double-cliquez sur un fichier script *Lua* dans la vue `Assets`, l'éditeur de code intégré à *Defold* ouvre le script :
 
-![Script Editor](defold_script_editor.png)
+![Script Editor](images/defold_script_editor.png)
 
 #### Editeur de configuration du projet
 
 Tous les paramètres du projet sont définis dans un fichier de configuration appelé `game.project`. Double cliquez sur lui dans la vue `Assets` pour afficher dans la vue `Editor` un formulaire éditable qui vous permet de contrôler tous les paramètres de configuration. Les paramètres ayant des valeurs modifiées ont un bouton en forme de flèche circulaire pour rétablir leur valeur par défaut. Ils sont classés par catégories.
 
-![Configuration editor](defold_configuration_file.png)
+![Configuration editor](images/defold_configuration_file.png)
 
 **Attention !** Ce fichier doit rester à la racine du projet et ne doit pas être renommé.
 
@@ -403,292 +418,217 @@ Voici un exemple :
 main_collection = /main/main.collectionc
 ```
 
-Qui indique que le paramètre `main_collection` appartient à la catégorie `bootstrap`. Quand une référence à un fichier est utilisé (comme dans le cas précédent), le chemin doit être suivi du caractère `'c'` pour indiquer que l'on fait référence à une version compilée du fichier. Le caractère `'/'` initial indique que le chemin part de la racine du projet.
+Cela indique que le paramètre `main_collection` appartient à la catégorie `bootstrap`. Quand une référence à un fichier est utilisée (comme dans le cas précédent), le chemin doit être suivi du caractère `'c'` pour indiquer que l'on fait référence à une version compilée du fichier. Le caractère `'/'` initial indique que le chemin part de la racine du projet.
 
 ##### Liste des paramètres
 
 *Project*
 
-**Title :** Le titre de l'application. Apparaît dans la barre de la fenêtre du jeu.
-
-**Version :** Version de l'application. Utile pour les mises à jour du jeu.
-
-**Write Log :** Cochez cette option pour que *Defold* crée un fichier `log.txt` dans la racine du projet. Sur *iOS*, le fichier `log` peut être accédé avec *iTunes* et l'onglet `App` dans la section `Partage de Fichier`. Sur *Android*, le fichier est stocké dans un emplacement externe à l'application. Lorsque vous exécutez l'application de développement `dmengine`, vous pouvez voir le `log` avec la commande :
+- **Title :** Le titre de l'application. Apparaît dans la barre de la fenêtre du jeu.
+- **Version :** Version de l'application. Utile pour les mises à jour du jeu.
+- **Write Log :** Cochez cette option pour que *Defold* crée un fichier `log.txt` dans la racine du projet. Sur *iOS*, le fichier `log` peut être accédé avec *iTunes* et l'onglet `App` dans la section `Partage de Fichier`. Sur *Android*, le fichier est stocké dans un emplacement externe à l'application. Lorsque vous exécutez l'application de développement `dmengine`, vous pouvez voir le `log` avec la commande :
 `$ adb shell cat /mnt/sdcard/Android/data/com.defold.dmengine/files/log.txt`
-
-**Compress Archive :** Cochez cette case pour activer la compression des archives lors du paquetage du jeu. Cela s'applique à toutes les plateformes à l'exception d'*Android* où une `apk` est sytématiquement compressée.
-
-**Dependencies :** Définit la liste des adresses *URL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'*URL* se trouve sur la page du projet dans le *dashboard* (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez en être un membre. Utilisez ensuite le menu `Project` > `Fetch Libraries` pour télécharger dans votre projet les fichiers de ces bibliothèques.
-
-**Custom Resources :** Définit une liste de ressources (séparées par des virgules) qui doivent être incluses dans le paquetage lors de l'exportation du jeu. Si des dossiers sont spécifiés, tous les sous-éléments sont inclus récursivement.
-
-**bundle_resources (paramètre caché) :** Définit un dossier contenant des fichiers de ressources et de sous-dossiers qui devront être copiés tel quel dans le paquetage lors de l'exportation du jeu. Le répertoire est spécifié par un chemin absolu par rapport à la racine du projet (par exemple `/res`). Le répertoire de ressource doit contenir des sous-dossiers par plateforme cible ou par architecture de plateforme. Les plateformes acceptées *ios*, *android*, *osx*, *win32*, *linux*, *web*. Les architectures de plateformes sont *armv7-ios*, *arm64-ios*, *armv7-android*, *x86-osx*, *x86_64-osx*, *x86-win32*, *x86_64-win32*, *x86-linux*, *x86_64-linux*, *js-web*. Un sous-dossier nommé `common` (contenant les fichiers de ressources communs à toutes les plateformes) est également accepté.
-
-**bundle_exclude_resources (paramètre caché) :** Définit une liste de ressources (séparées par des virgules) qui ne devraient pas être incluses dans le paquetage lors de l'exportation du jeu.
+- **Compress Archive :** Cochez cette case pour activer la compression des archives lors du paquetage du jeu. Cela s'applique à toutes les plateformes à l'exception d'*Android* où une `apk` est sytématiquement compressée.
+- **Dependencies :** Définit la liste des adresses *URL* des bibliothèques du projet. Pour les projets stockés sur le site de *Defold*, l'*URL* se trouve sur la page du projet dans le *dashboard* (sur le site de *Defold*). Vous devez avoir un accès en lecture à cette `URL`. Pour les projets stockés sur le site de *Defold*, cela signifie que vous devez en être un membre. Utilisez ensuite le menu `Project` > `Fetch Libraries` pour télécharger dans votre projet les fichiers de ces bibliothèques.
+- **Custom Resources :** Définit une liste de ressources (séparées par des virgules) qui doivent être incluses dans le paquetage lors de l'exportation du jeu. Si des dossiers sont spécifiés, tous les sous-éléments sont inclus récursivement.
+- **bundle_resources (paramètre caché) :** Définit un dossier contenant des fichiers de ressources et de sous-dossiers qui devront être copiés tel quel dans le paquetage lors de l'exportation du jeu. Le répertoire est spécifié par un chemin absolu par rapport à la racine du projet (par exemple `/res`). Le répertoire de ressource doit contenir des sous-dossiers par plateforme cible ou par architecture de plateforme. Les plateformes acceptées *ios*, *android*, *osx*, *win32*, *linux*, *web*. Les architectures de plateformes sont *armv7-ios*, *arm64-ios*, *armv7-android*, *x86-osx*, *x86_64-osx*, *x86-win32*, *x86_64-win32*, *x86-linux*, *x86_64-linux*, *js-web*. Un sous-dossier nommé `common` (contenant les fichiers de ressources communs à toutes les plateformes) est également accepté.
+- **bundle_exclude_resources (paramètre caché) :** Définit une liste de ressources (séparées par des virgules) qui ne devraient pas être incluses dans le paquetage lors de l'exportation du jeu.
 
 *Bootstrap*
 
-**Main Collection :** Définit le fichier collection à ouvrir au lancement du jeu. Par défaut : `/logic/main.collection`.
-
-**Render :** Définit quel pipeline de rendu utiliser pour afficher le jeu. Par défaut : `/builtins/render/default.render`.
+- **Main Collection :** Définit le fichier collection à ouvrir au lancement du jeu. Par défaut : `/logic/main.collection`.
+- **Render :** Définit quel pipeline de rendu utiliser pour afficher le jeu. Par défaut : `/builtins/render/default.render`.
 
 *Library*
 
-**Include Dirs :** Définit une liste de dossiers (séparés par un espace) à partager depuis votre projet via le partage de bibliothèque.
+- **Include Dirs :** Définit une liste de dossiers (séparés par un espace) à partager depuis votre projet via le partage de bibliothèque.
 
 *Script*
 
-**Shared State :** Cochez cette case si vous souhaitez partager un seul état *Lua* entre tous les types de scripts (standards, GUI et Render). Par défaut, non coché.
+- **Shared State :** Cochez cette case si vous souhaitez partager un seul état *Lua* entre tous les types de scripts (standards, GUI et Render). Par défaut, non coché.
 
 *Tracking*
 
-**App Id :** Définit un identifiant unique de suivi pour ce projet. Cet identifiant peut être obtenu sur le dashboard du projet (sur le site de *Defold*).
+- **App Id :** Définit un identifiant unique de suivi pour ce projet. Cet identifiant peut être obtenu sur le dashboard du projet (sur le site de *Defold*).
 
 *Display*
 
-**Width :** La largeur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
-
-**Height :** La hauteur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
-
-**High Dpi :** Crée un tampon vidéo haute résolution sur les écran qui le supportent. Typiquement, le jeu sera rendu au double de la résolution spécifiée avec les réglages `Width` et `Height` qui seront utilisés dans les scripts et les propriétés.
-
-**Samples :** Combien d'échantillons utiliser pour l’anti-crénelage de super échantillonnage (*SSAA*). Paramètre la valeur `GLFW_FSAA_SAMPLES`. Par défaut, vaut `0`, ce qui veut dire que l'anti-crénelage n'est pas activé.
-
-**Fullscreen :** Cocher cette option si vous souhaitez que votre jeu démarre en mode plein écran. Par défaut, décoché. Le jeu démarre en mode fenêtré.
-
-**Update Frequency :** Fréquence de rafraîchissement en images par secondes. Par défaut : `60`. Les valeurs autorisées sont : `60`, `30`, `20`, `15`, `12`, `10`, `6`, `5`, `4`, `3`, `2` ou `1`.
-
-**Variable Dt :** cochez la case si vous voulez que le pas de temps soit mesué contre le temps réel passé dans la boucle update. Décochez la case si vous voulez un pas de temps fixe (réglé dans le paramètre `update_frequency`).
-
-**Display Profiles :** Spécifie quel fichier de profil d'affichage utiliser. `/builtins/render/default.display_profilesc` par défaut.
-
-**Dynamic Orientation :** cochez la casie si l'application devrait changer d'orientation dynamiquement lors de la rotation de l'appareil. L'application de développement ne respecte pas ce réglage.
+- **Width :** La largeur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
+- **Height :** La hauteur en pixels de votre fenêtre de jeu. Par défaut : Dépendant du modèle utilisé.
+- **High Dpi :** Crée un tampon vidéo haute résolution sur les écran qui le supportent. Typiquement, le jeu sera rendu au double de la résolution spécifiée avec les réglages `Width` et `Height` qui seront utilisés dans les scripts et les propriétés.
+- **Samples :** Combien d'échantillons utiliser pour l’anti-crénelage de super échantillonnage (*SSAA*). Paramètre la valeur `GLFW_FSAA_SAMPLES`. Par défaut, vaut `0`, ce qui veut dire que l'anti-crénelage n'est pas activé.
+- **Fullscreen :** Cocher cette option si vous souhaitez que votre jeu démarre en mode plein écran. Par défaut, décoché. Le jeu démarre en mode fenêtré.
+- **Update Frequency :** Fréquence de rafraîchissement en images par secondes. Par défaut : `60`. Les valeurs autorisées sont : `60`, `30`, `20`, `15`, `12`, `10`, `6`, `5`, `4`, `3`, `2` ou `1`.
+- **Variable Dt :** cochez la case si vous voulez que le pas de temps soit mesué contre le temps réel passé dans la boucle update. Décochez la case si vous voulez un pas de temps fixe (réglé dans le paramètre `update_frequency`).
+- **Display Profiles :** Spécifie quel fichier de profil d'affichage utiliser. `/builtins/render/default.display_profilesc` par défaut.
+- **Dynamic Orientation :** cochez la casie si l'application devrait changer d'orientation dynamiquement lors de la rotation de l'appareil. L'application de développement ne respecte pas ce réglage.
 
 *Physics*
 
-**Type :** Quel type de physique utiliser. `2D` (par defaut) or `3D`.
-
-**Gravity Y :** La valeur de gravité du monde le long de l'axe *Y*. -10 par défaut (gravité naturelle).
-
-**Debug :** cochez la case si vous souhaitez voir les objets responsables de la physique lors du débogage.
-
-**Debug Alpha :** Définit la valeur de la composante transparente `Alpha` des objets responsables de la physique. Doit être comprise entre `0` et `1`. `0.9` par défaut.
-
-**World Count :** Max number of concurrent physics worlds, 4 par défaut. If you load more than 4 worlds simultaneously through collection proxies you need to increase this value. Be aware that each physics world allocates a fair amount of memory.
-
-**Gravity X :** La valeur de gravité du monde le long de l'axe *X*. `0` par défaut.
-
-**Gravity Z :** La valeur de gravité du monde le long de l'axe *Z*. `0` par défaut.
-
-**Scale :** Pour la précision numérique, définit l'échelle utilisée par le moteur physique par rapport au monde de jeu. Doit être comprise entre `0.01` et `1.0`. Si la valeur est réglée sur `0.02`, cela veut dire que le moteur physique considère 50 unités comme étant équivalentes à un mètre (1 / 0.021 / 0.02). `1.0` par défaut.
-
-**Debug Scale :** Définit la taille des objets unitaires [????] (telles que les triades et les normales) dans le moteur physique. `30` par défaut.
-
-**Max Collisions :** Combien de collisions seront transmises aux scripts. `64` par défaut.
-
-**Max Contacts :** Combien de points de contact seront transmis aux scripts. `128` par défaut.
-
-**Contact Impulse Limit :** Ignore les impulsions de contact ayant des valeurs inférieures à ce paramètre. `0.0` par défaut.
-
-**Ray Cast Limit 2d :** Le nombre maximum de requètes de lancers de rayons 2d par affichage. `64` par défaut.
-
-**Ray Cast Limit 3d :** Le nombre maximum de requètes de lancers de rayons 3d par affichage. `128` par défaut.
-
-**Trigger Overlap Capacity :** Le nombre maximum de déclencheurs de physique qui se chevauchent. `16` par défaut.
+- **Type :** Quel type de physique utiliser. `2D` (par defaut) or `3D`.
+- **Gravity Y :** La valeur de gravité du monde le long de l'axe *Y*. -10 par défaut (gravité naturelle).
+- **Debug :** cochez la case si vous souhaitez voir les objets responsables de la physique lors du débogage.
+- **Debug Alpha :** Définit la valeur de la composante transparente `Alpha` des objets responsables de la physique. Doit être comprise entre `0` et `1`. `0.9` par défaut.
+- **World Count :** Max number of concurrent physics worlds, 4 par défaut. If you load more than 4 worlds simultaneously through collection proxies you need to increase this value. Be aware that each physics world allocates a fair amount of memory.
+- **Gravity X :** La valeur de gravité du monde le long de l'axe *X*. `0` par défaut.
+- **Gravity Z :** La valeur de gravité du monde le long de l'axe *Z*. `0` par défaut.
+- **Scale :** Pour la précision numérique, définit l'échelle utilisée par le moteur physique par rapport au monde de jeu. Doit être comprise entre `0.01` et `1.0`. Si la valeur est réglée sur `0.02`, cela veut dire que le moteur physique considère 50 unités comme étant équivalentes à un mètre (1 / 0.021 / 0.02). `1.0` par défaut.
+- **Debug Scale :** Définit la taille des objets unitaires [????] (telles que les triades et les normales) dans le moteur physique. `30` par défaut.
+- **Max Collisions :** Combien de collisions seront transmises aux scripts. `64` par défaut.
+- **Max Contacts :** Combien de points de contact seront transmis aux scripts. `128` par défaut.
+- **Contact Impulse Limit :** Ignore les impulsions de contact ayant des valeurs inférieures à ce paramètre. `0.0` par défaut.
+- **Ray Cast Limit 2d :** Le nombre maximum de requètes de lancers de rayons 2d par affichage. `64` par défaut.
+- **Ray Cast Limit 3d :** Le nombre maximum de requètes de lancers de rayons 3d par affichage. `128` par défaut.
+- **Trigger Overlap Capacity :** Le nombre maximum de déclencheurs de physique qui se chevauchent. `16` par défaut.
 
 *Graphics*
 
-**Default Texture Min Filter :** Spécifie quel type de filtre utiliser pour le filtrage de réduction de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
-
-**Default Texture Mag Filter :** Spécifie quel type de filtre utiliser pour le filtrage d'augmentation de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
-
-**Max Draw Calls :** Le nombre maximum d'appels de rendu. `1024` par défaut.
-
-**Max Characters :** Le nombre de caractères pré-alloués dans le tampon de rendu de texte (le nombre de caractères qui peuvent être affichés à chaque affichage). `8192` par défaut.
-
-**Max Debug Vertices :** Le nombre maximum de vertices de débogage. Utilisé entre autre pour le rendu de formes de physique. `10000` par défaut.
-
-**Texture Profiles :** Le fichier de profil de texture à utiliser pour le projet. `/builtins/graphics/default.texture_profiles` par défaut.
+- **Default Texture Min Filter :** Spécifie quel type de filtre utiliser pour le filtrage de réduction de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
+- **Default Texture Mag Filter :** Spécifie quel type de filtre utiliser pour le filtrage d'augmentation de texture. `linear` (par défaut) pour des images haute résolution ou `nearest` pour des images en pixel art.
+- **Max Draw Calls :** Le nombre maximum d'appels de rendu. `1024` par défaut.
+- **Max Characters :** Le nombre de caractères pré-alloués dans le tampon de rendu de texte (le nombre de caractères qui peuvent être affichés à chaque affichage). `8192` par défaut.
+- **Max Debug Vertices :** Le nombre maximum de vertices de débogage. Utilisé entre autre pour le rendu de formes de physique. `10000` par défaut.
+- **Texture Profiles :** Le fichier de profil de texture à utiliser pour le projet. `/builtins/graphics/default.texture_profiles` par défaut.
 
 *Input*
 
-**Repeat Delay :** Le nombre de secondes à attendre avant qu'une entrée maintenue commence à se répéter. `0.5` par défaut.
-
-**Repeat Interval :** Le nombre de secondes à attendre entre chaque répétition d'une entrée maintenue. `0.2` par défaut.
-
-**Gamepads :** Référence au fichier de configuration des gamepads qui associe les signaux de gamepad au système. `/builtins/input/default.gamepads` par défaut.
-
-**Game Binding :** Référence au fichier de configuration d'entrée qui associe les entrées hardware aux actions. `/input/game.input_binding` par défaut.
-
-**Use Accelerometer :** Cochez la case pour que le moteur reçoive les évènements d'entrée de l'accéléromètre à chaque affichage. Désactiver l'entrée de l'accéléromètre peut améliorer les performanches. Coché par défaut.
+- **Repeat Delay :** Le nombre de secondes à attendre avant qu'une entrée maintenue commence à se répéter. `0.5` par défaut.
+- **Repeat Interval :** Le nombre de secondes à attendre entre chaque répétition d'une entrée maintenue. `0.2` par défaut.
+- **Gamepads :** Référence au fichier de configuration des gamepads qui associe les signaux de gamepad au système. `/builtins/input/default.gamepads` par défaut.
+- **Game Binding :** Référence au fichier de configuration d'entrée qui associe les entrées hardware aux actions. `/input/game.input_binding` par défaut.
+- **Use Accelerometer :** Cochez la case pour que le moteur reçoive les évènements d'entrée de l'accéléromètre à chaque affichage. Désactiver l'entrée de l'accéléromètre peut améliorer les performanches. Coché par défaut.
 
 *Resource*
 
-**Http Cache :** Si cochée, un tampon HTTP est activé pour un chargement plus rapide des ressources depuis le réseau vers le moteur d'exécution de l'appareil. Décoché par défaut.
-
-**Uri :** Où trouver les données de construction du projet, au format *URI*.
-
-**Max Resources :** Le nombre maximum de ressource qui peuvent être chargées en même temps. `1024` par défaut.
+- **Http Cache :** Si cochée, un tampon HTTP est activé pour un chargement plus rapide des ressources depuis le réseau vers le moteur d'exécution de l'appareil. Décoché par défaut.
+- **Uri :** Où trouver les données de construction du projet, au format *URI*.
+- **Max Resources :** Le nombre maximum de ressource qui peuvent être chargées en même temps. `1024` par défaut.
 
 *Network*
 
-**Http Timeout :** La temporisation HTTP en secondes. `0` pour désactiver la temporisation (par défaut).
+- **Http Timeout :** La temporisation HTTP en secondes. `0` pour désactiver la temporisation (par défaut).
 
 *Collection*
 
-**Max Instances :** Le nombre maximum d'instances de game objects dans une collection. `1024` par défaut.
+- **Max Instances :** Le nombre maximum d'instances de game objects dans une collection. `1024` par défaut.
 
 *Sound*
 
-**Gain :** Gain global (volume). doit être compris entre `0` et `1`. `1` par défaut.
-
-**Max Sound Data :** Le nombre maximum de ressources de sons (le nombre de fichiers sons uniques à l'exécution). `128` par défaut.
-
-**Max Sound Buffers :** (non utilisé) Le nombre maximum de tampons de sons concurrents. `32` par défaut.
-
-**Max Sound Sources :** (non utilisé) Le nombre maximum de sons joués en même temps. `16` par défaut.
-
-**Max Sound Instances :** Le nombre maximum d'instances de sons concurrentes (les sons réels joués en même temps). `256` par défaut.
+- **Gain :** Gain global (volume). doit être compris entre `0` et `1`. `1` par défaut.
+- **Max Sound Data :** Le nombre maximum de ressources de sons (le nombre de fichiers sons uniques à l'exécution). `128` par défaut.
+- **Max Sound Buffers :** (non utilisé) Le nombre maximum de tampons de sons concurrents. `32` par défaut.
+- **Max Sound Sources :** (non utilisé) Le nombre maximum de sons joués en même temps. `16` par défaut.
+- **Max Sound Instances :** Le nombre maximum d'instances de sons concurrentes (les sons réels joués en même temps). `256` par défaut.
 
 *Sprite*
 
-**Max Count :** Le nombre maximum de sprites. `128` par défaut.
-
-**Subpixels :** Cochez la case pour permettre aux sprites d'apparaître non alignés sur les pixels. Cochée par défaut.
+- **Max Count :** Le nombre maximum de sprites. `128` par défaut.
+- **Subpixels :** Cochez la case pour permettre aux sprites d'apparaître non alignés sur les pixels. Cochée par défaut.
 
 *Spine*
 
-**Max Count :** Le nombre maximum de modèles *Spine*. `128` par défaut.
+- **Max Count :** Le nombre maximum de modèles *Spine*. `128` par défaut.
 
 *model*
 
-**Max Count :** Le nombre maximum de modèles 3d. `128` par défaut.
+- **Max Count :** Le nombre maximum de modèles 3d. `128` par défaut.
 
 *GUI*
 
-**Max Count :** Le nombre maximum de components *GUI*. `64` par défaut.
-
-**Max Particlefx Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
-
-**Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
+- **Max Count :** Le nombre maximum de components *GUI*. `64` par défaut.
+- **Max Particlefx Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
+- **Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
 
 *Label*
 
-**Max Count :** Le nombre maximum de labels. `64` par défaut.
-
-**Subpixels :** Cochez la case pour permettre aux labels d'apparaître non alignés sur les pixels. Cochée par défaut.
+- **Max Count :** Le nombre maximum de labels. `64` par défaut.
+- **Subpixels :** Cochez la case pour permettre aux labels d'apparaître non alignés sur les pixels. Cochée par défaut.
 
 *Particle FX*
 
-**Max Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
-
-**Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
+- **Max Count :** Le nombre maximum d'émetteurs concurrents. `64` par défaut.
+- **Max Particle Count :** Le nombre maximum de particules concurrentes. `1024` par défaut.
 
 *Collection proxy*
 
-**Max Count :** Le nombre maximum de collection proxies. `8` par défaut.
+- **Max Count :** Le nombre maximum de collection proxies. `8` par défaut.
 
 *Collection factory*
 
-**Max Count :** Le nombre maximum de collection factories. `128` par défaut.
+- **Max Count :** Le nombre maximum de collection factories. `128` par défaut.
 
 *Factory*
 
-**Max Count :** Le nombre maximum de factories. `128` par défaut.
+- **Max Count :** Le nombre maximum de factories. `128` par défaut.
 
 *iOS*
 
-**App Icon 57x57–180x180 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données. Image file to use as application icon at given width and height dimensions W × H.
-
-**Launch Image 320x480–2436x1125 :** Fichier image à utiliser en tant qu'image de lancement d'application aux dimensions (*largeur*x*hauteur*) données. iOS sélectionne la résolution d'affichage selon l'image de lancement.
-
-**Pre Rendered Icons :** (iOS 6 et plus ancien) Cochez la case si vos icônes sont pré-rendues. Si la case est décochée, les icônes se verront ajouter un reflet brillant automatiquement.
-
-**Bundle Identifier :** L'identifiant de paquetage permet à iOS de reconnaître toute mise à jour de votre application. Votre identifiant de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identifiant pour des applications iOS et OS X.
-
-**Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
+- **App Icon 57x57–180x180 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données. Image file to use as application icon at given width and height dimensions W × H.
+- **Launch Image 320x480–2436x1125 :** Fichier image à utiliser en tant qu'image de lancement d'application aux dimensions (*largeur*x*hauteur*) données. iOS sélectionne la résolution d'affichage selon l'image de lancement.
+- **Pre Rendered Icons :** (iOS 6 et plus ancien) Cochez la case si vos icônes sont pré-rendues. Si la case est décochée, les icônes se verront ajouter un reflet brillant automatiquement.
+- **Bundle Identifier :** L'identifiant de paquetage permet à iOS de reconnaître toute mise à jour de votre application. Votre identifiant de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identifiant pour des applications iOS et OS X.
+- **Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
 
 *Android*
 
-**App Icon 36x36–192x192 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données.
-
-**Push Icon Small–LargeXxxhdpi :** Fichiers images à utiliser en tant qu'icônes de notifications *push* sur *Android*. Les icônes seront automatiquement utilisées pour les notifications locales et à distances. Si non spécifiées, l'icône d'application sera utilisée par défaut.
-
-**Push Field Title :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que titre de notification. Laissez ce paramètre vide pour attribuer par défaut au titre de la notification le nom de l'application.
-
-**Push Field Text :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que texte de notification. Laissez ce paramètre vide pour attribuer par défaut au texte le champ `alert` comme sur *iOS*.
-
-**Version Code :** Une valeur entière qui indique la version de l'application. Augmentez la valeur à chaque mise à jour.
-
-**Package :** Identifiant du package.
-
-**Gcm Sender Id :** Identifiant *Google Cloud Messaging Sender*. Attribuez à ce paramètre la chaîne de caractères donnée par Google pour permettre les notifications *push*.
-
-**Manifest :** Si spécifié, utilise le fichier *manifest XML Android* lorsque le jeu est exporté.
-
-**Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `Amazon` et `GooglePlay` (par défaut).
-
-**Input Method :** Spécifie quelle méthode utiliser pour obtenir les entrées de clavier sur les appareils *Android*. Les options valides sont `KeyEvent` (ancienne méthode) et HiddenInputField (nouvelle méthode). `KeyEvent` par défaut.
-
-**Immersive Mode :** Si spécifié, masque la barre de navigation ainsi que la barre de status et permet à votre application de capturer tous les évènements tactiles sur l'écran.
+- **App Icon 36x36–192x192 :** Fichier image à utiliser en tant qu'icône d'application aux dimensions (*largeur*x*hauteur*) données.
+- **Push Icon Small–LargeXxxhdpi :** Fichiers images à utiliser en tant qu'icônes de notifications *push* sur *Android*. Les icônes seront automatiquement utilisées pour les notifications locales et à distances. Si non spécifiées, l'icône d'application sera utilisée par défaut.
+- **Push Field Title :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que titre de notification. Laissez ce paramètre vide pour attribuer par défaut au titre de la notification le nom de l'application.
+- **Push Field Text :** Spécifie quel champ `JSON` de payload devrait être utilisé en tant que texte de notification. Laissez ce paramètre vide pour attribuer par défaut au texte le champ `alert` comme sur *iOS*.
+- **Version Code :** Une valeur entière qui indique la version de l'application. Augmentez la valeur à chaque mise à jour.
+- **Package :** Identifiant du package.
+- **Gcm Sender Id :** Identifiant *Google Cloud Messaging Sender*. Attribuez à ce paramètre la chaîne de caractères donnée par Google pour permettre les notifications *push*.
+- **Manifest :** Si spécifié, utilise le fichier *manifest XML Android* lorsque le jeu est exporté.
+- **Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `Amazon` et `GooglePlay` (par défaut).
+- **Input Method :** Spécifie quelle méthode utiliser pour obtenir les entrées de clavier sur les appareils *Android*. Les options valides sont `KeyEvent` (ancienne méthode) et HiddenInputField (nouvelle méthode). `KeyEvent` par défaut.
+- **Immersive Mode :** Si spécifié, masque la barre de navigation ainsi que la barre de status et permet à votre application de capturer tous les évènements tactiles sur l'écran.
 
 *MacOS / OS X*
 
-**App Icon :** Fichier image à utiliser en tant qu'icône d'application sur MacOS.
-
-**Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
-
-**Bundle Identifier :** L'identificateur de paquetage permet à OS X de reconnaître toute mise à jour de votre application. Votre identificateur de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identificateur pour des applications iOS et OS X.
+- **App Icon :** Fichier image à utiliser en tant qu'icône d'application sur MacOS.
+- **Info.plist :** Si spécifié, utilise le fichier `info.plist` lorsque le jeu est exporté.
+- **Bundle Identifier :** L'identificateur de paquetage permet à OS X de reconnaître toute mise à jour de votre application. Votre identificateur de paquetage doit être enregistré auprès d'*Apple* et être unique à votre application. Vous ne pouvez pas utiliser le même identificateur pour des applications iOS et OS X.
 
 *Windows*
 
-**App Icon :** Fichier image à utiliser en tant qu'icône d'application sur  Windows.
-
-**Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `None` (aucune) et `Gameroom`. `None` par défaut.
+- **App Icon :** Fichier image à utiliser en tant qu'icône d'application sur  Windows.
+- **Iap Provider :** Spécifie quel magasin utiliser. Les options valides sont `None` (aucune) et `Gameroom`. `None` par défaut.
 
 *HTML5*
 
-**Set Custom Heap Size :** Si spécifié, *Emscripten* alloue au tas de l'application le nombre d'octets de la propriété `custom_heap_size`.
-
-**Custom Heap Size :** Définit la taille personnalisée du tas (en nombre d'octets) à utiliser par *Emscripten* si le paramètre `set_custom_heap_size` est spécifié. Si non définit, `256 Mo` sont alloués au tas de l'application.
-
-**Include Dev Tool :** Inclus un outil de développement visuel dans l'application qui permet de suivre l'utilisation de la mémoire.
-
-**.html Shell :** Si défini, utilise le modèle *HTML* spécifié lors de l'exportation.
-
-**Custom .css :** Si défini, utilise le fichier *CSS* spécifié lors de l'exportation.
-
-**Splash Image :** Si défini, utilise l'image splash spécifié au démarrage lors de l'exportation.
-
-**Archive Location Prefix :** Lors de l'export vers le *HTML5*, les données de jeu sont découpées en un ou plusieurs fichiers de données archivées. Lorsque le moteur démarre le jeu, ces fichiers archives sont chargés en mémoire. Utilisez ce paramètre pour spécifier l'emplacement de la donnée. `archive` par défaut.
-
-**Archive Location Suffix :** Suffixe à ajouter à la fin des fichiers archive. Utile par exemple pour forcer le contenu non mis en mémoire cache depuis un *CDN* [??] (`?version2` par exemple).
+- **Set Custom Heap Size :** Si spécifié, *Emscripten* alloue au tas de l'application le nombre d'octets de la propriété `custom_heap_size`.
+- **Custom Heap Size :** Définit la taille personnalisée du tas (en nombre d'octets) à utiliser par *Emscripten* si le paramètre `set_custom_heap_size` est spécifié. Si non définit, `256 Mo` sont alloués au tas de l'application.
+- **Include Dev Tool :** Inclus un outil de développement visuel dans l'application qui permet de suivre l'utilisation de la mémoire.
+- **.html Shell :** Si défini, utilise le modèle *HTML* spécifié lors de l'exportation.
+- **Custom .css :** Si défini, utilise le fichier *CSS* spécifié lors de l'exportation.
+- **Splash Image :** Si défini, utilise l'image splash spécifié au démarrage lors de l'exportation.
+- **Archive Location Prefix :** Lors de l'export vers le *HTML5*, les données de jeu sont découpées en un ou plusieurs fichiers de données archivées. Lorsque le moteur démarre le jeu, ces fichiers archives sont chargés en mémoire. Utilisez ce paramètre pour spécifier l'emplacement de la donnée. `archive` par défaut.
+- **Archive Location Suffix :** Suffixe à ajouter à la fin des fichiers archive. Utile par exemple pour forcer le contenu non mis en mémoire cache depuis un *CDN* [??] (`?version2` par exemple).
 
 *Facebook*
 
-**Appid :** L'identifiant de l'application attribué par *Facebook*.
+- **Appid :** L'identifiant de l'application attribué par *Facebook*.
 
 *IAP*
 
-**Auto Finish Transactions :** Cochez la case pour terminer automatiquement les transactions *IAP*. Si décochée, vous devez explicitement appeler `iap.finish()` après une transaction réussi. Cochée par défaut.
+- **Auto Finish Transactions :** Cochez la case pour terminer automatiquement les transactions *IAP*. Si décochée, vous devez explicitement appeler `iap.finish()` après une transaction réussi. Cochée par défaut.
 
 *native_extension*
 
-**App Manifest :** Si défini, utilise le manifest de l'application pour personnaliser le build du moteur. Cela vous permet de retirer des parties non désirées du moteur et d'en réduire la taille binaire finale. Cette fonctionnalité est en phase de test *alpha*. Veuillez visiter le forum pour plus d'informations sur la procédure. Vide par défaut.
+- **App Manifest :** Si défini, utilise le manifest de l'application pour personnaliser le build du moteur. Cela vous permet de retirer des parties non désirées du moteur et d'en réduire la taille binaire finale. Cette fonctionnalité est en phase de test *alpha*. Veuillez visiter le forum pour plus d'informations sur la procédure. Vide par défaut.
 
 *profiler*
 
-**TrackCpu :** Si cochée, active le profilage du *CPU* dans les versions *release* des builds. Normalement, vous ne pouvez accéder aux informations de profilage que dans les builds *debug*. Désactivé par défaut.
+- **TrackCpu :** Si cochée, active le profilage du *CPU* dans les versions *release* des builds. Normalement, vous ne pouvez accéder aux informations de profilage que dans les builds *debug*. Désactivé par défaut.
 
 *Live update*
 
-**Private Key :** Si défini, utilise le fichier de clé privée spécifié lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, un clé est générée.
-
-**Public Key :** Si défini, utilise le fichier de clé publique lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, une clé est générée.
+- **Private Key :** Si défini, utilise le fichier de clé privée spécifié lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, une clé est générée.
+- **Public Key :** Si défini, utilise le fichier de clé publique lors de l'export de contenu de mise à jour *live*. Si aucun fichier de clé n'est spécifié, une clé est générée.
 
 ##### Paramétrer les propriétés de configuration au démarrage du moteur
 
-Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer le paramètre du fichier `game.project` :
+Lorsque le moteur démarre, vous pouvez fournir des valeurs de configuration depuis la ligne de commande pour remplacer les paramètres de configuration définis dans le fichier `game.project` :
 
 ```
 # Spécifie une collection bootstap
@@ -706,7 +646,7 @@ Voici une présentation des menus de *Defold* :
 
 ### Menu `File`
 
-![File menu](defold_file_menu.png)
+![File menu](images/defold_file_menu.png)
 
 - L'option `New...` (ou le raccourci `CTRL+N`) ouvre la boîte de dialogue `New...` et vous permet de créer une nouvelle ressource parmi celles proposées dans la liste. Cela a le même effet que d'effectuer un clic droit dans la vue `Assets` puis de choisir l'option `New...` suivie d'une des ressources de la liste. Consultez la section `Fichiers ressources` pour plus d'informations sur ces derniers.
 - L'option `Open` (ou le raccourci `CTRL+O`) vous permet d'ouvrir la ou les ressources sélectionnées dans la vue `Assets`. En général, un double clic sur une ressource dans cette vue est plus rapide.
@@ -724,31 +664,31 @@ Voici une présentation des menus de *Defold* :
 - L'option `Preferences...` (ou le raccourci `CTRL+,`) ouvre la boîte de dialogue `Preferences` et vous permet de configurer *Defold* (voir section suivante).
 - L'option `Quit` (ou le raccourci `CTRL+Q`) vous permet de quitter *Defold*. Si votre projet n'est pas sauvegardé, une demande de confirmation apparaît.
 
-**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte de l'éditeur.
+**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte dans lequel se trouve l'éditeur.
 
 #### Boîte de dialogue `Preferences`
 
-![Preferences dialog](defold_preferences_dialog.png)
+![Preferences dialog](images/defold_preferences_dialog.png)
 
 - Onglet `General`
   - La case `Enable Texture Compression:` si cochée vous permet d'activer l'utilisation d'un fichier ressource `.texture_profiles` (profil de texture) spécifié dans le fichier de configuration `game.project` à la section `Graphics` > `Texture Profiles`. Pour plus d'information, consultez la section `Texture Profiles`. Décochée par défaut.
   - La case `Escape Quits Game:` si cochée vous permet de quitter le jeu avec la touche `ECHAP` lorsque vous testez le jeu dans *Defold*. Cochée par défaut.
-  - La case `Track Active Tab in Asset Browser:` si cochée vous permet de [????]. Décochée par défaut.
+  - La case `Track Active Tab in Asset Browser:` si cochée vous permet de sélectionner automatiquement le fichier dans la vue `Assets` lorsque vous changez d'onglet dans la vue `Editor`. Décochée par défaut.
 - Onglet `Scene`
-  - Le menu déroulant `Selection Color:` vous permet de définir une couleur pour les éléments sélectionnés dans la vue `Editor`. `Lime` par défaut.
-  - Le menu déroulant `Grid:` vous permet de choisir [????] (`Auto`) ou (`Manual`) pour la grille. `Auto` par défaut.
-  - Le menu déroulant `Grid Size:` vous permet de choisir la taille des cases la grille. `100` par défaut.
-  - Le menu déroulant `Grid Color:` vous permet de définir une couleur pour la grille. `#999999` par défaut.
+  - Le menu déroulant `Selection Color:` vous permet de définir une couleur pour les éléments sélectionnés dans la vue `Editor`. `Lime` par défaut. Non fonctionnel.
+  - Le menu déroulant `Grid:` vous permet de choisir les options `Auto` ou `Manual` pour la grille. J'ignore ce que c'est censé faire. `Auto` par défaut. Non fonctionnel.
+  - Le menu déroulant `Grid Size:` vous permet de choisir la taille des cases la grille. `100` par défaut. Non fonctionnel.
+  - Le menu déroulant `Grid Color:` vous permet de définir une couleur pour la grille. `#999999` par défaut. Non fonctionnel.
 - Onglet `Code`
-  - Le champ `Custom Editor:` [????]. Vide par défaut.
-  - Le champ `Open File:` [????]. `{file}` par défaut.
-  - Le champ `Open File at Line:` [????]. `{file}:{line}` par défaut.
+  - Le champ `Custom Editor:` vous permet de définir un éditeur de code externe à *Defold* (par exemple, `Sublime Text`, `Atom` ou `VS Code`). Vide par défaut. Collez simplement dans ce champ le chemin vers le fichier de l'exécutable de l'éditeur.
+  - Le champ `Open File:` définit le fichier à ouvrir lors de l'ouverture de l'éditeur de code externe. `{file}` par défaut.
+  - Le champ `Open File at Line:` définit le fichier à ouvrir et la ligne à l'intérieur lors de l'ouverture de l'éditeur de code externe. `{file}:{line}` par défaut.
 - Onglet `Extensions`
-  - Le champ `Build Server:` [????]. `https://build.defold.com` par défaut.
+  - Le champ `Build Server:` vous permet de définir l'adresse du serveur de construction des extensions natives. `https://build.defold.com` par défaut. Pour plus d'informations, consultez la documentation de *Defold* sur les [extensions natives](https://www.defold.com/manuals/extensions/).
 
 ### Menu `Edit`
 
-![Edit menu](defold_edit_menu.png)
+![Edit menu](images/defold_edit_menu.png)
 
 - L'option `Undo` (ou le raccourci `CTRL+Z`) vous permet d'annuler la dernière action effectuée.
 - L'option `Redo` (ou le raccourci `CTRL+SHIFT+Z`) vous permet de rétablir la dernière action annulée.
@@ -758,13 +698,13 @@ Voici une présentation des menus de *Defold* :
 - L'option `Delete` (ou le raccourci `SUPPR`) vous permet d'effacer ou de supprimer le ou les éléments sélectionnés. Une boîte de dialogue vous demander de confirmer la suppression.
 - L'option `World Space` vous permet de modifier les objets dans l'éditeur dans les coordonnées globales du monde du jeu. Activée par défaut. Si cette option est activée, l'option `Local Space` est désactivée.
 - L'option `Local Space` vous permet de modifier les objets dans l'éditeur dans les coordonnées locales au game object. Inactivée par défaut.  Si cette option est activée, l'option `World Space` est désactivée.
-- L'option `Move Whole Pixels` [???]. Actif par défaut.
+- L'option `Move Whole Pixels` vous permet de déplacer les éléments pixel par pixel dans la vue `Editor`. Actif par défaut.
 
-**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte de l'éditeur.
+**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte dans lequel se trouve l'éditeur.
 
 ### Menu `View`
 
-![View menu](defold_view_menu.png)
+![View menu](images/defold_view_menu.png)
 
 - L'option `Toggle Assets Pane` (ou le raccourci `F6`) vous permet d'afficher ou de masquer la vue `Assets`.
 - L'option `Toggle Tools Pane` (ou le raccourci `F7`) vous permet d'afficher ou de masquer la vue `Tools` contenant les onglets `Console`, `Curve Editor`, `Build Errors` et `Search Results`. Il est souvent plus simple d'afficher la vue `Tools` et de cliquer sur l'onglet désiré.
@@ -774,7 +714,7 @@ Voici une présentation des menus de *Defold* :
 - L'option `Show Build Errors` vous permet d'afficher la vue `Tools` sur l'onglet `Build Errors`.
 - L'option `Show Search Results` vous permet d'afficher la vue `Tools` sur l'onglet `Search Results`.
 - L'option `Toggle Visibility Filters` (ou le raccourci `CTRL+SHIFT+I`) vous permet d'activer ou de désactiver les filtres d'affichage de certains éléments dans la vue `Editor`. consultez la section `Filtres d'affichage` pour voir la liste des filtres disponibles.
-- L'option `Toggle Component Guides` (ou le raccourci `CTRL+H`) vous permet [????].
+- L'option `Toggle Component Guides` (ou le raccourci `CTRL+H`) vous permet d'afficher ou de masquer les contours des objets dans la vue `Editor`. Cela peut être utile lorsque la vue contient beaucoup d'éléments.
 - L'option `Toggle Grid` vous permet d'afficher ou de masquer la grille.
 - L'option `Hide Selected Objects` (ou le raccourci `CTRL+E`) vous permet de masquer les objets sélectionnés.
 - L'option `Hide Unselected Objects`  vous permet de masquer les objets non sélectionnés.
@@ -784,23 +724,24 @@ Voici une présentation des menus de *Defold* :
 - L'option `Frame Selection` (ou le raccourci `F`) vous permet de centrer la vue `Editor` sur le ou les objets sélectionnés.
 - L'option `Realign Camera` (ou le raccourci `.`) vous permet de réajuster la caméra de la vue `Editor` sur l'axe *Z*.
 
-**Remarque :** Certaines options ne sont pas toujours accessibles car elles dépendent du contexte.
+**Remarque :** Certaines options ne sont pas toujours accessibles selon le contexte dans lequel se trouve l'éditeur.
 
 ### Menu `Project`
 
-![Project menu](defold_project_menu.png)
+![Project menu](images/defold_project_menu.png)
 
-- L'option `Build` (ou le raccourci `CTRL+B`) vous permet de compiler et de tester votre jeu.
-- L'option `Rebuild` (ou le raccourci CTRL+SHIFT+B) vous permet de [????].
+- L'option `Build` (ou le raccourci `CTRL+B`) vous permet de compiler et d'exécuter votre jeu. S'il a déjà été compilé, seuls les fichiers modifiés sont recompilés.  Cela permet de tester plus rapidement votre jeu.
+- L'option `Rebuild` (ou le raccourci `CTRL+SHIFT+B`) vous permet de compiler et d'exécuter votre jeu. Cette commande recompile entièrement tous les fichiers du projet à chaque fois.
 - L'option `Build HTML5` vous permet de compiler et de tester votre jeu au format HTML5 dans votre navigateur par défaut.
-- L'option `Bundle` [????].
-- L'option `Rebundle` (ou le raccourci CTRL+U) [????].
+- L'option `Bundle` vous permet de configurer et d'exporter votre jeu sur la plateforme de votre choix. Pour plus d'informations, consultez la section `Exporter votre jeu`.
+- L'option `Rebundle` (ou le raccourci `CTRL+U`) vous permet d'exporter votre jeu avec les derniers paramètres utilisés avec l'option `Bundle`. Cela vous évite de les ressaisir pour un nouvel export avec les mêmes réglages.
 - L'option `Fetch Libraries` vous permet de télécharger les bibliothèques spécifiées dans le fichier de configuration `game.project` à la section `Project` > `Dependencies` et que vous souhaitez inclure dans votre projet.
-- L'option `Live Update Settings` [????].
-- L'option `Target` vous permet de sélectionner l'appareil connecté à votre ordinateur à utiliser pour tester votre jeu.
+- L'option `Live Update Settings` vous permet de configurer les paramètres liés aux mises à jour *live*. Si un fichier `liveupdate.settings` n'existe pas encore dans le projet, un nouveau fichier est créé. Consultez la documentation de *Defold* sur les [mises à jour *live*](https://www.defold.com/manuals/live-update/).
+- L'option `Target` vous permet de sélectionner l'appareil cible (connecté sur le même réseau wifi que votre ordinateur) à utiliser pour tester votre jeu.
   - L'option `New Local Engine` [????].
-- L'option `Enter Target IP` [????].
-- L'option `Target Discovery Log` [????].
+  - La liste de vos appareils reconnus apparaît ici.
+- L'option `Enter Target IP` vous permet de définir l'adresse *IP* de l'appareil cible.
+- L'option `Target Discovery Log` permet d'afficher le fichier de *log* que *Defold* génère pour suivre les appareils connectés. L'éditeur recherche continuellement les versions de *Defoldù que vous pouver cibler. Cela est utile si vous avez des problèmes à trouver les moteurs de *Defold* qui s'éxécutent.
 
 #### Bibliothèques supplémentaires
 
@@ -810,31 +751,37 @@ Defold allows you to share data between projects through a powerful library mech
 
 Le menu `Bundle` propose plusieurs plateforme cibles pour exporter votre jeu :
 
-![Bundle menu](defold_bundle_menu.png)
+![Bundle menu](images/defold_bundle_menu.png)
 
 - L'option `Android Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Android* :
 
-![Bundle Android Application dialog](defold_bundle_android_application_dialog.png)
+![Bundle Android Application dialog](images/defold_bundle_android_application_dialog.png)
 
 - L'option `macOS Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *macOS* :
 
-![Bundle macOS Application dialog](defold_bundle_macos_application_dialog.png)
+![Bundle macOS Application dialog](images/defold_bundle_macos_application_dialog.png)
 
 - L'option `Windows Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Windows* :
 
-![Bundle Windows Application dialog](defold_bundle_windows_application_dialog.png)
+![Bundle Windows Application dialog](images/defold_bundle_windows_application_dialog.png)
 
 - L'option `Linux Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *Linux* :
 
-![Bundle Linux Application dialog](defold_bundle_linux_application_dialog.png)
+![Bundle Linux Application dialog](images/defold_bundle_linux_application_dialog.png)
 
 - L'option `HTML5 Application...` ouvre la boîte de dialogue `Bundle Application` pour la plateforme *HTML5* :
 
-![Bundle HTML5 Application dialog](defold_bundle_html5_application_dialog.png)
+![Bundle HTML5 Application dialog](images/defold_bundle_html5_application_dialog.png)
+
+Toutes ces boîtes de dialogue proposent des réglages communs en plus de ceux spécifiques à la plateforme cible :
+
+- Le menu déroulant `Variant` permet de définir le type de paquetage à produire. `Release` (par défaut) exporte une version optimisée sans fonctionnalités de débogage. C'est la version à fournir aux utilisateurs. `Debug` exporte une version intégrant des fonctionnalités de débogage en vue de tester le jeu. `Headless` (inaccesible pour l'export HTML5) [????].
+- La case `Generate build report` si cochée permet à *Defold* de générer un fichier rapport de *build* `report.html`. Cela vous permet de vérifier la taille des fichiers et d'autres informations utiles. Décochée par défaut. Pour plus d'informations, consultez la documentation de *Defold* sur le [rapport de *build*](https://www.defold.com/manuals/profiling/#_build_reports).
+- La case `Publish Live Update content` si cochée vous permet d'exporter les fichiers exclus du paquetage selon les réglages choisis dans les mises à jour *live*. Décochée par défaut. Pour plus d'informations, consultez la documentation de *Defold* sur les [mises à jour *live*](https://www.defold.com/manuals/live-update/#_bundling_with_live_update).
 
 ### Menu `Debug`
 
-![Debug menu](defold_debug_menu.png)
+![Debug menu](images/defold_debug_menu.png)
 
 - L'option `Start / Attach` (ou le raccourci `F5`) [????].
 - L'option `Break` [????].
@@ -848,16 +795,16 @@ Le menu `Bundle` propose plusieurs plateforme cibles pour exporter votre jeu :
 
 ### Menu `Help`
 
-![Help menu](defold_help_menu.png)
+![Help menu](images/defold_help_menu.png)
 
-- L'option `Profiler` [????] :
+- L'option `Profiler` vous permet de choisir entre deux sous-options :
   - L'option `Measure` [????].
   - L'option `Measure and Show` [????].
 - L'option `Reload Stylesheet` [????].
-- L'option `Show Logs` [????].
-- L'option `Documentation` (ou le raccourci `F1`) ouvre votre navigateur par défaut sur la page de documentation de *Defold*.
-- L'option `Support Forum` [????].
-- L'option `Find Assets` [????].
+- L'option `Show Logs` ouvre le répertoire contenant les fichiers *logs* de *Defold* sur votre ordinateur.
+- L'option `Documentation` (ou le raccourci `F1`) ouvre votre navigateur par défaut sur la page de la documentation de *Defold*.
+- L'option `Support Forum`  ouvre votre navigateur par défaut sur la page du forum de *Defold*.
+- L'option `Find Assets`  ouvre votre navigateur par défaut sur le portail des *assets* de la communauté de *Defold*.
 - L'option `Report Issue` vous permet d'envoyer aux développeurs de *Defold* des problèmes que vous auriez notés dans *Defold*.
 - L'option `Report Suggestion` vous permet d'envoyer aux développeurs de *Defold* des suggestions pour améliorer ce dernier.
 - L'option `Search Issues` vous permet d'effectuer des recherches d problèmes.
@@ -950,20 +897,20 @@ Tous les fichiers qui ne sont pas des collections sont considérés comme des re
 
 En plus des fichiers externes importés, *Defold* vous permet de créer de nombreux fichiers ressources différents. Faites un clic droit dans la vue `Assets` à l'endroit souhaité, sélectionnez l'option `New...` puis choisissez la ressource désirée dans la liste :
 
-![Resources list](defold_resources_list.png)
+![Resources list](images/defold_resources_list.png)
 
 ### Propriétés communes aux components
 
 Tous les components attachés en place à un game object ont les propriétés suivantes :
 
-![In place Component common properties](defold_in_place_component_properties.png)
+![In place Component common properties](images/defold_in_place_component_properties.png)
 
 - Le champ `Id` vous permet de définir le nom de référence du component dans l'arborescence.
 - Le champ `Url` indique le chemin d'accès du component depuis un script (lecture seule).
 
 Tous les fichiers ressources components attachés à un game object ont les propriétés suivantes :
 
-![File Component common properties](defold_file_component_properties.png)
+![File Component common properties](images/defold_file_component_properties.png)
 
 - Le champ `Path` vous permet de définir le fichier ressource correspondant au component. Cliquez sur le bouton `...` pour sélectionner le fichier.
 - Le champ `Id` vous permet de définir le nom de référence du component dans l'arborescence.
@@ -975,7 +922,7 @@ Une ressource `Animation Set` contient une ou plusieurs animations (sous forme d
 
 Pour créer un nouveau fichier ressource animation set, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Animation Set`. La boîte de dialogue `New Animation Set` apparaît :
 
-![New Animation Set dialog](defold_new_animation_set_dialog.png)
+![New Animation Set dialog](images/defold_new_animation_set_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de l'animation set.
 - Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'animation set.
@@ -983,13 +930,13 @@ Pour créer un nouveau fichier ressource animation set, faites un clic droit dan
 
 Cliquez sur le bouton `OK` pour créer l'animation set ou le bouton `Cancel` pour annuler. Un nouvel animation set vide apparaît dans la vue `Editor` :
 
-![Animation Set Editor view](defold_animation_set_editor.png)
+![Animation Set Editor view](images/defold_animation_set_editor.png)
 
 #### Ajouter une animation à un animation set
 
 Pour ajouter une animation, cliquez sur le bouton `+` dans la vue `Editor` pour ouvrir la boîte de dialogue `Select Resource` :
 
-![Animation Set Select Resource dialog](defold_animation_set_select_resource_dialog.png)
+![Animation Set Select Resource dialog](images/defold_animation_set_select_resource_dialog.png)
 
 Sélectionnez le fichier ressource animation 3D (au format *Collada* `.dae`) à ajouter à l'animation set puis cliquez sur le bouton `OK` pour valider.
 
@@ -1007,7 +954,7 @@ Une ressource `Atlas` sert à rassembler automatiquement un ensemble d'images s�
 
 Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Atlas`. La boîte de dialogue `New Atlas` apparaît :
 
-![New Atlas dialog](defold_new_atlas_dialog.png)
+![New Atlas dialog](images/defold_new_atlas_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de l'atlas.
 - Le champ `Location` et le bouton `Browse...` vous permettent de définir l'emplacement de l'atlas.
@@ -1015,11 +962,11 @@ Pour créer un nouveau fichier ressource atlas, faites un clic droit dans la vue
 
 Cliquez sur le bouton `OK` pour créer l'atlas ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
 
-![Atlas Editor view](defold_editor_atlas.png)
+![Atlas Editor view](images/defold_editor_atlas.png)
 
 La vue `Properties` vous permet de définir les propriétés de l'atlas :
 
-![Atlas Properties](defold_atlas_properties.png)
+![Atlas Properties](images/defold_atlas_properties.png)
 
 - Les champs `W` (largeur) et `H` (hauteur) de la section `Size` indiquent les dimensions en pixels de l'atlas (lecture seule). Elles s'adaptent automatiquement selon les images ajoutées à la valeur la plus proche d'une puissance de deux.
 - Le champ `Margin` vous permet de définir la marge en pixels que l'atlas doit ajouter autour des images.
@@ -1032,11 +979,11 @@ La vue `Properties` vous permet de définir les propriétés de l'atlas :
 
 Pour ajouter des images à un atlas, assurez vous de les avoir ajoutées au projet puis faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Images...` :
 
-![Atlas Add Images... menu](defold_outline_atlas_add_images.png)
+![Atlas Add Images... menu](images/defold_outline_atlas_add_images.png)
 
 La boîte de dialogue `Select Images` apparaît :
 
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+![Atlas Select Images dialog](images/defold_outline_atlas_select_images_dialog.png)
 
 Sélectionnez la ou les images à ajouter à l'atlas puis cliquez sur le bouton `OK`.
 
@@ -1044,7 +991,7 @@ Sélectionnez la ou les images à ajouter à l'atlas puis cliquez sur le bouton 
 
 La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des fichiers ressources images (en *italique* suivi de leur chemin complet) :
 
-![Atlas with images added](defold_atlas_with_images.png)
+![Atlas with images added](images/defold_atlas_with_images.png)
 
 **Remarque :** Vous pouvez recentrer la vue `Editor` sur l'atlas en pressant la touche `F`.
 
@@ -1052,11 +999,11 @@ La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la l
 
 Un atlas peut également contenir des groupes d'animation. Ceux-ci sont composés d'une série d'images définissant une animation image par image. Pour ajouter un nouveau groupe d'animation à un atlas, faites un clic droit sur l'atlas dans la vue `Outline` et choisissez l'option `Add Animation Group` (touche `A`) :
 
-![Atlas Add Animation Group menu](defold_outline_atlas_add_animation_group.png)
+![Atlas Add Animation Group menu](images/defold_outline_atlas_add_animation_group.png)
 
 Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
 
-![Atlas with Animation added](defold_outline_atlas_new_animation_group.png)
+![Atlas with Animation added](images/defold_outline_atlas_new_animation_group.png)
 
 **Remarque :** N'oubliez pas de renommer le groupe d'animation dans la vue `Properties` si besoin.
 
@@ -1064,21 +1011,21 @@ Dans la vue `Outline`, un nouveau groupe d'animation apparaît :
 
 Pour ajouter des images à un groupe d'animation, faites un clic droit sur celui-ci dans la vue `Outline` puis sélectionnez l'option `Add Images...` :
 
-![Atlas Animation Add Images... menu](defold_outline_atlas_animation_add_images.png)
+![Atlas Animation Add Images... menu](images/defold_outline_atlas_animation_add_images.png)
 
 La boîte de dialogue `Select Images` apparaît :
 
-![Atlas Select Images dialog](defold_outline_atlas_select_images_dialog.png)
+![Atlas Select Images dialog](images/defold_outline_atlas_select_images_dialog.png)
 
 Sélectionnez les images à ajouter au groupe d'animation de l'atlas puis cliquez sur le bouton `OK`. La vue `Editor` affiche les images dans l'atlas et la vue `Outline` affiche la liste des ressources images (en *italique* suivi de leur chemin complet) sous le groupe d'animation :
 
-![Atlas Animation with Images](defold_atlas_animation_with_images.png)
+![Atlas Animation with Images](images/defold_atlas_animation_with_images.png)
 
 **Remarque :** Si vos images ne sont pas dans l'ordre, vous pouvez les déplacer en les sélectionnant dans la vue `Outline` puis en utilisant le raccourci `ALT+HAUT` ou `ALT+BAS`. Vous pouvez également recentrer la vue `Editor` sur l'atlas en pressant la touche `F`.
 
 Si vous sélectionnez un groupe d'animation dans la vue `Outline`, la vue `Properties` affiche ses propriétés :
 
-![Atlas Animation properties](defold_atlas_animation_properties.png)
+![Atlas Animation properties](images/defold_atlas_animation_properties.png)
 
 - Le champ `Id` vous permet de définir le nom du groupe d'animation.
 - Le champ `Fps` vous permet de définir la vitesse d'animation (en images par secondes). `60` par défaut.
@@ -1107,7 +1054,7 @@ Une caméra 3D possède un volume de vue (un *frustum*) qui a la forme d'une pyr
 
 Pour créer un fichier ressource caméra, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Camera`. La boîte de dialogue `New Camera` apparaît :
 
-![New Camera dialog](defold_new_camera_dialog.png)
+![New Camera dialog](images/defold_new_camera_dialog.png)
 
 **Remarque :** Ce component peut être attaché en place à un game object. Pour attacher en place un component `Camera` à un game object, dans la vue `Outline` faites un clic droit sur le game object puis choisissez l'option `Add Component` > `Camera`.
 
@@ -1117,13 +1064,13 @@ Pour créer un fichier ressource caméra, faites un clic droit dans la vue `Asse
 
 Cliquez sur le bouton `OK` pour créer la caméra ou le bouton `Cancel` pour annuler. Un nouvel atlas vide apparaît dans la vue `Editor` :
 
-![Camera Editor view](defold_new_camera_editor.png)
+![Camera Editor view](images/defold_new_camera_editor.png)
 
 #### Propriétés de caméra
 
 Outre la vue `Editor`, la vue `Properties` vous permet également de définir les propriétés de la caméra pour configurer son *frustum* :
 
-![Camera Properties](defold_new_camera_properties.png)
+![Camera Properties](images/defold_new_camera_properties.png)
 
 - Le champ `Aspect Ratio` définit le rapport entre la largeur et la hauteur du *frustum*. Une valeur de `1.0` suppose une vue carrée (par défaut). `1.33` est adaptée à une vue au format 4/3. `1.78` est adaptée à une vue au format 16/9.
 - Le champ `Fov` définit la largeur du champ de vision (en radians). La valeur par défaut `45` est trompeuse car elle n'est pas exprimée en degrés. Pour une largeur de 45 degrés, donnez la valeur `0.785` (*PI / 4*).
@@ -1131,8 +1078,7 @@ Outre la vue `Editor`, la vue `Properties` vous permet également de définir le
 - Le champ `Far-Z` définit la limite du plan visible le plus éloigné sur l'axe *Z*. `1000` par défaut.
 - La case `Auto Aspect Ratio` si cochée laisse la caméra régler le rapport entre la largeur et la hauteur du *frustum* automatiquement suivant les réglages de l'écran du jeu. Décochée par défaut.
 
-
-
+[A EDITER]
 
 - **Camera focus :** To activate the camera and have it feed its view and projection matrices, you send the component an `acquire_camera_focus` message:
 
@@ -1252,7 +1198,7 @@ Un jeu ne peut pas fonctionner sans collection. En effet, ces dernières rassemb
 
 Pour créer une nouvelle collection, dans la vue `Assets`, faites un clic droit à l'emplacement de votre choix, choisissez `New` > `Collection`. La boîte de dialogue `New Collection` apparaît :
 
-![New Collection dialog](defold_new_collection_dialog.png)
+![New Collection dialog](images/defold_new_collection_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de la collection.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection dans votre projet.
@@ -1260,13 +1206,13 @@ Pour créer une nouvelle collection, dans la vue `Assets`, faites un clic droit 
 
 Cliquez sur le bouton `OK` pour créer la collection ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection :
 
-![New Collection Editor view](defold_new_collection_editor_view.png)
+![New Collection Editor view](images/defold_new_collection_editor_view.png)
 
 **Remarque :** *Defold* utilise l'extension `.collection` pour les fichiers collection.
 
 La vue `Outline` montre que celle-ci ne possède pour le moment aucun sous-élément :
 
-![New Collection Outline view](defold_new_collection_outline_view.png)
+![New Collection Outline view](images/defold_new_collection_outline_view.png)
 
 Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
 
@@ -1274,11 +1220,11 @@ Vous pouvez désormais attacher des sous-collections ou des game objects (en pla
 
 Pour attacher un game object en place à une collection, dans la vue `Outline`, faites un clic droit sur la collection et choisissez l'option `Add Game Object` (touche `A`) :
 
-![New Game Object In Place menu](defold_new_game_object_in_place.png)
+![New Game Object In Place menu](images/defold_new_game_object_in_place.png)
 
 Le nouveau game object apparaît dans l'arborescence de la vue `Outline` et ses propriétés s'affichent dans la vue `Properties` :
 
-![New Game Object In Place Outline and Properties](defold_new_game_object_in_place_outline_and_properties.png)
+![New Game Object In Place Outline and Properties](images/defold_new_game_object_in_place_outline_and_properties.png)
 
 Vous pouvez désormais attacher des components ou des sous-game objects (en place ou externes) à ce game object par un clic droit dans la vue `Outline`.
 
@@ -1298,7 +1244,7 @@ Avec un component collection factory, vous pouvez générer le contenu d'un fich
 
 Pour créer un fichier ressource collection factory, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Factory`.  La boîte de dialogue `New Collection Factory` apparaît :
 
-![New Collection Factory dialog](defold_new_collection_factory_dialog.png)
+![New Collection Factory dialog](images/defold_new_collection_factory_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de la collection factory.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement de la collection factory dans votre projet.
@@ -1306,7 +1252,7 @@ Pour créer un fichier ressource collection factory, faites un clic droit dans l
 
 Cliquez sur le bouton `OK` pour créer la collection factory ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant la nouvelle collection factory :
 
-![New Collection Factory Editor view](defold_new_collection_factory_editor_view.png)
+![New Collection Factory Editor view](images/defold_new_collection_factory_editor_view.png)
 
 **Remarque :** Ce component peut être attaché en place à un game object.
 
@@ -1314,154 +1260,24 @@ Cliquez sur le bouton `OK` pour créer la collection factory ou le bouton `Cance
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` ainsi que dans la vue `Editor` :
 
-![Collection Factory properties list](defold_collection_factory_properties.png)
+![Collection Factory properties list](images/defold_collection_factory_properties.png)
 
 - Le champ `Prototype` vous permet de définir le fichier collection à utiliser comme modèle de production de la collection factory.
 - La case `Load Dynamically` (inaccessible si le component est créé en place) vous permet de définir si la collection modèle ne doit pas être chargée en mémoire (cochée) ou si elle est chargée (décochée) automatiquement lors du chargement de la collection factory. Par défaut, décochée. Dans ce cas, les ressources sont donc immédiatement accessibles. Si la case est cochée, c'est au programmeur de gérer manuellement le chargement en mémoire de la collection modèle.
 
-**Remarque :** N'oubliez par de créer un fichier collection contenant l'arborescence modèle à générer.
-
-#### Chargement dynamique de la collection modèle
-
-En cochant la case `Load Dynamically` des propriétés d'une ressource collection factory, le moteur reporte le chargement des ressources associées à la collection modèle. Vous avez deux options :
-
-##### Chargement synchrone
-
-Appelez la fonction `collectionfactory.create()` lorsque vous voulez générer une instance du modèle. Cela chargera les ressources de manière synchrone, ce qui peut provoquer un ralentissement, puis génèrera une nouvelle instance :
-
-```lua
-function init(self)
-    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente est chargée.
-    -- Appeler la fonction create sans avoir appelé la fonction load créeré les ressources de manière synchrone.
-    self.go_ids = collecionfactory.create("#collectionfactory")
-end
-
-function final(self)  
-    -- Efface le game object et diminue le compteur de références des ressources.
-    -- Dans ce cas les ressources sont effacées car la collection factory
-    -- ne comporte plus de référence.
-    go.delete_all(self.go_ids)
-
-    -- Appeler la fonction unload n'aura aucun effet car la collection factory ne contient aucune référence
-    collectionfactory.unload("#factory")
-end
-```
-
-##### Chargement asynchrone
-
-Appelez la fonction `collectionfactory.load()` pour charger explicitement les ressources de manière asynchrone. Lorsque le modèle est chargé, un *callback* est reçu :
-
-```lua
-function load_complete(self, url, result)
-    -- Le chargement est terminé, les ressources sont prêtes à être générées
-    self.go_ids = collectionfactory.create(url)
-end
-
-function init(self)
-    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente
-    -- charge les ressources. Appeler la fonction load chargera les ressources.
-    collectionfactory.load("#factory", load_complete)
-end
-
-function final(self)
-    -- Efface le game object et diminue le compteur de références des ressources.
-    -- Dans ce cas les ressources ne sont pas effacées car la collection factory
-    -- comporte encore une référence.
-    go.delete_all(self.go_ids)
-
-    -- Appeler la fonction unload diminue le compteur de références des ressources
-    -- contenues dans la collection factory ce qui entraîne la destruction des ressources.
-    collectionfactory.unload("#factory")
-end
-```
-
-#### Générer une instance de collection
-
-
-
-
-
-Suppose we want a character game object and a separate shield game object childed to the character. We build the game object hierarchy in a collection file and save it as `bean.collection`.
-
-We then add a Collection factory component to a gameobject that will take care of the spawning and set `bean.collection` as the component’s Prototype:
-
-Spawning a bean and shield is now just a matter of calling the `collectionfactory.create()` function:
-
-```lua
-local bean_ids = collectionfactory.create("#bean_factory")
-```
-
-The function takes 5 parameters:
-
-- **url** The id of the collection factory component that should spawn the new set of game objects.
-- **position** (optional) The world position of the spawned game objects. This should be a vector3. If you do not specify a position, the objects are spawned at the position of the collection factory component.
-- **rotation** (optional) The world rotation of the new game objects. This should be a quat.
-- **properties** (optional) A Lua table with id-table pairs used to initiate the spawned game objects. See below for how to construct this table.
-- **scale** (optional) The scale of the spawned game objects. The scale can be expressed as a number (greater than 0) which specifies uniform scaling along all axes. You can also provide a vector3 where each component specifies scaling along the corresponding axis.
-
-`collectionfactory.create()` returns the identities of the spawned game objects as a table. The table keys map the hash of the collection-local id of each object to the runtime id of each object:
-
-The parent-child relationship between “bean” and “shield” is not reflected in the returned table. This relation only exist in the runtime scene-graph, i.e. how objects are transformed together. Re-parenting an object never changes its id.
-
-```lua
-local bean_ids = collectionfactory.create("#bean_factory")
-go.set_scale(0.5, bean_ids[hash("/bean")])
-pprint(bean_ids)
--- DEBUG:SCRIPT:
--- {
---   hash: [/shield] = hash: [/collection0/shield], 
---   hash: [/bean] = hash: [/collection0/bean],
--- }
-```
-
-A prefix `/collection[N]/`, where `[N]` is a counter, is added to the id to uniquely identify each instance:
-
-##### Propriétés
-
-When spawning a collection, you can pass property parameters to each game object by constructing a table where the keys are object ids and the values are tables with the script properties to set.
-
-```lua
-local props = {}
-props[hash("/bean")] = { shield = false }
-local ids = collectionfactory.create("#bean_factory", nil, nil, props)
-```
-
-Supposing the “bean” game object in “bean.collection” defines the “shield” property. The Script property manual contains information on script properties.
-
-```lua
--- bean/controller.script
-go.property("shield", true)
-
-function init(self)
-    if not self.shield then
-        go.delete("shield")
-    end     
-end
-```
-
-
-
-
+**Remarque :** N'oubliez par d'assigner un fichier collection existant contenant l'arborescence modèle à générer.
 
 ### Collection Proxy
 
+Le component `Collection Proxy` est utilisé pour créer un nouveau monde de jeu (y compris un monde physique séparé) basé sur une collection modèle. Le nouveau monde est accessible via un nouveau `socket`. Toutes les ressources contenues dans la collection sont chargées au travers du proxy lorsque vous envoyez un message à ce dernier pour commencer le chargement. Cela rend ce component très utile pour, par exemple, changer de niveau dans un jeu. Néanmoins, les nouveaux mondes de jeu demandent un coùt important en ressources lors de l'exécution alors ne nes utilisez pas à la légère. Par exemple, pour charger dynamiquement des petites choses, utilisez plutôt le component `Collection Factory`.
 
-
-The collection proxy component is used to create a new game world, including a separate physics world, based on a collection. The new world is accessed through a new socket. All assets contained in the collection are loaded through the proxy when you message the proxy to start loading. This makes them very useful to, for instance, change levels in a game. New game worlds come with quite a lot of overhead though so do not use them for dynamic loading of small stuff. For more information, see the Collection proxy documentation.
-
-
-
-
-
-Un component `Collection Proxy` sert à charger et activer à la volée une collection associée dans un nouvel environnement durant l'exécution du jeu. Utilisez-le pour charger différents niveaux ou écrans de jeu.
-
-**Attention !** Ne confondez pas le component `Collection Proxy` et le component `Collection Factory`. Un collection proxy génère uneinstance de collection dans un nouveau monde de jeu avec  un nouvel espace mémoire en plus de celui existant auparavant, de nouvelles règles physiques, etc... Une collection factory génère une instance de collection dans le monde de jeu existant.
+**Attention !** Ne confondez pas le component `Collection Proxy` et le component `Collection Factory`. Un collection proxy génère une instance de collection dans un nouveau monde de jeu avec  un nouvel espace mémoire en plus de celui existant auparavant, de nouvelles règles physiques, etc... Une collection factory génère une instance de collection dans le monde de jeu existant.
 
 #### Créer un fichier ressource Collection Proxy
 
 Pour créer un fichier ressource collection proxy, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collection Proxy`. La boîte de dialogue `New Collection Proxy` s'affiche :
 
-![New Collection Proxy dialog](defold_new_collection_proxy_dialog.png)
+![New Collection Proxy dialog](images/defold_new_collection_proxy_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom du collection proxy.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du collection proxy dans votre projet.
@@ -1469,7 +1285,7 @@ Pour créer un fichier ressource collection proxy, faites un clic droit dans la 
 
 Cliquez sur le bouton `OK` pour créer le collection proxy ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau collection proxy :
 
-![New Collection Proxy Editor view](defold_new_collection_proxy_editor_view.png)
+![New Collection Proxy Editor view](images/defold_new_collection_proxy_editor_view.png)
 
 **Remarque :** Ce component peut également être attaché en place à un game object.
 
@@ -1477,7 +1293,7 @@ Cliquez sur le bouton `OK` pour créer le collection proxy ou le bouton `Cancel`
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Collection Proxy properties list](defold_collection_proxy_properties.png)
+![Collection Proxy properties list](images/defold_collection_proxy_properties.png)
 
 - Le champ `Collection` vous permet de définir le fichier collection à utiliser comme modèle de production du collection proxy.
 - La case `Exclude` vous permet d'exclure la collection spécifiée dans le champ `Collection` du jeu. Vous pourrez par la suite téléchargez cette collection depuis un script de mise à jour live.
@@ -1490,7 +1306,7 @@ Les components `Collision Object` étendent les game objects avec des propriét�
 
 Pour créer un fichier ressource collision object, faites un clic droit dans la vue `Assets` à l'emplacement désiré et choisissez l'option `New...` > `Collision Object`. La boîte de dialogue `New Collision Object` s'affiche :
 
-![New Collision Object dialog](defold_new_collision_object_dialog.png)
+![New Collision Object dialog](images/defold_new_collision_object_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom du collision object.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du collision object dans votre projet.
@@ -1498,7 +1314,7 @@ Pour créer un fichier ressource collision object, faites un clic droit dans la 
 
 Cliquez sur le bouton `OK` pour créer le collision object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau collision object :
 
-![New Collision Object Editor view](defold_new_collision_object_editor_view.png)
+![New Collision Object Editor view](images/defold_new_collision_object_editor_view.png)
 
 **Remarque :** Ce component peut également être attaché en place à un game object.
 
@@ -1506,7 +1322,7 @@ Cliquez sur le bouton `OK` pour créer le collision object ou le bouton `Cancel`
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Collision Object properties list](defold_collision_object_properties.png)
+![Collision Object properties list](images/defold_collision_object_properties.png)
 
 - Le champ `Collision Shape` vous permet de définir le fichier ressource tile map possédant une collision shape. Ne fonctionne que si le game object associé possède également un component `Tile Map`. Dans le cas contraire, laissez cette propriété vide et attachez des ressources `Shape` au collision object.
 - Le menu déroulant `Type` vous permet de définir le type de comportement physique du game object associé :
@@ -1527,9 +1343,11 @@ Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
 #### Ajouter des ressources Shapes au collision object
 
-Si le game object associé n'a pas de tile map, pour que ce component fonctionne avec le moteur physique, vous devez lui attacher une ou plusieurs ressources `Shape`. Faites un clic droit dans la vue `Outline` sur le collision object, choisissez `Add Shape` puis choisissez la forme `Box` (rectangle), `Capsule` ou `Sphere`. Dans la vue `Editor`, modifiez la position, la taille et/ou l'échelle des shapes. Vous pouvez également utiliser la vue `Properties` pour paramétrer précisément les propriétés.
+Si le game object associé n'a pas de tile map, pour que ce component fonctionne avec le moteur physique, vous devez lui attacher une ou plusieurs ressources `Shape`. Faites un clic droit dans la vue `Outline` sur le collision object, choisissez `Add Shape` puis choisissez la forme `Box` (rectangle), `Capsule` ou `Sphere`. Dans la vue `Editor`, modifiez la position, la taille et / ou l'échelle des shapes avec les outils de manipulation. Vous pouvez également utiliser la vue `Properties` pour paramétrer précisément les propriétés.
 
 ### Cubemap
+
+[A EDITER]
 
 A cubemap is a special type of texture that consists of 6 different textures that are mapped on the sides of a cube. This is useful for rendering skyboxes and different kinds of reflection and illumination maps.
 
@@ -1537,11 +1355,15 @@ A cubemap is a special type of texture that consists of 6 different textures tha
 
 ### Display Profiles
 
+[A EDITER]
+
 The display profiles resource file is used for specifying GUI layouts depends on the orientation, aspect ratio or device model. It helps to adapt your UI for any kind of devices.
 
 [VIDE]
 
 ### Factory
+
+[A EDITER]
 
 In some situations you cannot manually place all needed game objects in a collection, you have to create the game objects dynamically, on the fly. For instance, a player might fire bullets and each shot should be dynamically spawned and sent off whenever the player presses the trigger. To create game objects dynamically (from a pre-allocated pool of objects), you use a factory component.
 
@@ -1555,17 +1377,21 @@ Pour créer un fichier ressource Factory, faites un clic droit dans la vue `Asse
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Factory properties list](defold_factory_properties.png)
+![Factory properties list](images/defold_factory_properties.png)
 
 [VIDE]
 
 ### Font
+
+[A EDITER]
 
 A Font resource is built from a TrueType or OpenType font file. The Font specifies which size to render the font in and what type of decoration (outline and shadow) the rendered font should have. Fonts are used by GUI and Label components.
 
 [VIDE]
 
 ### Fragment Program
+
+[A EDITER]
 
 This is a program that is run on the graphics processor for each pixel (fragment) in a polygon when it is drawn to the screen. The purpose of the fragment shader is to decide the color of each resulting fragment. This is done by calculation, texture lookups (one or several) or a combination of lookups and computations. 
 
@@ -1586,7 +1412,7 @@ Pour créer un fichier ressource `Game Object`, dans la vue `Assets` faites un c
 
 La boîte de dialogue `New Game Object` apparaît :
 
-![Assets New Game Object menu](defold_new_game_object.png)
+![Assets New Game Object menu](images/defold_new_game_object.png)
 
 - Le champ `Name` vous permet de définir le nom du game object.
 - Le champ `Location` et le bouton `Browse…` vous permettent de définir l'emplacement du game object dans votre projet.
@@ -1594,11 +1420,11 @@ La boîte de dialogue `New Game Object` apparaît :
 
 Cliquez sur le bouton `OK` pour créer le game object ou le bouton `Cancel` pour annuler. La vue `Editor` affiche un onglet contenant le nouveau game object.
 
-![New Game Object Editor view](defold_new_game_object_editor_view.png)
+![New Game Object Editor view](images/defold_new_game_object_editor_view.png)
 
 La vue `Outline` montre que celui-ci ne possède pour le moment aucun component.
 
-![New Game Object Outline view](defold_new_game_object_outline_view.png)
+![New Game Object Outline view](images/defold_new_game_object_outline_view.png)
 
 Vous pouvez désormais attacher des sous-collections ou des game objects (en place ou externes) à cette collection par un clic droit dans la vue `Outline`.
 
@@ -1606,31 +1432,33 @@ Vous pouvez désormais attacher des sous-collections ou des game objects (en pla
 
 Dans la vue `Editor`, l'onglet actif doit être un game object ou une collection pour que la vue `Outline` en affiche la structure. Pour attacher en place un component à un game object, dans la vue `Outline`, faites un clic droit sur le game object, choisissez l'option `Add Component` puis choisissez un component à attacher (c'est-à-dire directement intégré au fichier ressource contenant le game object) au game object sélectionné.
 
-![Add Component menu](defold_add_component.png)
+![Add Component menu](images/defold_add_component.png)
 
 Le component attaché en place apparaît dans la vue `Outline`.
 
-![Component in place](defold_outline_component_in_place.png)
+![Component in place](images/defold_outline_component_in_place.png)
 
 **Remarque :** Seuls les components de type `Camera`, `Collection Factory`, `Collection Proxy`, `Collision Object`, `Factory`, `Label`, `Model`, `Sound`, `Spine Model` et `Sprite` peuvent être attachés en place à un game object.
 
-![In Place Components list](defold_in_place_components_list.png)
+![In Place Components list](images/defold_in_place_components_list.png)
 
 Si vous voulez attacher un fichier ressource component préexistant (par exemple, pour le réutiliser dans plusieurs game objects) dans la vue `Assets`, faites un clic droit sur le game object ouvert dans la vue `Outline` et choisissez l'option `Add Component File` :
 
-![Add Component File menu](defold_add_component_file.png)
+![Add Component File menu](images/defold_add_component_file.png)
 
 La boîte de dialogue `Select Component File` apparaît. Choisissez alors le fichier correspondant à la ressource à attacher au game object selectionné :
 
-![Select Component File dialog](defold_select_component_file_dialog.png)
+![Select Component File dialog](images/defold_select_component_file_dialog.png)
 
 Contrairement à un component attaché en place, un component défini dans un fichier ressource apparaît en *italique* suivi du chemin du fichier dans la vue `Outline` :
 
-![Component File reference](defold_outline_component_reference.png)
+![Component File reference](images/defold_outline_component_reference.png)
 
 **Conseil :** Utilisez les components définis dans des fichiers ressources lorsque vous souhaitez les réutiliser dans plusieurs game objects.
 
 ### Gamepads
+
+[A EDITER]
 
 A gamepads resource file defines how specific gamepad device input is mapped to gamepad input triggers on a certain platform. See the Input manual for details.
 
@@ -1638,11 +1466,15 @@ A gamepads resource file defines how specific gamepad device input is mapped to 
 
 ### Gui
 
+[A EDITER]
+
 A GUI component contains elements used to construct user interfaces: text and colored and/or textured blocks. Elements can be organized into hierarchical structures, scripted and animated. GUI components are typically used to create heads-up displays, menu systems and on-screen notifications. GUI components are controlled with GUI scripts that define the behavior of the GUI and control the user interaction with it. Read more in the GUI documentation.
 
 [VIDE]
 
 ### Gui Script
+
+[A EDITER]
 
 GUI scripts are used to control the behaviour of GUI components. They control GUI animations and how the user interacts with the GUI. See the Lua in Defold manual for details on how Lua scripts are used in Defold.
 
@@ -1650,11 +1482,15 @@ GUI scripts are used to control the behaviour of GUI components. They control GU
 
 ### Input Binding
 
+[A EDITER]
+
 [????] Input binding files define how the game should interpret hardware input (mouse, keyboard, touchscreen and gamepad). The file binds hardware input to high level input actions like “jump” and “move_forward”. In script components that listen to input you are able to script the actions the game or app should take given certain input. See the Input documentation for details.
 
 [VIDE]
 
 ### Label
+
+[A EDITER]
 
 [????] The label component allows you to attach text content to any game object. It renders a piece of text with a particular font, on screen, in game space. See the Label manual for more information.
 
@@ -1668,11 +1504,13 @@ Pour créer un fichier ressource Label, faites un clic droit dans la vue `Assets
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Label properties list](defold_label_properties.png)
+![Label properties list](images/defold_label_properties.png)
 
 [VIDE]
 
 ### Lua Module
+
+[A EDITER]
 
 Lua modules allow you to structure your project and create reusable library code. Read more about it in the Lua modules manual.
 
@@ -1680,11 +1518,15 @@ Lua modules allow you to structure your project and create reusable library code
 
 ### Material
 
+[A EDITER]
+
 Materials define how different objects should be rendered by specifying shaders and their properties. See the Material manual for more information.
 
 [VIDE]
 
 ### Model
+
+[A EDITER]
 
 With the 3D model component can import Collada mesh, skeleton and animation assets into your game. See the Model manual for more information.
 
@@ -1698,11 +1540,13 @@ Pour créer un fichier ressource Model, faites un clic droit dans la vue `Assets
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Model properties list](defold_model_properties.png)
+![Model properties list](images/defold_model_properties.png)
 
 [VIDE]
 
 ### Particle FX
+
+[A EDITER]
 
 Particles are very useful for creating nice visual effects, particularly in games. you can use them to create fog, smoke, fire, rain or falling leaves. Defold contains a powerful particle effects editor that allows you to build and tweak effects while you run them real time in your game. The ParticleFX documentation gives you the details on how that works.
 
@@ -1710,17 +1554,23 @@ Particles are very useful for creating nice visual effects, particularly in game
 
 ### Render
 
+[A EDITER]
+
 Render files contain settings used when rendering the game to the screen. Render files define which Render script to use for rendering and which materials to use. See the Render manual for more details.
 
 [VIDE]
 
 ### Render Script
 
+[A EDITER]
+
 A Render script is a Lua script that controls how the game or app should be rendered to the screen. There is a default Render script that covers most common cases, but you can write your own if you need custom lighting models and other effects. See the Render manual for more details on how the render pipeline works, and the Lua in Defold manual for details on how Lua scripts are used in Defold.
 
 [VIDE]
 
 ### Script
+
+[A EDITER]
 
 A script is a component that contains a program that defines game object behaviors. With scripts you can specify the rules of your game, how objects should respond to various interactions (with the player as well as other objects). All scripts are written in the Lua programming language. To be able to work with Defold, you or someone on your team needs to learn how to program in Lua. See the Lua in Defold manual for an overview on Lua and details on how Lua scripts are used in Defold.
 
@@ -1731,6 +1581,8 @@ Pour créer un fichier ressource Script, faites un clic droit dans la vue `Asset
 [VIDE]
 
 ### Sound
+
+[A EDITER]
 
 The sound component is responsible for playing a specific sound. Currently, Defold supports sound files in the WAV and Ogg Vorbis formats. See the Sound manual for more information.
 
@@ -1744,11 +1596,13 @@ Pour créer un fichier ressource Sound, faites un clic droit dans la vue `Assets
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Sound properties list](defold_sound_properties.png)
+![Sound properties list](images/defold_sound_properties.png)
 
 [VIDE]
 
 ### Spine Model
+
+[A EDITER]
 
 The Spine model component is used to bring Spine skeletal animations to life in Defold. Read more about how to use it in the Spine model manual.
 
@@ -1762,17 +1616,21 @@ Pour créer un fichier ressource Spine Model, faites un clic droit dans la vue `
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Spine Model properties list](defold_spine_model_properties.png)
+![Spine Model properties list](images/defold_spine_model_properties.png)
 
 [VIDE]
 
 ### Spine Scene
+
+[A EDITER]
 
 The Spine scene resource ties together the Spine JSON data file and the Defold image atlas file that is used to fill bone slots with graphics. The Spine animation manual contains more information.
 
 [VIDE]
 
 ### Sprite
+
+[A EDITER]
 
 A sprite is a component that extends game objects with graphics. It displays an image either from a Tile source or from an Atlas. Sprites have built-in support for flip-book and bone animation. Sprites are usually used for characters and items.
 
@@ -1786,11 +1644,13 @@ Pour créer un fichier ressource Sprite, faites un clic droit dans la vue `Asset
 
 Les propriétés suivantes sont accessibles dans la vue `Properties` :
 
-![Sprite properties list](defold_sprite_properties.png)
+![Sprite properties list](images/defold_sprite_properties.png)
 
 [VIDE]
 
 ### Texture Profiles
+
+[A EDITER]
 
 The texture profiles resource file is used in the bundling process to automatically process and compress image data (in Atlas, Tile sources, Cubemaps and stand-alone textures used for models, GUI etc). Read more in the Texture profiles manual.
 
@@ -1798,11 +1658,15 @@ The texture profiles resource file is used in the bundling process to automatica
 
 ### Tile Map
 
+[A EDITER]
+
 Tile map components display images from a tile source in one or more overlaid grids. They are most commonly used to build game environments: ground, walls, buildings and obstacles. A tile map can display several layers aligned on top of each other with a specified blend mode. This is useful to, for example, put foliage on top of grass background tiles. It is also possible to dynamically change the displayed image in a tile. That allows you to, for instance, destroy a bridge and make it impassable by simply replacing the tiles with ones depicting the broken down bridge and containing the corresponding physics shape. See the Tile map documentation for more information.
 
 [VIDE]
 
 ### Tile Source
+
+[A EDITER]
 
 A tile source describes a texture that is composed of multiple smaller images, each with the same size. You can define flip-book animations from a sequence of images in a tile source. Tile sources can also automatically calculate collision shapes from image data. This is very useful for creating tiled levels that object can collide and interact with. Tile sources are used by Tile map components (and Sprite and ParticleFX) to share graphics resources. Note that Atlases are often a better fit than tile sources. See the Tile map documentation for more information.
 
@@ -1812,7 +1676,7 @@ Un fichier ressource `Tile Source` contient une référence à un seul fichier i
 
 Pour créer un fichier ressource tile source, faites un clic droit dans la vue `Assets` à l'emplacement désiré puis choisissez l'option `New...` > `Tile Source`. La boîte de dialogue `New Tile Source` apparaît :
 
-![New Tile Source dialog](defold_new_tile_source_dialog.png)
+![New Tile Source dialog](images/defold_new_tile_source_dialog.png)
 
 - Le champ `Name` vous permet de définir le nom de la tile source.
 - Le champ `Location` et le bouton `Browse` vous permettent de définir l'emplacement de la tile source.
@@ -1820,7 +1684,7 @@ Pour créer un fichier ressource tile source, faites un clic droit dans la vue `
 
 Cliquez sur le bouton `OK` pour créer la tile source ou sur le bouton `Cancel` pour annuler. Une nouvelle tile source vide apparaît dans la vue `Editor` :
 
-![New Tile Source Editor view empty](defold_new_tile_source_editor.png)
+![New Tile Source Editor view empty](images/defold_new_tile_source_editor.png)
 
 La vue `Editor` indique que la tile source nécessite de définir sa propriété `Image` (`'Image' must be specified`).
 
@@ -1828,21 +1692,21 @@ La vue `Editor` indique que la tile source nécessite de définir sa propriété
 
 Dans la vue `Properties`, cliquez sur l'icônes `...` à droite du champ `Image` :
 
-![New Tile Source Outline and Properties view empty](defold_new_tile_source_outline_and_properties.png)
+![New Tile Source Outline and Properties view empty](images/defold_new_tile_source_outline_and_properties.png)
 
 La boîte de dialogue `Select Resource` apparaît :
 
-![Tile Source Select Resource dialog](defold_tile_source_select_resource_dialog.png)
+![Tile Source Select Resource dialog](images/defold_tile_source_select_resource_dialog.png)
 
 Choisissez le fichier ressource image à utiliser puis cliquez sur le bouton `OK`. La vue `Editor` affiche l'image importée (pour centrer la vue sur l'image appuyez sur la touche `F`). En haut à gauche, un texte indique le numéro de tuile de l'image survolée par la souris :
 
-![Tile Source Editor](defold_tile_source_editor.png)
+![Tile Source Editor](images/defold_tile_source_editor.png)
 
 #### Propriétés d'une tile source
 
 La vue `Properties` vous permet de définir les propriétés de la tile source :
 
-![Tile Source Properties](defold_tile_source_properties.png)
+![Tile Source Properties](images/defold_tile_source_properties.png)
 
 - Le champ `Image` vous permet de définir le fichier ressource image à utiliser dans la tile source.
 - Les champs `W` (largeur) et `H` (hauteur) de la section `Size` affichent les dimensions en pixels de l'image utilisée dans la tile source.
@@ -1858,17 +1722,17 @@ La vue `Properties` vous permet de définir les propriétés de la tile source :
 
 Une tile source permet de définir des animations composées d'images successives dans l'image source. Pour créer une nouvelle animation, dans la vue `Outline` faites un clic droit sur la tile source et choisissez l'option `Add` > `Animation` :
 
-![Tile Source Add Animation menu](defold_tile_source_add_animation_menu.png)
+![Tile Source Add Animation menu](images/defold_tile_source_add_animation_menu.png)
 
 Une nouvelle animation apparaît dans la vue `Outline` :
 
-![Tile Source New Animation Outline view](defold_tile_source_new_animation_outline.png)
+![Tile Source New Animation Outline view](images/defold_tile_source_new_animation_outline.png)
 
 ##### Propriétés d'animations de tile source
 
 Editez les propriétés de l'animation dans la vue `Properties` :
 
-![Tile Source New Animation Properties view](defold_tile_source_new_animation_properties.png)
+![Tile Source New Animation Properties view](images/defold_tile_source_new_animation_properties.png)
 
 - Le champ `Id` vous permet de définir le nom de l'animation.
 - Le champ `Start Tile` vous permet de définir l'index de la première tuile de l'animation.
@@ -1888,6 +1752,8 @@ Editez les propriétés de l'animation dans la vue `Properties` :
 **Remarque :** Appuyez sur la touche `ESPACE` pour lire l'animation sélectionnée.
 
 ### Vertex Program
+
+[A EDITER]
 
 The vertex shader computes the screen geometry of a component’s primitive polygon shapes. For any type of visual component, be it a sprite, spine model or model, the shape is represented by a set of polygon vertex positions. The vertex shader program processes each vertex (in world space) and computes the resulting coordinate that each vertex of a primitive should have. See the Shader manual for more information.
 
@@ -2004,6 +1870,125 @@ Chaque game object ou component supporte un certain nombre de messages associés
 ### Créer un game object depuis un script
 
 [VIDE]
+
+
+
+### Charger dynamiquement le prototype d'une collection factory
+
+En cochant la case `Load Dynamically` des propriétés d'une ressource collection factory, le moteur reporte le chargement des ressources associées à la collection modèle. Vous avez deux options :
+
+#### Chargement synchrone
+
+Appelez la fonction `collectionfactory.create()` lorsque vous voulez générer une instance du modèle. Cela chargera les ressources de manière synchrone, ce qui peut provoquer un ralentissement, puis génèrera une nouvelle instance :
+
+```lua
+function init(self)
+    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente est chargée.
+    -- Appeler la fonction create sans avoir appelé la fonction load crée les ressources de manière synchrone.
+    self.go_ids = collecionfactory.create("#collectionfactory")
+end
+
+function final(self)  
+    -- Efface le game object et diminue le compteur de références des ressources.
+    -- Dans ce cas les ressources sont effacées car la collection factory ne comporte plus de référence.
+    go.delete_all(self.go_ids)
+
+    -- Appeler la fonction unload n'aura aucun effet car la collection factory ne contient aucune référence.
+    collectionfactory.unload("#factory")
+end
+```
+
+#### Chargement asynchrone
+
+Appelez la fonction `collectionfactory.load()` pour charger explicitement les ressources de manière asynchrone. Lorsque le modèle est chargé, un *callback* est reçu :
+
+```lua
+function load_complete(self, url, result)
+    -- Le chargement est terminé, les ressources sont prêtes à être générées.
+    self.go_ids = collectionfactory.create(url)
+end
+
+function init(self)
+    -- Aucune ressource de la collection factory n'est chargée lorsque la collection parente
+    -- charge les ressources. Appeler la fonction load chargera les ressources.
+    collectionfactory.load("#factory", load_complete)
+end
+
+function final(self)
+    -- Efface le game object et diminue le compteur de références des ressources.
+    -- Dans ce cas les ressources ne sont pas effacées car la collection factory
+    -- comporte encore une référence.
+    go.delete_all(self.go_ids)
+
+    -- Appeler la fonction unload diminue le compteur de références des ressources
+    -- contenues dans la collection factory ce qui entraîne la destruction des ressources.
+    collectionfactory.unload("#factory")
+end
+```
+
+#### Générer une instance de collection avec une collection factory
+
+
+
+
+
+Suppose we want a character game object and a separate shield game object childed to the character. We build the game object hierarchy in a collection file and save it as `bean.collection`.
+
+We then add a Collection factory component to a gameobject that will take care of the spawning and set `bean.collection` as the component’s Prototype:
+
+Spawning a bean and shield is now just a matter of calling the `collectionfactory.create()` function:
+
+```lua
+local bean_ids = collectionfactory.create("#bean_factory")
+```
+
+The function takes 5 parameters:
+
+- **url** The id of the collection factory component that should spawn the new set of game objects.
+- **position** (optional) The world position of the spawned game objects. This should be a vector3. If you do not specify a position, the objects are spawned at the position of the collection factory component.
+- **rotation** (optional) The world rotation of the new game objects. This should be a quat.
+- **properties** (optional) A Lua table with id-table pairs used to initiate the spawned game objects. See below for how to construct this table.
+- **scale** (optional) The scale of the spawned game objects. The scale can be expressed as a number (greater than 0) which specifies uniform scaling along all axes. You can also provide a vector3 where each component specifies scaling along the corresponding axis.
+
+`collectionfactory.create()` returns the identities of the spawned game objects as a table. The table keys map the hash of the collection-local id of each object to the runtime id of each object:
+
+The parent-child relationship between “bean” and “shield” is not reflected in the returned table. This relation only exist in the runtime scene-graph, i.e. how objects are transformed together. Re-parenting an object never changes its id.
+
+```lua
+local bean_ids = collectionfactory.create("#bean_factory")
+go.set_scale(0.5, bean_ids[hash("/bean")])
+pprint(bean_ids)
+-- DEBUG:SCRIPT:
+-- {
+--   hash: [/shield] = hash: [/collection0/shield], 
+--   hash: [/bean] = hash: [/collection0/bean],
+-- }
+```
+
+A prefix `/collection[N]/`, where `[N]` is a counter, is added to the id to uniquely identify each instance:
+
+#### Gérer les propriétés de collection factories dynamiquement
+
+When spawning a collection, you can pass property parameters to each game object by constructing a table where the keys are object ids and the values are tables with the script properties to set.
+
+```lua
+local props = {}
+props[hash("/bean")] = { shield = false }
+local ids = collectionfactory.create("#bean_factory", nil, nil, props)
+```
+
+Supposing the “bean” game object in “bean.collection” defines the “shield” property. The Script property manual contains information on script properties.
+
+```lua
+-- bean/controller.script
+go.property("shield", true)
+
+function init(self)
+    if not self.shield then
+        go.delete("shield")
+    end     
+end
+```
 
 ### Débogage
 

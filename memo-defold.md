@@ -832,7 +832,7 @@ La vue `Properties` vous permet de définir les propriétés de l'atlas :
 - Le champ `Inner Padding` vous permet de définir l'espacement en pixels que l'atlas doit ajouter entre chaque image.
 - Le champ `Extrude Borders` vous permet de définir la taille en pixels du débordement à effectuer autour de chaque image de l'atlas. *Defold* reproduit les pixels des images touchant les bords un nombre de pixels spécifié dans cette section. Cela est utile lorsque le *fragment shader* échantillonne les pixels au bord d'une image, car les pixels de l'image voisine peuvent apparaître et causer des problèmes d'affichage. Cette option permet d'éviter ce problème.
 
-[Atlas properties illustration](images/defold_atlas_properties_illustration.png)
+![Atlas properties illustration](images/defold_atlas_properties_illustration.png)
 
 **Remarque :** Si vous avez activé la compression de texture dans les paramètres du projet, certains formats imposent que la largeur et la hauteur de l'atlas soient identiques.
 
@@ -915,11 +915,11 @@ Dans *Defold*, une caméra est un component qui gère la vue dans le jeu. Par d�
 
 Une caméra 3D en perpective possède un volume de vue (un *frustum*) qui a la forme d'une pyramide rectangulaire tronquée. Tout ce qui est en dehors de cette zone n'est pas visible. Les objets les plus éloignés de la caméra apparaissent plus petits. Plus le champ de vision est large, plus la caméra voit de parties de la scène et plus la différence entre des objets éloignés est importante. La perspective est réaliste.
 
-[Camera perspective frustum](images/defold_perspective_frustum.png)
+![Camera perspective frustum](images/defold_perspective_frustum.png)
 
 Une projection orthographique n'est pas réaliste mais peut être utile pour une vue classique en 2D :
 
-[Perspective and orthographic projections](images/defold_perspective_and_orthographic_projections.png)
+![Perspective and orthographic projections](images/defold_perspective_and_orthographic_projections.png)
 
 **Attention !** Une caméra en vue orthographique définit sa position par rapport au coin inférieur gauche de sa vue et non son centre.
 
